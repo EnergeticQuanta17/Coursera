@@ -1,0 +1,706 @@
+	Neural Style Transfer --> art
+
+3x3 filter/kernel and convolve it
+
+Vertical edge detecting kernel/filter
+	1 0 -1
+	1 0 -1
+	1 0 -1
+
+	Bright pixels on the left
+	Dont care what is there in the middle
+	Dark pixels on the right
+
+To apply the convolution operator
+	tf.nn.conv2d
+
+Horizontal Edge Detection
+	 1  1  1
+	 0  0  0
+	-1 -1 -1
+
+What is the best values for filter?
+	Treat 9 parameters as parameters and learn them through backpropogation
+
+	More robust
+
+Sobel Filter
+	1 0 -1
+	2 0 -2
+	1 0 -1
+
+Scharr filter
+	3  0 -3
+	10 0 -10
+	3  0 -3
+
+Convolution
+	(n x n) * (f x f) --> (n-f+1) x (n-f+1)
+
+	Shrinks every time
+
+	Corner pixels' information are thrown away info from edge
+
+Padding
+	p = padding = 1
+
+	(n + 2p -f +1) x (n + 2p -f +1)
+		output
+
+Valid convolutions
+	No padding
+
+Same convolutions
+	Output size same as the input size
+
+	p = (f-1)/2 --> for odd order filter
+
+	f --> is usually odd
+
+	f is even --> then we need asymmetric padding
+
+	It is nice to have central pixel in filter
+
+Strided convolutions
+	stride s
+
+	floor{(n + 2p - f)/s} + 1
+
+	Rounding down is fine
+
+Convolution in math textbook
+	cross-correlation
+
+	the technical note on cross-correlation vs convolution
+
+	cross-correlation enables the operator to be a associative operator
+
+Convolutions over Volume
+	3D --> height, width, channels
+
+	no.of channels matches that of the filer ==> lead to 2D
+
+	Multiple Filters
+		One Vertical edge filter output
+		and
+		One Horizontal edge filter output
+
+		Stack them to get --> n x n x 2
+
+Parameters are independent of size of image
+
+Less prone to overfitting
+
+p=0 means valid convolutions instead of same convolutions.
+
+Setting the padding to zero results in "valid convolutions".
+
+Types of layers in a convolutional network
+	Convolution
+	Pooling
+	Fully connected
+
+Pooling Layers
+	Make some features that detects more robust
+
+	f and s are hyperparameters of pooling layers
+
+	Max pooling --> If a feature is detected, keep a high number to denote
+
+	No one knows why they use Max Pooling
+
+	No parameters to learn
+
+	Max pooling is done on each of the channels
+
+Average pooling
+	Max pooling is used much more often than Average pooling
+
+	Except in one case --> to collapse your representation from 7x7x1000 to 1x1x1000
+
+f=2,s=2 is used quite often
+f=3,s=2
+
+classic CNN -->LeNet-5
+
+Layer = Conv part + Pooling part
+		OR
+Layer = Conv part / Pooling part / Fully connected
+
+Guideline --> not try to invent your own hyperparameters, but to look into literature
+
+conv-pool-conv-pool-fc-fc-fc
+
+Activation size drops gradually as we go deeper to the network
+
+Advantages of Convolutional layers over just using fully connected Layers
+	Parameter sharing
+	Sparsity of connections
+
+	If we directly connect all pixels to all pixels, it will be too many parameters to train
+		But using convolutions does --> Parameter sharing
+
+	Sparsity of connections
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+Discover some powerful practical tricks and methods used in deep CNNs, straight from the research papers, then apply transfer learning to your own deep CNN.
+
+Classic networks:-
+	LeNet-5
+	AlexNet
+	VGG
+
+ResNet
+	Residual network
+
+Inception Neural Network
+
+LeNet-5
+	32 32 1
+	28 28 6
+	14 14 6
+	10 10 16
+	5 5 16
+	120
+	84
+	1
+
+	60,000 parameters
+
+	Non-linearity after pooling
+
+	Graph Transformer Network
+
+AlexNet
+	227 227 3
+	55 55 96 (stride=4)
+	27 27 96 (stride=2)
+	27 27 256
+	13 13 256 (stride=2)
+	13 13 384
+	13 13 384
+	13 13 256
+	6 6 256 (stride=2)
+	9216
+	4096
+	4096
+	1000
+
+	60M parameters
+	ReLU activation
+
+	Multiple GPUs
+
+	Local Response Normalization --> maybe doesn't help thaaat much
+
+	Convinced ppl
+
+VGG-16
+	CONV = 3x3 filter, s=1, same
+	MAX-POOL = 2x2, s=2
+
+	Architecture
+		224 224 3
+		224 224 64
+		224 224 64
+		112 112 64
+		112 112 128
+		112 112 128
+		56 56 128
+		56 56 256
+		56 56 256
+		56 56 256
+		28 28 256
+		28 28 512
+		28 28 512
+		28 28 512
+		14 14 512
+		14 14 512
+		14 14 512
+		14 14 512
+		7 7 512
+		4096
+		4096
+		1000
+
+	16-layers
+
+	138M parameters
+
+	VGG-19
+
+	Systematic pattern in depth
+
+Residual Networks
+	Skip connections
+
+	Enables to build very very deep networks
+
+	Residual Block
+		In the paper, 2 layers consisted of a residual block
+
+	Input to first layer is one of the two inputs to second layer of the block
+
+	In PlainNetworks,	
+		As number of layers increases, after a certain point training error increases
+
+	But for ResNets it keeps going down
+
+	Things in this lessen the effect of vanishing and exploding gradients problems
+
+1x1 Convolutions
+	Network in Network
+
+	28x28x192 --> 28x28x32
+
+Inception Network
+	On 28x28x192
+
+	Apply 1x1 to get 28x28x64
+	Apply 3x3 filter to get 28x28x128
+	Apply 5x5 filter to get 28x28x32
+	Apply max-pooling and get 28x28x32
+
+	Stack all of them
+
+	Let the network learn whatever parameters it wants to use, whatever combinations of these filter sizes it wants.
+
+	Problem:- Computational cost high
+
+	Using 1x1 Convolutions, we can reduce the computation cost by a factor of 10
+		Using BottleNeck layer
+
+		Used the create BottleNeck layer
+
+	GoogLeNet
+
+	InceptionV2
+	InceptionV3
+	InceptionV4
+
+MobileNet
+	Low compute cost at deployment
+
+	Key idea: Normal vs. Depthwise-separable convolutions
+
+	Depthwise-separable = Depthwise Convolution + Pointwise Convolution
+
+	Number of computations required is reduced by a factor of 3 in the Coursera example
+
+	In the general case,
+		factor = (1/n[c']) + (1/(f^2))
+
+	Depthwise-separable is 10x cheaper when number of channels is large
+
+MobileNet v1
+	13 times the Depthwise-separable part was applied to original image
+
+	and then PoolinG, Fully connected, softmax
+
+MobileNet v2
+	New thing --> Residual Connection
+	Additional --> Expansion part
+	Pointwise Convolution --> now called Projection
+
+	Parts of Residual Connection
+		Expansion
+		Depthwise Convolution
+		Projection
+
+	Also called BottleNeck block
+
+	Can learn a richer function
+
+EfficientNet
+	Given a particular computational budget, what is good choice of:-
+		resolution r
+		depth d
+		width w
+
+	See open source implementation of EfficientNet, to choose good trade-off between r, d and w
+
+Transfer Learning
+	Instead of random initialization
+
+	Change only the softmax part
+
+	"freeze" all the other parameters
+
+	A function that computes the fixed function, which does the frozen part
+
+	If you have lots of data, then freeze first few layers
+
+	If you have computational power, train the whole thing again
+
+Data Augmentation
+	Mirroring on vertical axis
+	Random cropping
+	
+	Rotation
+	Shearing
+	Local warping
+
+	Color shifting --> motivation --> more light was there
+
+	***"PCA Color Augmentation"***
+		Tries to keep overall color of tint same
+
+	Using CPU threads to load images
+	And run the threads in parallel for each image
+
+Lots of data
+	Simpler algorithms
+	Less hand-engineering
+
+Liitle data
+	More hand-engineering --> hacks
+
+Two sources of knowledge
+	Labelled data
+	Hand engineered features
+	Network ArchitectureS
+	Other components
+
+If you do well on benchmark datasets, easier to get paper released.
+
+Tips for doing well on benchmarks / winning competitions
+	Ensembling
+		Train several networks independently and average their outputs
+
+		Average the outputs not the weights
+		Maybe 1% or 2% better to win a competition
+
+	Multi-crop at test time
+		Run classifier on multiple version of test images and average results
+
+		Apply data augmentation and average results
+
+	Not used in production systems as it is much slower
+
+Use open source code
+	Use architectures of networks published in the literature
+
+	Use open source implementations
+
+	Use pretrained models and fine-tune on your dataset
+
+----------------------------------------------------------------------------------------
+		OBJECT DETECTION
+
+Image Classification
+Classification with localization
+Detection
+
+Classification with localization
+	Mid point of object, Width and Height
+
+p[c] --> probability that there is an object except background
+
+y vector --> p[c], b[x], b[y], b[h], b[w], c[1], c[2], c[3]
+	p[c] = 0/1
+	
+	If p[c]==0 then all others are "don't care"
+
+	Cost function --> MSE or mixture 
+
+Landmark Detection
+	Facial landmark detection is a base task which can be used to perform other computer vision tasks, including head pose estimation, identifying gaze direction, detecting facial gestures, and swapping faces. This is part of an extensive series of guides about machine learning
+
+	Key landmarks of a face
+
+	We can also annotate the pose of the person
+		Putting dots on joints
+
+	Landmarks has to be consistent
+
+Object Detection --> Sliding Windows Detection
+	We can use ConvNets and do sliding window detection
+
+	Disadvantages
+		Computational cost
+		Low stride --> high computational cost
+
+	THis can be implemented convolutionally
+
+Instead of directly unpacking 5x5x16 to 400 --> do this --> use "400" 5x5x16 filters to get 1x1x400
+	And then use 1x1 filter
+
+Turning FC layer into convolutional layers
+	"Convolution implementation of sliding windows"
+		So much faster
+
+	Problem:- Bounding box is not that accurate
+
+Bounding Box Predictions
+	Improving bounding box predictions
+
+	YOLO algorithm
+		Split image space to 3x3
+
+		Apply Image Classification and localization
+
+		YOLO algorithm takes the mid point of ecah of two objects and then assigns the object to the grid cell containing the midpoint.
+
+		We can use single ConvNets' computation to get all output
+
+Intersection over Union
+	IOU --> Area of Intersection / Area of Union
+
+	Generally correct for greater than 0.5 
+
+Non-max Suppression
+	One of the problems of object detection --> algorithm may find multiple detections of the same objects
+
+	One detection per car instead of multiple
+
+	Take a maximum probability rectangle then do IOU and eliminate those rectangles
+	And repeat
+
+	Supress the close-by-ones that are non-maximal
+
+	Non-max Suppression algorithm
+		Discard all boxes with p[c]<=0.6
+
+		Pick the box with largest p[c]
+		Output that as a prediction
+
+		Discard any remaining box with IOU>=0.5 with the box output in the previous step
+
+	If there is more than one class, we need to carry out non-max Suppression on each of the output classes
+
+Idea of using Anchor boxes
+	Overlapping objects
+
+	Define 5 anchor boxes
+
+	y vector has --> p[c], b[_], c[_]
+
+	Now repear y 5 times and make it a vector
+
+	Each object in training image is assigned to grid cell that contains object's midpoint and anchor box for the grid cell with highest IOU
+
+	Assigned to (grid_cell, anchor_box)
+
+	If our dataset has some tall skinny objects like pedestrians and some wide objects like cars --> then this allows our learning algorithm to specialize that some of the outputs can specialize in detecting wide or fat objects like car , and some tall objects like pedestrians
+
+	Latest YOLO paper --> to use K-means algorithm to group together two types of objects shapes you tend to get
+		And then use anchor boxes that is most stereotypically representative of the maybe multiple objects
+
+		this is a way to automatically choose anchor boxes
+
+YOLO algorithm - object detection algorithm
+	Making predictions
+		Multiple y vectors stacked to get --> 3x3x2x8
+
+		y vector --> 1x8
+
+	Outputting the non-max supressed outputs
+
+Region proposals
+	R-CNN --> regions with convolutional networks
+		Tries to pick just a few regions that makes sense to run your ConvNets classifier
+
+		Segmentation algorithm was applied
+
+		And then do classification only on the segmented parts
+
+	Faster algorithms
+		R-CNN :-
+			Propose regions
+			Classify proposed regions one at a time.
+			Output label + bounding box
+
+		Fast R-CNN :-
+			Propose regions
+			Use convolution implementation of sliding windows to classify all the proposed regions
+
+			Problem :- Clustering step to propose the regions is slow
+
+		Faster R-CNN :-
+			Use convolutional network to propose regions
+
+Semantic Segmentation with U-Net
+	What/Whose is every single pixel?
+
+	Chest X-Ray
+	Brain MRI
+
+	Per-pixel class labels
+		Has to output matrix of outputs
+
+	Deep Learning for Semantic Segmentation
+		Do normal ConvNets and after half --> decrease channels and increase size of image ==> Do this to get semantic segmentation
+
+		To make the image bigger, we implement a "transpose convolution"
+
+Transpose Convolutions
+	Its hard to explain in words
+
+	Key building block of the U-Net architecture
+
+U-Net Architecture
+	Skip connections to allow expansion of information
+		As middle layers has reduced spatial information
+
+	Looks like a "U"
+
+	multiple Three "conv, relu" and "max pool"
+	+
+	Trans Conv, relu
+
+	In between normal conv and trans conv --> there is "skip connection"
+
+	Output is height x width x no_of_classes
+
+----------------------------------------------------------------------------------------
+
+FACE RECOGNITION
+	Face recognition as well as liveness detection
+
+	Liveness detection can be implemented using supervised learning as well to predict live human versus not live human
+
+	Face verification vs. Face recognition
+		Verification
+			Input image, name/ID
+			Output whether the input image is that of the claimed person
+
+			1:1
+
+		Recognition
+			Has database of K persons
+			Get an input image
+			Output ID if the image is any of the K persons (or "not recognized")
+
+			If K=100, we need atleast 99.9% accuracy in verification
+
+One Shot Learning - Face verification
+	Given just one example of the person's face
+
+	Deep Learning doesn't really work well when we have only one image
+
+	Learning a "similarity" function
+		d(img1, img2) = degree of difference between images
+
+		If d(img1, img2) <= tau --> then same
+
+Siamese Network - to learn the function d(img1, img2)
+	Construct a ConvNet to get a (say) 128 vector output --> called encoding f(x[i])
+
+	And then use that vector to compare two iamges
+
+	Maybe taking norm for comparing
+
+	We can use backpropagation to ensure that only for one image the thing is low, and for rest the d function is large
+
+Triplet loss function
+	We want encodings to be same/different
+
+	Triplet refers to looking at three images --> Anchor image, Postitive Image, Negative image
+
+	Margin (alpha) --> least difference between d(A,P) and d(A,N)
+
+	This loss funciton is defined on three images --> A, P, N
+		L(A,P,N) = max(d(A,P) - d(A,N) + alpha, 0)
+
+		We want loss to be less than zero
+
+	J = sum over all Losses
+
+	We need multiple pictures of the same person
+
+	But after training, we can recognize with only one picture of the person
+
+	Choosing the triplets A,P,N
+		During training, if APN are chosen randomly, then the condition is easily satisfied
+
+		Choose triplets that're "hard" to train on
+
+	"FaceNet"
+	____Net
+	Deep____
+
+Download pre-trained model
+
+Face Verification and Binary Classification
+	Instead of triplet loss --> we can use binary classification
+
+	Take the output of encoder function and put it to binary classficiation
+
+	Rather than feeding the two vectors directly, we feed the differece of the vectors and scale it with the weights
+
+	Add bias b
+
+	And then do sigmoid to get 0 or 1
+
+	Instead of using the difference between vectors --> we cn use chi-square form
+
+	Chi-square form
+		(f(x[i]) - f(x[j]))^2  / f(x[i])+f(x[j])
+
+	Can pre-compute the vector for registered images for faster recoginiziton
+
+	This requires only pairs of images, not triplets
+
+Neural Style Transfer
+	Content image + Style image --> Generate image
+
+	C + S --> G
+
+	In order to implement Neural Style Transfer --> we need to look at the features extracted by the ConvNet at various layers --> the shallow and deeper layers of a ConvNet
+
+What are deep ConvNets learning?
+	Paper --> "Visualizing and understanding convolutional networks"
+
+	Using these intuitions we can build neural style transfer
+
+Neural style transfer Cost Function
+	Minimizing this cost function, we can generate the image that we wanted.
+
+	Cost funciton J(G) --> to measure how good a particular generated image is
+
+	Use gradient descent to minimize
+
+	J(G) = alpha * J_content(C,G) + beta * J_style(S,G)
+
+	J_content(C,G) --> measures how similar is content to generated image
+
+	And similarly for J_style
+
+Finding the generate image G
+	Initialize G randomly
+	Use gradient descent to minimize J(G)
+
+Content Cost Function
+	Say you use hidden layer l to compute content cost
+
+	Use pre-trained ConvNet 
+
+	If activations of content is similar to content of generated, then both images have similar content
+
+	We do gradient descent so that the images have similar activations
+
+Style Cost function
+	Formula
+	https://www.coursera.org/learn/convolutional-neural-networks/supplement/p9Zdf/clarifications-about-upcoming-style-cost-function-video
+
+	Say you are using layer l's activation to measure "style"
+
+	Define style as coorelation between activations across channels
+
+	How correlated are the activations across different channels?
+
+	Compare the channels --> how correlated are these numbers --> this gives style
+
+	DO this comparision to generated image
+
+	Product to compute G
+
+	G is called Gram Matrix
+
+	J_style(S,G) = squared difference between computeed function for S and G
+
+	It turns out that you get more visually pleasing results if you use the style cost function from multiple different layers
+
+1D and 3D Generalizations of Convolutions
+
+https://www.coursera.org/learn/convolutional-neural-networks/supplement/oGuyV/references
+

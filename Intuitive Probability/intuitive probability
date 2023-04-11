@@ -1,0 +1,6 @@
+Benford's law
+	log(1+(1/d)) --> d is the first digit
+
+	Used in Fraud detection
+		Accounting Fraud detection
+	

@@ -1,0 +1,363 @@
+Sentiment Analysis with Logistic Regression
+
+Learn to extract features from text into numerical vectors, then build a binary classifier for tweets using a logistic regression!
+	Sentiment analysis
+	Logistic regression
+	Data pre-processing
+	Calculating word frequencies
+	Feature extraction
+	Vocabulary creation
+	Supervised learning
+
+Represent text --> as a vector
+
+Vocabulary enables to represent as a vector.
+	All the words that appears uniquely in the tweet
+
+Feature extraction
+	Assign value 1 to each word if it appears in particular tweet
+
+	Lots of zeros --> Sparse representation
+
+Problems with Sparse representation
+	Feature vector's length is the size of vocabulary
+
+	Sparse
+
+	LR model would have to learn n+1 parameters --? large training time, large prediction time
+
+Generating Counts
+	Given a word we make track of the number of times that word shows up as the positive class
+
+	and same for negative class
+
+Encode a tweet as a vector of dimension 3
+	Instead of learning V features, we now have to learn only 3 features
+
+	The three things are --> bias, sum over positive of values stored in dictionary of the words present in the tweet, same thing for negative
+
+Preprocessing
+	Stemming
+	Stop words
+
+Examples of stop words
+	and
+	is
+	a
+	at
+	has
+	for
+	of
+
+	Handles and URLs don't add any value for the task of sentiment analysis
+
+Stemming and lowercasing
+	After performing stemming
+		The words tune, tuned, tuning --> will be reduced to the "stem" tun
+
+	And then lowercase
+
+When preprocessing, you have to perform the following:
+	Eliminate handles and URLs
+
+	Tokenize the string into words. 
+
+	Remove stop words like "and, is, a, on, etc."
+
+	Stemming- or convert every word to its stem. Like dancer, dancing, danced, becomes 'danc'. You can use porter stemmer to take care of this. 
+
+	Convert all your words to lower case. 
+
+	Preprocessed tweet --> [tun,great,ai,model]
+
+Preprocess raw text for Sentiment analysis
+	Data preprocessing is one of the critical steps in any machine learning project. It includes cleaning and formatting the data before feeding into a machine learning algorithm. For NLP, the preprocessing steps are comprised of the following tasks:
+
+	Tokenizing the string
+	Lowercasing
+	Removing stop words and punctuation
+	Stemming
+
+"Stemming" is the process of converting a word to its most general form, or stem. This helps in reducing the size of our vocabulary.
+
+The "Porter stemming algorithm" (or ‘Porter stemmer’) is a process for removing the commoner morphological and inflexional endings from words in English. Its main use is as part of a term normalisation process that is usually done when setting up Information Retrieval systems.
+
+The Porter stemming algorithm (or ‘Porter stemmer’) is a process for removing the commoner morphological and inflexional endings from words in English. Its main use is as part of a term normalisation process that is usually done when setting up Information Retrieval systems.
+
+Three features for sentiment analysis
+	Bias
+	Sum positive frequencies
+	Sum negative frequencies
+
+	We get this by "frequency dictionary mapping"
+
+process_tweet(): Cleans the text, tokenizes it into separate words, removes stopwords, and converts words to stems.
+
+build_freqs(): This counts how often a word in the 'corpus' (the entire set of tweets) was associated with a positive label 1 or a negative label 0. It then builds the freqs dictionary, where each key is a (word,label) tuple, and the value is the count of its frequency within the corpus of tweets.
+
+It shows that emoticons :) and :( are very important for sentiment analysis. Thus, we should not let preprocessing steps get rid of these symbols!
+
+And then do Logistic Regression
+
+Little doubt in full derivation of derivative of cost function of logistic regression for sentiment analysis
+
+------------------------------------------------------------------------------
+
+Probability and Bayes’ Rule
+
+Bayes' rule 's most useful form --> the one where there's no need to find intersection
+
+Naïve Bayes approach
+	Dirty baseline
+
+	Assumption --> features that we are using for classification are all independent
+		In reality it is rarely the case
+
+	Ig no.of.pos must be equal to no.of.neg
+
+	Make a conditional probabilities table
+
+	Words that are equally probable on both pos and neg column don't add anything to the sentiment
+
+	Other words are known as power words
+
+	Some words, may have 0 probability in one class
+		In that case it is impossible to compare two corpora
+
+	To predict -->product over all i P(w[i]|pos) / P(w[i]|neg)
+
+	Higher than 1 means positive sentiment
+
+	Table of probabilities + Naïve Bayes approach
+
+Laplacian Smoothing
+	A technique used to avoid probabilities being zero
+
+	To do the probabilities table, we used the formula
+		P(w[i]|class) = freq(w[i],class) / N[class]
+
+		If freq is 0, then we get zero probability
+
+		To smoothen that, we use this formula
+			P(w[i]|class) = (freq(w[i],class) + 1) / (N[class] + V)
+
+	Probabilities still adds up to 1 it seems. How?
+		Now I know why
+
+Log Likelihood
+	P(w[i]|pos) / P(w[i]|neg)
+
+	P(pos) / P(neg) --> is called Prior probability
+
+	ratio(w) = P(w|pos) / P(w|neg)
+
+	lambda(w) = log(P(w|pos) / P(w|neg))
+
+	Reduced the risk of underflow/overflow
+
+	Then do summation for all words
+		If u get greater than zero --> positive sentiment
+
+		If you get lesser than zero --> negative sentiment
+
+		0 --> neutral sentiment
+
+	This score is called log likelihood
+
+Training Naïve Bayes
+	Step 1 :- Preprocess
+		Lowercase
+		Remove punctuation, urls, names
+		Remove stop words
+		Stemming
+		Tokenize sentences
+
+	Step 2 :-
+		Compute vocabulary, word count
+
+		freq table
+
+	Step 3 :-
+		P(w|class)
+
+		Table of probabilities
+
+	Step 4:-
+		P(w|pos) ,P(w|neg)
+
+	Step 5 :-
+		lambda(w)
+
+	Step 6 :-
+		Compute logprior = log(P(pos) / P(neg))
+
+Confidence Ellipses
+	A confidence ellipse is a way to visualize a 2D random variable. It is a better way than plotting the points over a cartesian plane because, with big datasets, the points can overlap badly and hide the real distribution of the data. Confidence ellipses summarize the information of the dataset with only four parameters:
+
+	Center: It is the numerical mean of the attributes
+	Height and width: Related with the variance of each attribute. The user must specify the desired amount of standard deviations used to plot the ellipse.
+	Angle: Related with the covariance among attributes.
+	The parameter n_std stands for the number of standard deviations bounded by the ellipse. Remember that for normal random distributions:
+
+	About 68% of the area under the curve falls within 1 standard deviation around the mean.
+	About 95% of the area under the curve falls within 2 standard deviations around the mean.
+	About 99.7% of the area under the curve falls within 3 standard deviations around the mean.
+
+Applications of Naïve Bayes
+	P(shakespeare|book) / P(Hemmingway|book)
+
+	P(spam|email) / P(nonspam|email)
+
+	Information retrieval
+
+	Word disambiguation
+
+	This method is usually used as a simple baseline. It is also really fast.
+
+Naïve Bayes Assumptions
+	Independence of words in a sentence
+
+	The first assumption is Independence between the predictors or features associated with each class
+
+	Assigns same probabilities to all possible words --> but in reality words are interlinked
+
+	Depends on relative frequencies in corpus
+		Very optimistic or very pessimistic models
+
+	Naïve Bayes makes the independence assumption and is affected by the word frequencies in the corpus
+
+	In the first image, you can see the word sunny and hot tend to depend on each other and are correlated to a certain extent with the word "desert"
+
+Error Analysis
+	Removing punctuation and stop words
+		Semantic meaning lost in the preprocessing step
+
+	Word order
+		How word order affects the meaning of a sentence
+
+	Adversarial attacks
+		Some quirks of languages come naturally to humans was confused
+
+		These include sarcasm, irony, euphemisms.
+
+Using word vectors can give us better results
+
+----------------------------------------------------------------------------------------------------------------------
+
+How word vectors are representated in NLP
+	Any NLP application we have to represent the word into some type of numerical and code.
+
+	Comparing word vectors
+		Euclidean distance
+		Cosine similarity
+
+	Plot word vectors with high dimensions in 2D plane to see how similar words end up clustering near one another.
+
+Vector Space Models
+	What type of information these vectors could encode
+
+	Vector Space Models will help you identify whether the first pair of questions or the second pair are similar in meaning even if they do not share the same words.
+
+	Capture dependencies between words
+
+	VSM are used in information extraction to answer questions in the style of 
+		who
+		what
+		where
+		how
+		etcetra
+
+	"You shall know a word by the company it keeps"
+
+	Represent words and documents as vectors
+
+	Representation that captures the relative meaning
+
+	They are built using cooccurance matrices.
+
+	These vectors are important in tasks like information extraction, machine translation, and chatbots.
+
+	When learning these vectors, you usually make use of the neighboring words to extract meaning and information about the center word. 
+
+	If you were to cluster these vectors together, as you will see later in this specialization, you will see that adjectives, nouns, verbs, etc. tend to be near one another. 
+
+	Another cool fact, is that synonyms and antonyms are also very close to one another. This is because you can easily interchange them in a sentence and they tend to have similar neighboring words!
+
+Word by Word
+	Co-occurance --> Vector representation
+
+	Relationships between words
+
+	The co-occurance of two different words is the number of times that they appear in your corpus together within a certain word distance k.
+
+	You can think of KK as the bandwidth that decides whether two words are next to each other or not. 
+
+Word by Doc
+	Number of times word occurs within a certain category
+
+	And then plot in graph 2D
+
+	use the angle between two vectors to measure similarity
+
+mean1 = np.mean(nparray2) # Static way
+mean2 = nparray2.mean()   # Dinamic way
+
+Euclidean distance
+	Corpus A: (500, 7000)
+	Corpus B: (9300, 1000)
+
+	d(A, B)
+
+	norm of difference between A and B
+
+	np.linalg.norm(a-b)
+
+Cosine Similarity Metric
+	Isn't biased by the size difference between the representations
+
+	Not dependent on the size of corpuses
+
+	90 degree --> Maximally dissimilar
+
+PCA
+	PCA finds uncorelated features
+
+	Orginal space --> uncorrelated features --> dimensionality reduction
+
+PCA Algorithm
+	How to get uncorrelated features
+	How to reduce dimensions while retaining as much information as possible
+
+	Eigenvector: Uncorrelated features for your data
+
+	Eigenvalue: The amount of information retained by each feature
+
+	Mean normalize data --> get covariance matrix --> perform SVD to get 3 matrices
+
+	Eigenvector give the direction of uncorrelated features
+	Eigenvalue are the variance of the new features
+
+	Dot product gives the projection on uncorrelated features
+
+Steps to Compute PCA: 
+	Mean normalize your data
+
+	Compute the covariance matrix
+
+	Compute SVD on your covariance matrix. This returns [U S V] = svd(\Sigma)[USV]=svd(Σ). The three matrices U, S, V are drawn above. U is labelled with eigenvectors, and S is labelled with eigenvalues. 
+
+	You can then use the first n columns of vector UU, to get your new data by multiplying XU[:, 0:n]XU[:,0:n].
+
+In natural language processing, we represent each word as a vector consisting of numbers. The vector encodes the meaning of the word. These numbers (or weights) for each word are learned using various machine learning model.
+
+- Predict analogies between words.
+- Use PCA to reduce the dimensionality of the word embeddings and plot them in two dimensions.
+- Compare word embeddings by using a similarity measure (the cosine similarity).
+- Understand how these vector space models work
+
+In this lab, we are going to view another explanation about Principal Component Analysis(PCA). PCA is a statistical technique invented in 1901 by Karl Pearson that uses orthogonal transformations to map a set of variables into a set of linearly uncorrelated variables called Principal Components.
+
+PCA is based on the Singular Value Decomposition (SVD) of the Covariance Matrix of the original dataset. The Eigenvectors of such decomposition are used as a rotation matrix. The Eigenvectors are arranged in the rotation matrix in decreasing order according to its explained variance. This last term is related to the EigenValues of the SVD.
+
+PCA is a potent technique with applications ranging from simple space transformation, dimensionality reduction, and mixture separation from spectral information.
+

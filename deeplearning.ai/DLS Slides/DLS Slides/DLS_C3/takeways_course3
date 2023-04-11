@@ -1,0 +1,264 @@
+ML strategy
+	Which ideas to discard?
+
+Orthogonalization
+	Aligning parameters to its own axes
+
+	Think non-aligned also span the entire space but hard to operate on, by humans
+
+	One knob to affect only speed
+	One knob to affect only steering
+
+Chain of assumptions in ML	
+	Fit training set well on cost function
+
+	Fit dev set well on cost function
+
+	Fit test set well on cost function
+
+	Performs well in real world
+
+Single Number Evaluation Metric
+	Precision --> of examples recognized as cats, what percentage are actually cats?
+
+	Recall --> what percentage of actuals cats are correctly recognized
+
+	There is tradeoff between Precision and Recall
+
+	Instead of using Precision and Recall --> use F1 Score
+		Harmonic mean of Precision and Recall
+	
+	Dev set + Single number Evaluation metric --> speed up the process of improving
+
+	We want to know if our idea helped
+
+	Not always possible
+
+Satisficing and Optimizing Metric
+	Optimizing Metric --> that we need to optimize
+		Like accuracy
+
+	Satisficing Metric --> some thing that is preferrable
+		Like running time
+
+	N metrics
+		1 --> optimizing
+		N-1 --> satisficing
+
+Train/Dev/Test Distributions
+	Make sure dev and test are taken from the same distribution
+
+Size of the Dev and Test Sets
+	60,20,20 --> when data sets are small
+
+	In some cases, train + dev sets is enough
+
+Define new evaluation metric according to needs
+
+Competitive to human level performance
+
+Bayes optimal error --> no way to surpass
+	
+Why compare to human-level performance
+	Get labelled data from humans
+
+	Gain insight from manual error analysis
+
+	Better analysis of bias/variance
+
+Humans 1% error and training error=10%
+	and dev error=10%
+
+	Then focus on reducing bias
+
+To bring dev error closer to training error --> focus on variance
+
+Use Human-level error as a proxy for Bayes error
+	Note that by definition Human-level error is much worse thna Bayes error
+
+Avoidable bias --> difference between bayes error and training error
+
+Use lowest error as "human-level error" while using it as a proxy for Bayes error
+
+Difference in error between training error and dev error is caused by --> variance
+
+After surpassing human-level performance, it is hard to make progress.
+
+	Online advertising
+	Product recommendations
+	Logistics
+	Loan approvals
+
+	Structured data
+	Not natural perception
+
+Two fundamental assumptions of supervised learning
+	1. You can fit training set pretty well
+		Avoidable bias
+
+	2. The training set performance generalizes pretty well ot the dev/test set.
+		variance
+
+Think on which to work to improve on --> bias or variance
+
+Bias
+	Bigger model
+	Train longer
+	Better optimization algorithms
+	NN architecture / hyperparameters search --> RNN, CNN
+
+Variance
+	More data
+	Regularization --> L2, dropout, data augmentation
+	NN architecture / hyperparameters search
+
+Sometimes we'll need to train the model on the data that is available, and its distribution may not be the same as the data that will occur in production. Also, adding training data that differs from the dev set may still help the model improve performance on the dev set. What matters is that the dev and test set have the same distribution
+
+
+----------------------------------------------------------------------------
+
+Error Analysis
+	Ceiling on performance
+
+Incorrectly labelled examples
+	DL algorithms are quite robust to random error
+
+	DL algorithms are not robust to systematic errors
+
+Correcting incorrect dev/test set examples
+	Apply same process to dev and test sets to make sure they continue to come from the same distribution
+
+	Consider examining examples youur algorithm got right as well as ones it got wrong
+
+	Train and dev/test data may now come from slightly different distributions
+
+Tips for new ML projects
+	Set up dev/test set and METRIC
+
+	Build inital system quickly and iterate
+
+	Use bias/variance analysis and error analysis to prioritize next steps
+
+Bias and Variance with Mismatched Data Distributions
+	Maybe dev set was harder to classify than the training error
+
+	Training-dev set
+		"Training-dev set" and "Training set" 
+
+		Take a small part of training and name it --> "Training-dev" set
+
+		Now decide if the model has variance problem or that the devset is too hard to classify
+
+	Data Mismatch problem --> difference between "Training-dev set" and Dev error
+
+	Variance --> difference between "Training-dev set" and "Training set"
+
+5 Sets
+	Human level performance 
+	Training set error
+	Training-dev set error
+	Dev error
+	Test error
+
+	4 Difference for each adjacent pair is:-
+		Avoidable bias
+		Variance
+		Data Mismatch error
+		Degree of overfitting to dev set
+
+Addressing Data Mismatch
+	Carry out manual error analysis to try to understand difference between training and dev/test sets
+
+	Make training data more similar
+
+	Or collect more data similar to dev/test sets
+
+	Use artificial data synthesis
+		Problem is we might be synthesizing from same car noise sound for multiple examples---> hence leading our model to overfit the car noise
+
+		Works really well in speech recoginition
+
+Transfer Learning
+	Adapt to a different task
+
+	Simplest idea among all --> Fix all others except last layer parameters
+
+	Make more sense when --> you're transferring things you learnt from where data is more --> to where less data is available
+
+	Task A and Task B have the same input X.
+
+	You have lot more data for Task A than Task B.
+
+	Low level features from A transferrable to Task B
+
+Multi-task Learning
+	Simultaneously trying to have one neural network do several things at the same time, and then each of these tasks help hopefully all of the other task.
+
+	For examples, detect
+		Pedestrians
+		Cars
+		Stop signs
+		Traffic lights
+
+	Multiple labels
+
+	Multi-task learning makes sense when :-
+		Training on a set of tasks that could benefit from having lower level features
+
+		Usually: Amount of data you have for each task is quite similar
+
+		If want to focus on one task, then all other tasks must have more data to help the task we are focussed on
+
+		Can train a big enough neural network to do well on all the tasks
+
+Transfer learning is more used than Multi-task learning
+
+Usually Multi-task learning is used in Computer vision
+
+End-to-End Deep Learning
+	Speech recoginition examples
+		Audio --> features --> phonemes --> words --> transcript
+
+		Audio --> transcript
+
+	Less data --> pipeline approach works well
+
+	Lots of data --> End-to-End works better
+
+	Medium data --> half pipeline
+
+	Face recoginition
+		mapping directly from image to label is not a good idea
+
+		Instead use a multi-step
+			Solve simpler problems
+
+	Machine Translation
+		English --> text analysis --> ... --> French
+
+	X-ray estimating child's age
+		Image --> particular bone segmentations --> child's age
+
+		Image --> child's age ==> takes much more data
+
+	Pros of End-to-End deep learning
+		Let the data speak
+		Less hand-designing of components needed
+
+	Cons of End-to-End deep learning
+		May need large amount of data
+		Excludes potentially useful hand-designed components
+
+	Two sources of knowledge:-
+		Data
+		Hand-designed data
+
+	Hand-designed data may force something unwanted --> like phonemes
+
+	Applying End-to-End deep learning
+		Key question to ask --> Do you have sufficient data to learn a function of the complexity needed to map x to y
+
+Deep learning --> Motion planning --> Control
+
+Pure end to end deep learning is not a good approach
+

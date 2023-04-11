@@ -1,0 +1,122 @@
+"User space"
+
+C# --> common language runtime
+
+pipeline executable
+
+#!/usr/bin/env python
+chmod +x file.py
+./file
+
+IT force multiplier
+
+PITFALLS of automation	
+	Time
+	Bit-rot
+	False confidence
+
+Apply Pareto Principle
+
+"shutil" module
+	shutil.disk_usage("/")
+
+"psutil" module
+	psutil.cpu_percent(1)
+
+file = open("spider.txt")
+
+REMOVE A FILE
+	os.remove("novel.txt")
+
+RENAME A FILE
+	os.rename("first.txt", "second.txt")
+
+CHECKING IF FILE EXISTS
+	os.path.exists("second.txt")
+
+SIZE OF FILE
+	os.path.getsize("spider.txt")
+
+LAST MODIFIED
+	os.path.getmtime("spider.txt")
+	returns number of seconds from 1970
+
+	USE THIS TO CONVERT
+	datetime.datetime.fromtimestamp(os.path.getmtime("spider.txt"))
+
+ABSOLUTE PATH
+	os.path.abspath("spider.txt")
+
+CURRENT WORKING DIRECTORY
+	os.getcwd()
+
+CREATE DIRECTORY
+	os.mkdir("new_dir")
+
+CHANGE DIRECTORY
+	os.chdir("new_dir")
+
+REMOVE DIRECTORY --> requries that there are no files in the directory
+	os.rmdir("new_dir")
+
+LIST OF ALL THE FILES IN THE DIRECTORY
+	os.listdir("website")
+
+CHECKING IF IT IS DIRECTORY
+	os.path.isdir()
+
+<-------------------------------CSV------------------------------->
+import csv
+
+f = open("file_name.txt")
+csv_f = csv.reader(f)
+
+for row in csv_f:
+	DO SOMETHING WITH IT
+
+with open(file_name, "w") as f:
+	writer = csv.writer(f)
+	writer.writerows(hosts)
+
+with open(file_name) as f:
+	reader = csv.DictReader(f)
+	for row in reader:
+		print(row['name'])
+		print(row['users'])
+		print()
+
+keys = ['name', 'username', 'department']
+with open(file_name, "w") as f:
+	writer = csv.DictWriter(f, fieldnames = keys)
+	writer.writeheader() --> based on the keys that we passed
+	writer.writerows(users)
+
+<------------REGEX------------------------>
+	re.search(regex, string)
+
+grep thon file_name
+
+grep -i thon file_name
+
+grep l.rts file_name
+
+grep ^first file_name
+
+grep cat$ file_name
+
+\w --> letters, numbers, underscores
+
+\d --> digits
+
+\s --> whitespace --> space, newline, tab
+
+\b --> word boundaries
+
+regex101.com
+
+CAPTURING GROUPS
+
+re.search
+re.findall
+re.split
+re.sub

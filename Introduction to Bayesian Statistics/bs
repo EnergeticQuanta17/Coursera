@@ -1,0 +1,25 @@
+The purpose of the set of courses is to focus on Inferential Statistics as opposed to Descriptive Statistics.
+
+----Descriptive Statistics----
+This is used to summarize the data so that we have a quantitative way to understand data. This allows to understand and visualize data qualitatively. We can draw conclusions about the nature of the data
+
+-----Inferential Statistics-----
+Inferential Statistics allow us to make generalizations about the population from the samples. This process of sampling introduces errors as this is never a perfect representation of the underlying data. The statistics thus computed are supposed to be an estimate of the true population parameters.
+
+Inference
+In Inference, you are trying to model a distribution and understand the process that generates the data. 
+
+As opposed to Prediction --> is just like in Machine Learning
+
+General references:
+
+Mathematical Statistics and Data Analysis (9788131519547): Rice, John A.
+
+Statistical Inference (9780534243128): Casella, George, Berger, Roger L.  
+
+Probability Theory and Statistical Inference: Empirical Modeling with Observational Data (9781107185142): Spanos, A.  
+
+Bayesian Models: A Statistical Primer for Ecologists (9780691159287): Hobbs, N. Thompson, Hooten, Mevin B.  
+
+A First Course in Bayesian Statistical Methods (0387922997): Hoff, Peter D.
+

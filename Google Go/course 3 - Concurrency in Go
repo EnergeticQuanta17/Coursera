@@ -1,0 +1,254 @@
+Concurrency is built into Go.
+
+PARALLEL EXECUTION
+	Need replicated hardware
+	Better throughput
+
+	Dishwash example
+
+Von Neumann Bottleneck
+	Delayed access memory
+	Memory is slower than CPU
+
+Main memory access time is 100 times cache memory access time
+
+Power Wall
+	Transistors consume power when they switch
+	Increasing transistor density leads to increased power consumption
+	High power leads to high temperature
+
+DYNAMIC POWER
+	Power = alpha * Capacitance * Clock Frequency * Voltage swing**2
+
+	alpha --> percent of time switching
+
+DENNARD SCALING
+	Voltage "should" scale with transitor size
+
+	Voltage can't go too low
+		Must stay above threshold voltage
+		Noise problems occur
+
+	Leakage power
+		Leaks power even when it is not switching
+		Growing over time
+
+	Thats what --> Power Wall
+
+Multi-Core Systems
+
+PARALLEL COMPILERS --> research
+	Take sequential code --> convert to concurrent 
+
+CONCURRENT EXECUTION
+	Either task1 is executing or task2 is executing
+
+	Longer than parallel execution
+
+	Why?
+		Hiding Latency
+			Periodically wait for a slow thing
+
+
+	Parallel need different hardware
+	concurrent same hardware
+
+	Mapping tasks to hardware is "not" directly controlled by the programmer
+		OS
+		Go runtime scheduler
+
+Hardware Mapping
+	The task of assigning tasks to processors is hard
+
+	Not under the control of programmer
+
+	Where is the data? {among multiple cores}
+	What are the communication costs?
+
+There are five specific concepts or ideas that you need to mention in order to receive full credit. One item carries 4 points, another carries 3 points, and the remaining three carry one point each. These are specified explicitly in the peer review grading rubric.
+
+PROCESSES
+	An instance of a running program
+	Things unique to a process
+		Virtual address space
+		Code
+		Stack
+		Heap
+		Shared Libraries
+		Registers
+		Program Counter
+		Data registers
+		Stack pointers
+
+OPERATING SYSTEMS
+	Allows many processes to execute concurrently
+	Processes are switched quickly
+		20 milli-seconds
+	Scheduling task
+	Impression of parallelism
+
+Goroutines
+	Thread in Go
+	Done by "Go Runtime Scheduler"
+	We can change the number of logical processors are going to be used
+
+INTERLEAVING
+
+Sharing of information is communication
+
+goroutines are forced to exit if main ends
+	Early Exit
+
+Delayed Exit
+	time.Sleep(100*time.Milliseconds)
+
+	bad because timing assumptions may be wrong
+
+	Formal synchronization constructs
+
+Synchronization
+	Using global events whose execution is viewed by all threads, simultaneously
+
+Sync WaitGroup
+	sync.WaitGroup --> forces a goroutine to wait for other goroutines
+
+	Increment counter for each goroutine to wait for
+
+	Decremenet counter when each goroutine completes
+
+Functions in WaitGroup
+	Add() --> increments the counter
+	Done() --> decrements the counter
+	Wait() --> block until counter==0
+
+Using WaitGroup
+	var wg sync.WaitGroup
+	wg.Add(1)
+	wg.Wait()
+
+	Use "defer" keyword to execute at end
+
+func foo(wg *sync.WaitGroup) {
+	fmt.Printf("New routine")
+	wg.Done()
+}
+
+func main() {
+	var wg sync WaitGroup
+	wg.Add(1)
+	go foo(&wg)
+	wg.Wait()
+}
+
+Channels
+	Transfer data between goroutine
+
+	Channels are typed
+
+	Use make() to create a channel
+		c := make(chan int)
+
+	Send and receive data using the "<-" operator
+
+	Send data on a channel
+		c <- 3
+
+	Receive data from a channel
+		x := <- 3
+
+Channel example
+	func prod(v1 int, v2 int, c chan int) {
+		c <- v1 * v2
+	}
+
+	func main() {
+		c := make(chan int)
+		go prod(1,2,c)
+		go prod(3,4,c)
+		a := <- c
+		b := <- c
+		fmt.Println(a*b)
+	}
+
+Unbuffered channel
+	Cannot hold data in transit
+	Default --> unbuffered
+
+	Sending blocks until data is received
+	Receiving blocks until data is sent
+
+Channel Capacity
+	Number of objects it can hold in transit
+
+	c := make(chan int, 3)
+
+	Sending only blocks if the buffer is full
+
+Students will receive five points if the program sorts the integers and five additional points if there are four goroutines that each prints out a set of array elements that it is storing.
+
+Iterating through the channel
+	for i := range c {
+		fmt.Println(i)
+	}
+
+	close(c) --> close the channel
+
+Select Statement --> FCFS from multiple channels
+	select {
+		case a = <- c1:
+			fmt.Println(a)
+		case b = <- c2:
+			fmt.Println(b)	
+	}
+
+Select Send or Receive
+	select {
+		case a = <- inchan:
+			fmt.Println("Received a")
+		case outchan <- b:
+			fmt.Println("Sending b")
+	}
+
+Select with an Abort Channel
+	Receive data until an abort signal is received
+
+	for {
+		select {
+			case a <- c:
+				fmt.Println(a)
+			case <- abort:
+				return
+		}
+	}
+
+
+	If anything comes in an "abort" channel, then somebody is telling to quit the loop
+
+Default select
+	To avoid blocking
+
+Concurrency-Safe
+
+sync.Mutex
+	Ensures mutual exclusion
+	Uses a binary semaphore
+
+
+	var mut sync.Mutex
+	mut.Lock()
+	i = i + 1
+	mut.Unlock()
+
+sync.Once
+	once.Do(f)
+
+	var on sync.Once
+	func setup {
+		fmt.Println("Init")
+	}
+
+	func dostuff() {
+		on.Do(setup)
+		fmt.Println("hello")
+		wg.Done()
+	}

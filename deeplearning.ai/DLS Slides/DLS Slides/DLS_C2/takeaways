@@ -1,0 +1,350 @@
+Intuition from one domain (such as NLP) often DO NOT transfer to other application areas (Vision)
+
+60/20/20
+
+In big data era --> if we have 1 Million examples
+	Cross-validation --> 10000 examples is enough
+
+	10000 --> test examples is enough
+
+	98/1/1
+
+	Sometimes
+		99.5/0.4/0.1
+
+Make sure that the dev and test sets come from the same distribution.
+
+Crawling web pages to get more data
+
+Not having test set might be okay (only dev set)
+	Overfitting problem
+
+High bias --> underfitting
+High variance --> Overfitting
+
+Estimating,
+	To estimate bias --> proportional to training set error
+
+	To estimate variance --> difference between "training set error" and "dev set error"
+
+	Optimal error or "Bayes error" --> 15%
+	Then take difference and see
+
+First solve, high bias then solve high variance
+
+HIGH BIAS SOLUTIONS	
+	Bigger network
+	Train longer
+	NN architecture search
+
+HIGH VARIANCE SOLUTIONS	
+	More data 
+	Regularization
+	NN architecture search
+
+Bias/Variance Tradeoff
+	When using Regularization --> we might increase the bias a little bit --> although not too much if have a huge enough network 
+
+Regularization
+	L2-Regularization --> applied on high dimensional parameters i.e. not applied on bias "b" its single number
+
+	L1-Regularization --> w will be sparse
+
+	lambda --> Regularization parameter --> using dev set
+
+	L2 --> also called "weight decay"
+
+Why Regularization prevents overfitting
+
+
+Implementing DropOut ("Inverted DropOut")
+	Divide by keep_prob
+
+	No DropOut at test time
+	DropOut during test time --> just adds noise
+
+	Adaptive form of L2-Regularization
+
+	Downside :- Cost function may not always go down
+
+Data Augmentation --> for overfitting
+
+Methods like Gradient Descent --> Momentum, RMS prop and Adam and so on.
+
+Orthogonalization technique
+
+
+Early Stopping
+	Dev set error decreases and then increases, at the lowest dev set error stop training
+
+	Downside --> 
+
+Normalizing training sets
+	Subtract mean
+	Normalize variance --> divide by the standard deviation
+
+	Use same mean and variacnce to scale the test set
+
+Vanishing/Exploding Gradients
+	Solve using --> weight initialization for deep networks
+
+	Setting the weight matrix with variance 1/n
+
+	For ReLU --> use 2/n instead
+
+	And then set the weight matrix --> np.random.randn(shape) * np.sqrt(2/number_of_neurons_in_previous_layer)
+
+	Other variants:-
+
+	If you are using tanh --> "sqrt" of 1/number of neurons in previous number_of_neurons_in_previous_layer --> called Xavier initialization
+
+	Use "He" initialization
+		Random initialization --> 83% accuracy
+
+		He --> 99%
+
+		Instead of 1, use 2 to get "He" initialization
+
+GRADIENT CHECKING
+	We describe a method for numerically checking the derivatives computed by your code to make sure that your implementation is correct. Carrying out the derivative checking procedure significantly increase your confidence in the correctness of your code
+
+	derivative of f of theta = f(theta + epsilon) - f(theta - epsilon) divided by 2 * epsilon
+		***This has error in order of epsilon squared
+
+	One sided derivative has the error in order of epsilon
+
+	Take all the parameters of the network --> W's and b's --> make it into a single vector and do 
+		Use the double sided derivative on each element, --> and check with ur computed derivative
+		It has error in quadratic times the epsilon
+
+	Don't use in training --> use only to debug
+
+	Remember Regularization term might affect as loss has the Regularization term
+
+	Grad check does not work with dropout
+
+	Run grad check at random initialization; and perhaps again after some training
+
+Mini-batch gradient descent
+	Forward prop on the mini-batch
+
+	Compute cost function
+
+	BackProp
+
+	Update
+
+	Cost function doesnt always decrease --> but decreases overall
+
+	Happens because one batch may be easier than the other.
+
+	Mini-batch size = 1 --> it is then called "Stochastic Gradient Descent"
+
+	Stochastic Gradient Descent
+		wanders around the minimum
+
+		Never converges to the minimum
+
+		We lose speedup from vectorization
+
+
+	Choose mini-batch size between 1 and m
+
+Exponentially weighted averages
+	V(t) =  {beta} V(t-1) + (1- {beta}) current(t)
+
+	V(t) --> approximately averages over --> 1/(1- {beta}) days temperature
+
+	Derivation :-
+		(1- {epsilon}) ^ (1 / {epsilon}) = 1 / e
+
+	More {beta} = adapts more slowly --> bit more latency
+
+	a.k.a. Exponentially weighted moving averages
+
+	--> Bias correction in Exponentially weighted averages
+		First few values are very low
+
+		So, use V(t) / (1 - {beta}^t) instead of V(t)
+
+Gradient Descent with Momentum
+	Almost always is faster than Gradient Descent
+
+	Compute exponentially weighted average of gradients
+
+	Instead of subtracting alpha times the derivating (as in regular Gradient Descent), we do exponentially weighted average applied on the gradients and then update
+
+	Dampens oscillations
+
+	Analogy: bowl and ball is going down the bowl, beta is friction, term is velocity, gradient is acceleration
+
+	Two hyperparameters:- alpha, beta
+		usually beta = 0.9
+
+	People usually ignore bias correction
+
+	In Literature, the 1-beta term is usually omitted.
+		If this is done, then changing beta induces an impending change on alpha.
+
+RMSProp
+	Can use larger learning rates
+
+	See notes for formulas
+
+Adam 
+	Works well across wide range of deep learning architectures.
+
+	RMSProp + Momentum
+
+	hyperparameters
+		alpha --> needs to be tuned
+
+		beta_1 --> 0.9
+
+		beta_2 --> 0.999
+
+		epsilon --> 10 ^ (-8)
+
+	ADAM --> Adaptive Moment estimation
+
+Learning rate decay
+
+Plateaus slow down the training
+	ADAM, RMSProp to speedup this
+
+alpha is the most important hyperparameters to choose
+	Momentum term beta
+	Mini-batch size
+	No. of hidden units
+	Layers
+	Learning rate decay
+
+	Priority
+
+Choose a random set of points as hyperparameters and take best
+
+We need to see more instances of important parameters than unimportant parameters
+
+Coarse to Fine
+	Find region of best result
+
+	Zoom to that region and do again, more densely
+
+Using an appropriate scale to pick hyperparameters
+	Some parameters it is good to do equal scale
+		Some not good
+
+	For alpha --> Use logarithmic scale and uniformly sample 
+
+Hyperparameters for exponentially weighted averages
+	0.9 --> average of last 10
+	0.999 --> average of last 1000
+
+	Scale is not uniform
+
+	1 - beta and then log --> now do the thing
+
+Batch Normalization
+	subtract mean 
+	divide by standard deviation
+
+Normalize inputs to speed up learning
+	Should be normalize activation values or Z's
+
+	Use Z_cap instead of Z
+		Z_cap = (SD * Z) + mean
+
+	Batch norm happens between Z and A.
+
+	Parameters now are :- W, beta, gamma
+
+Covariance shift
+	If the distribution of training changes, then the model with perform bad.
+
+Batch Norm as Regularization
+	Each mini-batch is scaled by the mean/variance of that batch
+
+	This adds some noise to the values Z.
+	So similar to dropout adds some noise to each hidden layer's activations
+
+	This has a slight regularization effect.
+
+Batch Norm at test time
+	Estimate mean and sigma using exponentially weighted average across mini-batches 
+
+	and use this during test time
+
+	For single test
+
+-------------------
+
+model	train accuracy	test accuracy
+3-layer NN without regularization	95%	91.5%
+3-layer NN with L2-regularization	94%	93%
+3-layer NN with dropout	93%	95%
+
+
+What we want you to remember from this notebook:
+
+Regularization will help you reduce overfitting.
+Regularization will drive your weights to lower values.
+L2 regularization and Dropout are two very effective regularization techniques.
+
+-------------------
+
+What you should remember about dropout:
+
+Dropout is a regularization technique.
+You only use dropout during training. Don't use dropout (randomly eliminate nodes) during test time.
+Apply dropout both during forward and backward propagation.
+During training time, divide each dropout layer by keep_prob to keep the same expected value for the activations. For example, if keep_prob is 0.5, then we will on average shut down half the nodes, so the output will be scaled by 0.5 since only the remaining half are contributing to the solution. Dividing by 0.5 is equivalent to multiplying by 2. Hence, the output now has the same expected value. You can check that this works even when keep_prob is other values than 0.5.
+
+
+------------------------------
+Shuffling and Partitioning are the two steps required to build mini-batches
+
+Powers of two are often chosen to be the mini-batch size, e.g., 16, 32, 64, 128.
+
+--------------------------------
+
+Momentum takes into account the past gradients to smooth out the update. The 'direction' of the previous gradients is stored in the variable $v$. 
+
+Formally, this will be the exponentially weighted average of the gradient on previous steps. You can also think of $v$ as the "velocity" of a ball rolling downhill, building up speed (and momentum) according to the direction of the gradient/slope of the hill. 
+
+--------------------------------
+Momentum takes past gradients 	into account to smooth out the steps of gradient descent. It can be applied with batch gradient descent, mini-batch gradient descent or stochastic gradient descent.
+
+You have to tune a momentum hyperparameter  𝛽  and a learning rate  𝛼 .
+
+---------------------------------
+
+
+optimization method	accuracy	cost shape
+Gradient descent	>71%	smooth
+Momentum	>71%	smooth
+Adam	>94%	smoother
+
+---------------------------------
+- Adam paper: https://arxiv.org/pdf/1412.6980.pdf
+
+---------------------------------
+In the case of Adam, notice that the learning curve achieves a similar accuracy but faster.
+
+----------------------------------
+Deep Learning Framework
+	Caffe/Caffe2
+	CNTK
+	DL4J
+	Keras
+	Lasagne
+	mxnet
+	PaddlePaddle
+	TensorFlow
+	Theano
+	Torch
+
+Criteria for choosing deep learning frameworks
+	Ease of programming
+	Running speed
+	Truly open (open source with good governance)
+

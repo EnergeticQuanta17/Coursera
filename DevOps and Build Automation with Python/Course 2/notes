@@ -1,0 +1,198 @@
+import datetime
+
+x = datetime.datetime(2021,2,26)
+x = datetime.datetime(2021,2,26,14,22)
+
+stftime()
+	There is some code and associated meaning and example --> see example
+
+	%a == "code"
+	Weekday as locale's abbreviated name == "associated meaning"
+	Mon == "Example"
+
+	There are lots of codes like this
+
+ strptime()	
+ 	Returns a datetime corresponding to date_string, parsed according to format
+
+ x = datetime.datetime.now()
+ 	Now call strftime() on x to get the required string format for you to use
+
+
+FORMATTING DATA
+	Format Syntax:
+		{[<name>][!<conversion>][:<format_specification>]} 
+	CONVERSION
+		str() ---- !s
+		repr() --- !r
+		ascii() ---!a
+
+	FORMAT SPECIFICATION
+		[[<fill>]<align>] [<sign>][#][0][<width>][<group>][.<prec>][<type>]
+
+	<fill> --> Specifies how to pad values that don't occupy the entire field width
+
+	<align> --> Specifies how to justify values that don't occupy the entire field width
+
+	<sign> --> Controls whether a leading sign is included in numeric values
+
+	# --> Selects an alternate output form for certain presentation types
+
+	0 --> Causes values to be padded on the left with zeros instead of ASCII space characters
+
+	<width> --> Specifies the minimum width of the output
+
+	<group> --> Specifies a grouping characyer for numeric output
+
+	.<prec> --> Specifies the number of digits after the decimal point for floating point types and the maximum output width for string presentation types
+
+	<type> --> Specifies the presentation type, which is the type of conversion performed on the corresponding argument.
+
+
+UML CLASS DIAGRAMS
+	class
+	data visibility
+	relationships between classes
+	relationships that hold collections of other objects
+
+	+ --> Public
+	- --> Private
+	# --> Protected
+	~ --> Package
+
+	UML tools --> Visual Paradigm online
+
+	Association -- Line
+	Dependency 
+	Aggregation -- Diamond
+	Composition -- Solod Diamond
+	Multiplicity
+
+	Arrow head notations for the above terms
+
+Use double underscore before variable name for getter() and setter() methdod variables
+
+open()
+
+f.readline()
+
+file itself is an iterable seperated by newline
+
+f.read(4)
+
+RELATIONAL DATABASES
+	MySQL
+	Postgre SQL
+	SQL Server
+	Oracle
+	DB2
+
+NoSQL Database --> semi structured data
+	mongoDB
+	IBM Cloudant --> Apache CouchDB/ IBM Cloudant
+	Redis
+
+python -m pip install mysql-connector-python
+
+python -m pip install pymongo
+
+import sql.connector
+mydb = mysql.connector.connect(
+	host = "localhost",
+	user = "yourusename".
+	password = "password"
+)
+
+import pymongo
+myclient = pymongo.MongoClient("mongodb://localhost:8000/")
+mydb = myclient["mydatabase"]
+
+TYPICAL SQL
+	mycursor = mydb.cursor()
+	mycursor.execute("SELECT * FROM customers")
+	myresult = cursor.fetchall()
+	for i in myresult:
+		print(i)
+
+MONGODB --> is like semi-structured document --> and stores like a dictionary
+	mycoll = mydb["friends"]
+	myquery = {"address": "46 Upland Rd"}
+	mydoc = mycoll.find(myquery)
+	for x in mydoc:
+		print(x)
+
+MySQL --> inserting
+	mycursor = mydb.cursor()
+	sql_query = "INSERT INTO customers (name,address) VALUES (%s, %s)"
+	val = ("PREETHAM", "Rajajinagar")
+	mycursor.execute(sql_query, val)
+	mydb.commit()
+
+MongoDB --> insertion
+	x = mycoll.insert_one(my_dict)
+
+	--> TO UPDATE
+		myquery = {"name": "Preetham"}
+		newvalues = {"$set": {"address": "Rajajinagar"}}
+		mycoll.update_one(myquery, newvalues)
+
+	---> DELETEING IN MONGODB
+		myquery = {"name": "query"}
+		mycoll.delete_one(myquery) --> delete everyone who has entry with the matching dictionary
+
+PANDAS
+	Analysing data, cleaning, manipulating
+
+	corelation between two or more columns of data
+
+	import pandas
+
+	myvar = pandas.DataFrame(my_dict)
+	print(myvar)
+
+	DataFrames --> 2d data structure --> imagine like a table with rows and columns
+		locate rows
+		index columns
+		retrieve n rows from head/tail
+		retrieve aggregate information
+		clean data
+		find collections
+		plot data
+
+TYPES OF TESTING
+	Black Box Testing
+	White Box Testing
+	Unit Testing
+	Integration Testing
+	System Testing
+	Acceptance Testing
+
+AUTOMATED TESTING
+	Unit Tests
+	Integration Tests
+	Mocks
+	Stubs
+
+	GitHub can do automated testing
+
+Assertions
+	assertEqual()
+	assertRaises()
+	assertTrue()
+	assertRight()
+	
+	unittest.main() --> must be the main code --> inside __main__ --> we run
+
+HEADLESS BROWSING
+	A headless browser is a web browser without a graphical user interface. 
+
+	Headless browsers provide automated control of a web page in an environment similar to popular web browsers, but they are executed via a command-line interface or using network communication.
+
+	Uses of Headless Browsing:-	
+		1. Test automation in web applications
+		2. Taking screenshots of web pages
+		3. Running automated tests for JS libraries.
+		4. Scraping web sites for data
+		5. Automating interaction of web pages.
+
+	

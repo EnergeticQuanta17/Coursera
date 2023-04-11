@@ -1,0 +1,89 @@
+Google uses Container Model --> gen 3
+
+Two new types of offerings:-
+	1. IaaS --> Infrastructure as a 
+	Service
+		Computing
+		Storage
+		Network capabilites
+
+	2. PaaS --> Platform as a Service
+		Binds code to library that provide access to the infrastructure that the  application needs. This allows more resources to be focussed on application logic.
+
+SERVERLESS TECHNOLOGIES BY GOOGLE
+	Cloud functions --> Manages event driven code 
+	Cloud run --> deploy containerized microservices based application in a fully managed environment
+
+SaaS --> Software as a Servicr
+	Gmail
+	Docs
+	Drive
+
+"Cloud Spanner" --> Google Application
+
+Hardware infrastructure layer
+	Hardware design and provenance
+	Secure boot stack
+	Premises Security
+
+	Encryption of inter-servce commication
+
+Operation Suite --> Google Application
+
+Resource Manager tool --> API
+
+Organization Policy administrator
+
+Project creator
+
+IAM --> Identity and Access Management
+	Who can do what --> can be defined
+
+Compute Engine --> Google Application
+
+Google Cloud console && Google Groups
+	Cloud Identity, 
+
+Google Cloud Client Libraries
+Google API Client libraries 
+
+Cloud console mobile app
+
+Virtual Private Cloud
+
+Google Compute Engine
+	Cloud Marketplace
+
+Compute Engine creates VM
+	
+Compute Engine VS Preemptible/Spot VM
+
+VPC compatibilites
+	
+Shared VPC
+
+Cloud Load Balancer
+	sub category --> Regional Internal Load Balancer --> this is for within the region if u want to balance the load across virtual machines
+
+Cloud DNS --> Google Application
+
+Cloud Delivery Network --> Application
+
+Use VPN + IPsec VPN protocol to create a "tunnel connection"
+	Cloud Router --> this application helps in this
+
+Direct Peering
+	Puts a router in the same public datacenter as a GOogle point of presense
+
+	Uses a router to exchange traffic between netowkrs
+
+Carrier Peering
+	Though service producer
+
+Dedicated Interconnect
+	10GBps
+	Offers SLA 99.99%
+
+Parter Interconnect
+	Do this if u cant do Dedicated Interconnect
+

@@ -1,0 +1,25 @@
+grep
+
+git init
+
+git status
+touch file.txt
+git status
+git add file.txt
+git restore --stage file.txt
+git add file.txt
+git commit -m "Initial commit"
+
+
+To create a new branch:-
+	git checkout -B feature/lesson
+	OR
+	git branch feature/lesson
+
+	git branch
+
+git push -u origin feature/lesson
+
+git diff
+
+git checkout -b create_branch

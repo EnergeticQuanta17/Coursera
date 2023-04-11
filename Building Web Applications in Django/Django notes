@@ -1,0 +1,25 @@
+Model-View-Controller
+
+OBJECT RELATIONAL MAPPING
+	Maps --> tables to objects and columns
+
+	Used to retrieve data from database
+
+	Improved portability across database dialects(SQLite, MySQL, Postgres, Oracle)
+
+
+SQL in Django
+	INSIDE models.py
+
+	from django.db import models
+
+	class User(models.Model):
+		name = models.CharField(max_length=128)
+		email = models.CharField(max_length=128)
+
+	python manage.py makemigrations
+		makemigrations is responsible for packaging up your model changes into individual migration files - analogous to commits - and migrate is responsible for applying those to your database.
+	python manage.py migrate
+		Django's way of propagating changes you make to your models (adding a field, deleting a model, etc.) into your database schema.
+
+		

@@ -1,0 +1,15 @@
+Sequence data --> temporal sequence --> RNNs are used
+NLP is advanced RNN + something (ig)
+
+"Performance" vs "Amount of Data"
+	In Traditional learning algorithms --> SVM, logistic regression --> Performance PLATEAUS out as the amount of data increases
+
+	But DL --> have highest performance increase
+
+Scale drives deep learning progress
+	Data
+	Computation
+	Algorithm
+
+Idea --> Code --> Experiment --> Repeat
+

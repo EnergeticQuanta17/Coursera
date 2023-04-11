@@ -1,0 +1,30 @@
+Start with greedy
+
+And then try to apply these techniques:-
+	Constraint Programming
+	Local Search
+	Mixed Integer Programming
+
+<-----------------THE KNAPSACK PROBLEM----------------->
+
+Optimization Models
+	choose decision variables
+	express problem constraints in terms of decision variables
+	express objective function
+
+Pseudo-polynomial time complexity
+
+BRANCH AND BOUND
+	Explore only a part of the tree
+
+	VALUE OF RELAXATION
+		Linear relaxation:-	0 <= x <= 1
+		--> gives an execellent upper bound
+
+	SEARCH STRATEGIES
+		Depth-first search --> prune when a node estimation is worse than the best found solution
+		Best-first --> select node with best estimation
+		Least-discrepancy --> Greedy heuristic
+		Limited-discrepancy
+		- many others
+

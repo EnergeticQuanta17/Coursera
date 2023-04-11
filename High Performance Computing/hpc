@@ -1,0 +1,195 @@
+Course Objectives
+	After completing this course, you will be familiar with:
+	The components of a high-performance distributed computing system
+	Types of parallel programming models and the situations in which they might be used
+	High-throughput computing
+	Shared memory parallelism
+	Distributed memory parallelism
+	Navigating a typical Linux-based HPC environment
+	Assessing and analyzing application scalability including weak and strong scaling
+	Quantifying the processing, data, and cost requirements for a computational project or workflow
+
+LINUX commands that I didnt know of:-
+	ls -laF --> for hidden files
+
+REMOTE SYSTEM --> LOGGING IN
+	Generally we use SSH protocol to login to a remote system
+
+	ssh username@remote.hostname
+
+	>>> man sssh
+	>>> ssh -X is useful for forwarding images ig
+
+	FILE TRANSFER		
+		SCP
+		SFTP
+
+		Command to do it:-
+			scp username@remote.hostname:/home/username/file.txt .
+
+Different Storages spaces in HPC:-	
+	1. Users --> 2-5GB
+	2. Project --> 250-500GB
+	3. Scratch --> temporary
+
+GNU/LINUX --> shells available
+	sh
+	csh
+	tcsh
+	ksh
+
+	bash --> most popular
+
+
+Type "env" --> to get all global variables
+
+The nodes can talk to each other through two types of interconnects.
+
+Interconnects
+	Two interconnects in market now:-
+		OmniPath 
+		InfiniBand
+
+To talk to supercomputer we use Modules
+	
+WORKING WITH MODULES
+	>>> module list
+	>>> module avail
+	>>> module unload
+	>>> module purge
+	>>> module spider <name_of_module>/<version>
+			Tells dependencies, and about the package, etc
+
+U can download package from --> docker
+
+ALLOCATIONS
+	By doing benchmark tests
+	By priority
+
+NODE TYPES
+	Three general types:-
+		1. Login nodes --> Script editing, Job submssion
+		2. Compile nodes --> place to Compile
+		3. Compute nodes --> submitted jobs run --> heavy computational load
+
+SUBMITTING JOB WITH SLURM
+	Batch Jobs
+	Interactive Jobs
+
+SLURM --> Simple Linux Utility for Resource Management
+		Job Scheduler
+
+Syntax to use SLURM:-
+	sbatch <options>
+
+SLURM Environment Variables
+	$SLURM_NTASKS
+	$SLURM_MEM_PER_CPU
+
+>>> squeue --> command to view information about jobs located in the slurm scheduling queue
+
+Application timing --> to test how much time the application is taking to run
+	Linux has "time" command
+
+	Linux Time Utility
+		>>> time mpirun -np 4 ./prog.mpi
+
+Parallel Processing 
+	has innate --> OVERHEAD	--> as to who should do what sub-task
+
+	Toooo many cores --> diminishing return problem
+
+	CAUSES OF OVERHEAD:-
+		1. Startup time
+		2. Synchronizations
+		3. Communication
+		4. Overhead by libraries, compilers
+		5. Termination time
+
+	PROGRAMMING TO USE PARALLELISM
+		Parallelism across processors/threads --> "OpenMP"
+		Parallelism across multiple nodes --> "MPI"
+
+PARALLEL MEMORY MODELS
+	Three commond kinds:- 
+
+	1. Shared
+	2. Distributed --> each core has its own memory
+	3. Hybrid --> need "MPI" to communicate
+
+Data parallelism
+Task parallelism (Distributed Programming)
+
+DATA Parallelism
+	Two types of data parallelism:- 
+		1. SIMD --> Single Instruction, Multiple Data
+		2. SPMD --> Single Program, Multiple Data
+
+	SIMD
+		Same Instruction simultaneously multiple times across different elements of a dataset
+
+		Vector operation
+
+		Have to prepare the data to be vectorized
+
+	SPMD
+		Same program, multiple times on differeent elements of a dataset 	
+
+HIGH THROUGHPUT COMPUTING
+	Small jobs, little computational power or memory
+
+	These small serial jobs can fill in the gaps left by large parallel jobs
+
+	Example:- Open Science Grid
+
+
+General ideas on "How to Parallelize"
+	Easy to parallelize with shared memory rather than distributed memory
+
+In Compiled languages like C++, Fortran, etc
+	OpenMP --> shared memory parallelization
+	MPI --> parallelization across nodes
+
+In Scripting languages like Python, R
+	There are packages that we can use to paralize certain bits of code
+
+	Functions to parallelize loops
+	Functional programming e.g. parallel apply
+
+Types of Scaling:-
+	1. Weak Scaling --> Increase problem size alongside the number of cores used.
+		--> Can I run a larger problem?
+	2. Strong Scaling ==> Fix the problem size and increase the core count
+		--> Can I decrease the time to solution?
+
+No communication overhead === IDEAL SCALING
+	Ideal Weak SCALING:-
+		Time to solution is independent on the number of cores
+
+	Ideal Strong Scaling:-
+		Time to solution decreases as 1/no.of cores.
+
+FACTORS THAT LIMIT PARALLEL Scaling
+	1. Algorithmic limitations e.g. dependencies
+	2. Bottlenecks
+	3. Startup overhead
+	4. Communication
+	5. LOAD IMBALANCE
+	6. OS jitter	
+
+
+A general understanding of what a high performance computing (HPC) system is 
+
+What the different nodes of a typical system are
+
+Basic Linux commands to help you navigate an HPC filesystem
+
+Basic Bash scripting to assist with job submission
+
+Typical use of an HPC job scheduler
+
+The different memory components of an HPC system
+
+How to use a large scale computing system effectively and efficiently
+
+What parallel computing means and beginner ways to modify your workflow

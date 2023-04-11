@@ -1,0 +1,189 @@
+Naming functions is optional in golang
+
+comma separate multiple parameters of the same type
+
+RETURNING VALUES FROM A FUNCTION
+
+func foo(x int) int {
+	return x + 1
+}
+
+func foo(x int) (int,int) {
+	return x, x+1
+}
+a,b := foo(3) 
+
+Disadvantage of "Call by value" --> copying time
+
+Disadvantage of "Call by Reference" --> no data encapsulation
+
+PASSING ARRAY ARGUMENTS BY VALUE
+	func foo(x [3]int) int {
+		return x[0]
+	}
+
+	func main() {
+		a := [3]int{1,2,4}
+		fmt.Print(foo(a))
+	}
+
+PASSING ARRAY ARGUMENTS BY REFERENCE
+	func foo(x *[3]int) int {
+		(*x)[0] = (*x)[0] + 1
+	}
+
+	func main() {
+		a := [3]int{1,2,3}
+		foo(&a)
+		fmt.Print(a)
+	}
+
+INSTEAD OF DOING THE ABOVE THING, "PASS SLICES INSTEAD"
+
+SLICE
+	Contains a pointer to the array
+	Passing a slice copies the pointer
+
+	Slice is declared by using [] and not writing a number like [3]
+
+	func foo(sli int) int {
+		sli[0] = sli[0] + 1
+	}
+
+	func main() {
+		a := []int{1,2,3}
+		foo(a)
+		fmt.Print(a)
+	}
+
+
+First-Class functions
+	Variables can be declared with a function type
+
+	Can be created dynamically
+
+	Can be passed as ARGUMENTS and returned as values
+
+	Can be stored in data structures
+
+Variables as Functions example
+	var funcVar func(int) int //--> function signature
+
+	func incFn(x int) int {
+		return x + 1
+	}
+
+	func main() {
+		funcVar = incFn
+		fmt.Print(funcVar(1))
+	}
+
+Functions as Arguments
+	func applyIt(afunct func (int) int,
+				 val int) int {
+		return afunct(val)
+	}
+
+Anonymous Functions
+	v := applyIt(func (x int) int 
+				{ return x+1},
+				2)
+
+Function to define and return a function
+
+Closure --> Function + its environment
+	When functions are passed/returned their environment comes with them!
+
+Variable Argument Number
+	func getMax(vals ...int) int {
+		// vals is treated like a slice
+		return maxV
+	}
+
+	vslice := []int{1,3,6,4}
+	getMax(vslice...)
+
+Deferred Function Calls
+	Call can be deferred until the surrounding function completes
+
+	Arguments of a deferred call are evaluated immediately
+
+Classes
+	Collection of data-fields and functions that share a well-defined responsibility
+
+Go doesnt not directly support classes
+
+ASSOCIATING METHODS WITH DATA
+	type MyInt int
+
+	func (mi MyInt) Double() int {
+		return int(mi*2)
+	}
+
+	func main() {
+		v := MyInt(3)
+		fmt.Print(v.Double())
+	}
+
+STRUCTS WITH METHODS
+	func (p Point) DistToOrig() {
+		t := math.Pow(p.x,2) + math.Pow(p.y,2)
+		return math.Sqrt(t)
+	}
+
+	func main() {
+		p1 := Point(3,4)
+		fmt.Print(p1.DistToOrig())
+	}
+
+usually, Polymorphism is supported through Inheritance ?
+	usually Polymorphism is supported through Overriding...
+
+INTERFACES in Go
+	type Shape2D interface {
+		Area() float64
+		Perimeter() float64
+	}
+
+	func FitInYard(s Shape2D) bool {
+		if(s.Area()>100 && s.Perimeter()>100) {
+			return true
+		}
+		return false
+	}
+
+EMPTY INTERFACE
+	func PrintMe(val interface{}) {
+		fmt.Print(val)
+	}
+
+TYPE ASSERTIONS FOR DISAMBIGUATION
+	func DrawShape(s Shape2D) bool {
+		rect, ok := s.(Rectangle)
+		if ok {
+			DrawRect(rect)
+		}
+		tri, ok := s.(Triangle)
+		if ok {
+			DrawTriangle(tri)
+		}
+	}
+
+TYPE SWITCH
+	switch := sh := s.(type) {
+		case Rectangle:
+			DrawRect(sh)
+		case Triangle:
+			DrawTriangle(sh)
+	}
+
+ERROR INTERFACE
+	type error interface {
+		Error() string
+	}
+
+Always use "error==nil"
+	f, err := os.Open("test.txt")
+	if err!=nil {
+		fmt.Print(err) --> this will call Error() function of the interface "error"
+	}

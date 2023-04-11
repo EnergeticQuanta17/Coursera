@@ -1,0 +1,89 @@
+DATASETS
+	National Health and Nutrition Examination Survey (NHANES)
+
+	The Cartwheel Dataset
+
+	Seaborn Tips Dataset
+
+
+Learning from data
+Data analysis methods and their properties
+Research methodology
+
+Properties of statistical methods
+
+Reduction and Summarization
+
+Data can be misleading
+Margin of error -->
+
+"Science of decisions"
+Great emphasis on variation of data
+
+Art of forecasting
+
+Science of measurement
+
+Basis for principled data collection
+	provides a rational way to manage the trade-off of --> collect least data possible {resource limitations} 
+
+Where does the data come from?
+	Organic/Process data --> stock --> Big Data
+	Designed data collection
+
+	i.i.d ==> independent and identically distributed
+
+	Can we apply statistical procedures that assume i.i.d data?
+
+Confirmatory versus Exploratory Research --> watch out for-->
+	overfitting
+	multiple testing
+	p-hacking
+
+The more questions you ask from a dataset the more likely you are to draw a misleading conclusion
+
+Observational data vs Experiments
+
+Power Analysis and Bias
+
+Typical Rectangular Data Set
+Spreadsheet Software
+Databases and Other Tools
+Data Files for Storage and Exchange
+Repeated Measures Data: Wide and Long
+Wide Form Data
+Long Form Data
+Uses of wide and long format data layouts
+More Specialized Data Formats
+
+Categorial Data
+	Bar Chart
+	Pie Chart
+
+Histograms
+	Shape    --> Symmetric, bell-shaped, left-skewed, right-skewed
+	Center   --> Mean or Median
+	Spread   --> Range, Interquartile Range (IQR), Standard deviation, Variance
+	Outliers --> Data points that fall far from the bulk of the data
+
+	Unimodal --> one peak {in shape analysis}
+
+Bar Charts --> Categorial data
+Histograms --> Quantitative data
+
+Doubt :-> MEAN of a histogram, how to calculate it visually
+
+BELL GRAPH	
+	If we go 1 S.D. on both sides --> 68% 
+	If we go 1 S.D. on both sides --> 95%
+	If we go 1 S.D. on both sides --> 99.7%
+
+	"Empirical rule" --> "68 - 95 - 99.7 rule"
+
+	Z-Score --> (observation - mean)/SD
+
+BOXPLOTS
+	Length of boxplot is the InterQuartileRange (IQR)
+	Median is marked along the width
+	Dotted lines till max and min
+

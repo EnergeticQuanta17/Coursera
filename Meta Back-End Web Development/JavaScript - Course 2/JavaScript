@@ -1,0 +1,13 @@
+JavaScript data types that I didnt know:-
+	BigInt
+	Symbol
+
+There are some other errors in JavaScript. These other errors include: 
+
+AggregateError 
+
+Error 
+
+InternalError 
+
+URIError

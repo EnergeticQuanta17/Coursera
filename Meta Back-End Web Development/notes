@@ -1,0 +1,743 @@
+RESPONSES FROM THE SERVER
+	Informational --> 100-199
+	Successful    --> 200-299
+	Redirection   --> 300-399
+	Client error  --> 400-499
+	Server error  --> 500-599
+
+GET /home.html HTTP/1.1 
+	In this example, GET is the HTTP method, /home.html is the resource requested and HTTP 1.1 is the protocol used.
+
+HTTP Method
+	Description
+
+GET
+	The client requests a resource on the web server.
+
+POST
+	The client submits data to a resource on the web server.
+
+PUT
+	The client replaces a resource on the web server.
+
+DELETE
+	The client deletes a resource on the web server.
+
+100
+Continue
+The server received the request headers and should continue to send the request body.
+
+101
+Switching Protocols
+The client has requested the server to switch protocols and the server has agreed to do so.
+
+200
+OK
+Standard response returned by the server to indicate it successfully processed the request.
+
+201
+Created
+The server successfully processed the request and a resource was created.
+
+202
+Accepted
+The server accepted the request for processing but the processing has not yet been completed.
+
+204
+No Content
+The server successfully processed the request but is not returning any content.
+
+301
+Moved Permanently
+This request and all future requests should be sent to the returned location.
+
+302
+Found
+This request should be sent to the returned location.
+
+400
+Bad Request
+The server cannot process the request due to a client error, e.g., invalid request or transmitted data is too large.
+
+401
+Unauthorized
+The client making the request is unauthorized and should authenticate.
+
+403
+Forbidden
+The request was valid but the server is refusing to process it. This is usually returned due to the client having insufficient permissions for the website, e.g., requesting an administrator action but the user is not an administrator.
+
+404
+Not Found
+The server did not find the requested resource.
+
+405
+Method Not Allowed
+The web server does not support the HTTP method used.
+
+500
+Internal Server Error
+A generic error status code given when an unexpected error or condition occurred while processing the request.
+
+502
+Bad Gateway
+The web server received an invalid response from the Application Server.
+
+503
+Service Unavailable
+The web server cannot process the request.
+
+What is difference between <br> and <br/>
+
+SELECTORS IN CSS
+	Element Selectors
+	ID Selectors
+	Class Selectors
+	Element with Class Selector
+	Descendent Selector
+	Child Selector
+	a:hover Pseudo-Class
+
+From CSS Version 3, there are five main ways to reference a color.
+	By RGB value --> rgb(255, 0, 0)
+	By RGBA value --> rgba(255, 0, 0, 128)
+	By HSL value --> hsl(0, 100%, 50%)
+	By hex value -->  #FF0000.
+	By predefined color names -->
+		black
+		silver
+		gray
+		white
+		maroon
+		red
+		purple
+		fuchsia
+		green
+		lime
+		olive
+		yellow
+		navy
+		blue
+		teal
+		aqua
+
+text-transform
+
+text-decoration
+
+text-decoration-line: underline;
+text-decoration-color: red;
+text-decoration-style: solid;
+text-decoration-thickness: 5px;
+
+text-align: left, right, center, justify
+
+npm --> node pacakage manager
+	takes care of what version of frameworks we used while developing the project
+
+	and load time --> idk how
+
+Bundling tool --> to reduce time delay
+	Automatically convert into single file OR multiple if its too much in single file
+
+	Tools :- 
+		Gulp
+		Webpack
+
+<-----------------BOOTSTRAP------------------------------------------------------------>
+class = "img-fluid"
+
+Bootstrap has:-
+	infix
+	modifiers
+we must make use of them
+
+Breakpoint        --> Class infix --> Dimensions
+Extra small       --> NIL -->  <576 pixels
+Small             --> sm -->   >=576 pixels
+Medium            --> md -->   >=768 pixels
+Large             --> lg -->   >=992 pixels
+Extra large       --> xl -->   >=1200 pixels
+Extra extra large --> xxl -->  >=1400 pixels
+
+class = "text-center"
+class = "col-12"
+class = "col-12 col-lg-6"
+
+12 column grid system
+
+class = "badge bg-primary"
+class = "class-imp-top"
+
+class="alert alert-info" role="alert"
+
+<button type="button" class="btn btn-primary">
+
+AMAZING RESOURCE
+https://www.coursera.org/learn/introduction-to-back-end-development/supplement/AgPYj/using-bootstrap-documentation
+
+OTHER CSS FRAMEWORKS AND LIBRARIES
+	Foundation -->  One prominent feature of Foundation is that it can be used to style content for sending via email.
+
+	Pure.css --> For Minimal load time
+
+	Tailwind CSS --> pure HTML based
+
+	UIKit --> UIKit is a lightweight CSS framework featuring a small set of responsive components. Its simple design allows developers to easily customize the style rules and visuals.
+
+	MVP.css --> Minimal Viable Product
+
+Single page applications
+	Bundling
+	Lazy-Loading
+
+REACT
+	SPA
+	mobile applications
+
+	Unable to understand this. Read when ur brain is more evolved
+	https://www.coursera.org/learn/introduction-to-back-end-development/supplement/KywYB/case-study-why-did-facebook-engineers-create-react
+
+	React creates a virtual DOM
+		It keeps record of what needs to be updated.
+
+		If the node is same --> then don't change --> this process is called reconsiliation
+
+		REACT UPDATES VIRTUAL D0M
+
+		React builds a representation of the browser Document Object Model or DOM in memory called the virtual DOM. As components are updated, React checks to see if the component’s HTML code in the virtual DOM matches the browser DOM. If a change is required, the browser DOM is updated. If nothing has changed, then no update is performed.
+
+		Step 1: The virtual DOM is updated.
+
+		Step 2: The virtual DOM is compared to the previous version of the virtual DOM and checks which elements have changed.
+
+		Step 3: The changed elements are updated in the browser DOM.
+
+		Step 4: The displayed webpage updates to match the browser DOM.
+
+
+	REACT FIBER ARCHITECTURE
+		incrementally render the web page --> spread the update over time
+
+	COMPONENT HIERARCHY
+
+	React is a library
+
+	Commonly used supporting libraries are:-
+		Lodash
+		Luxon
+		Redux
+		Axios
+		Jest
+
+
+------------------------------------------------------------------------------------
+
+				"HTML & CSS in depth"
+------------------------------------------------------------------------------------
+
+SEO --> Search Engine Optimization
+
+Audio and video tags
+Media queries
+Multiple background
+Border images
+Text shadows
+Transformations and Translations
+
+<nav>
+The navigation links of a section or the web page.
+
+<footer>
+The footer of a content section or the web page. On a web page, it often contains secondary links, the copyright notice, privacy policy and cookie policy links.
+
+<aside>
+A secondary set of content that is not required to understand the main content.
+
+<article>
+An independent, self-contained block of content such as a blog post or product.
+
+<section>
+A standalone section of the document that is often used within the body and article elements.
+
+<details>
+A collapsed section of content that can be expanded if the user wishes to view it.
+
+<summary>
+Specifies the summary or caption of a <details> element.
+
+CONTENT TAGS
+<blockquote>
+Used to describe a quotation.
+
+<dd>
+Used to define a description for the preceding <dt> element.
+
+<dl>
+Used to define a description list.
+
+<dt>
+Used to describe terms inside <dl> elements.
+
+<figcaption>
+Defines a caption for a photo image.
+
+<figure>
+Applies markup to a photo image.
+
+<hr>
+Adds a horizontal line to the parent element.
+
+<li>
+Used to define an item within a list.
+
+<menu>
+A semantic alternative to <ul> tag.
+
+<ol>
+Defines an ordered list.
+
+<p>
+Defines a paragraph.
+
+<pre>
+Used to represent preformatted text. Typically rendered in the web browser using a monospace font.
+
+<ul>
+Unordered list
+
+Inline tags
+<a>
+An anchor link to another HTML document.
+
+<abbr>
+Specifies that the containing text is an abbreviation or acronym.
+
+<b>
+Bolds the containing text. When used to indicate importance use <strong> instead.
+
+<br>
+A line break. Moves the subsequent text to a new line.
+
+<cite>
+Defines the title of creative work (for example a book, poem, song, movie, painting or sculpture). The text in the <cite> element is usually rendered in italics.
+
+<code>
+Indicates that the containing text is a block of computer code.
+
+<data>
+Indicates machine-readable data.
+
+<em>
+Emphasizes the containing text.
+
+<i>
+The containing text is displayed in italics. Used to indicate idiomatic text or technical terms.
+
+<mark>
+The containing text should be marked or highlighted.
+
+<q>
+The containing text is a short quotation.
+
+<s>
+Displays the containing text with a strikethrough or line through it.
+
+<samp>
+The containing text represents a sample.
+
+<small>
+Used to represent small text, such as copyright and legal text.
+
+<span>
+A generic element for grouping content for CSS styling.
+
+<strong>
+Displays the containing text in bold. Used to indicate importance.
+
+<sub>
+The containing text is subscript text, displayed with a lowered baseline.
+
+<sup>
+The containing text is superscript text, displayed with a raised baseline.
+
+<time>
+A semantic tag used to display both dates and times.
+
+<u>
+Displays the containing text with a solid underline.
+
+<var>
+The containing text is a variable in a mathematical expression.
+
+Embedded content and media tags
+<audio>
+Used to embed audio in web pages.
+
+<canvas>
+Used to render 2D and 3D graphics on web pages.
+
+<embed>
+Used as a containing element for external content provided by an external application such as a media player or plug-in application. 
+
+<iframe>
+Used to embed a nested web page. 
+
+<img>
+Embeds an image on a web page.
+
+<object>
+Similar to <embed> but the content is provided by a web browser plug-in.
+
+<picture>
+An element that contains one <img> element and one or more <source> elements to offer alternative images for different displays/devices.
+
+<video>
+Embeds a video on a web page.
+
+<source>
+Specifies media resources for <picture>, <audio> and<video> elements.
+
+<svg>
+Used to define Scalable Vector Graphics within a web page.
+
+Table tags
+<table>
+Defines a table element to display table data within a web page.
+
+<thead>
+Represents the header content of a table. Typically contains one <tr> element.
+
+<tbody>
+Represents the main content of a table. Contains one or more <tr>elements.
+
+<tfoot>
+Represents the footer content of a table. Typically contains one <tr> element.
+
+<tr>
+Represents a row in a table. Contains one or more <td> elements when used within <tbody> or <tfoot>. When used within <thead>, contains one or more <th> elements.
+
+<td>
+Represents a cell in a table. Contains the text content of the cell.
+
+<th>
+Defines a header cell of a table. Contains the text content of the header.
+
+<caption>
+Defines the caption of a table element.
+
+<colgroup>
+Defines a semantic group of one or more columns in a table for formatting.
+
+<col>
+Defines a semantic column in a table.
+
+SEO -->
+	Robots metadata
+	viewport "metadata"
+
+METADATA CHEAT SHEEET --> https://www.coursera.org/learn/html-and-css-in-depth/supplement/8QDS1/metadata-cheat-sheet
+
+Metadata cheat sheet
+HTML <meta> tags 
+Earlier in the course, you learned about meta tags and how you can leverage them to convey information to search engines to better categorize your pages. We recommend that you keep this cheat sheet handy when building your web applications. The structure of a meta tag is as follows.
+
+Name 
+The name of the property can be anything you like, although browsers usually expect a value they understand and can take an action upon. An example would be <meta name="author" content="name"> to state the author of the page. 
+
+Content 
+
+The content field specifies the property's value. For example, you can use <meta name="language" content="english">, to specify the language of the webpage to search engines. 
+
+Charset 
+
+The charset is a special field that lets you specify the character encoding used for the page so that the browser can display it properly. The most frequently used is utf-8, and you would add it to your HTML header as follows: <meta charset="UTF-8">  
+
+HTTP-equiv 
+
+This field stands for HTTP equivalent, and it’s used to simulate HTTP response headers. This is rare to see, and it’s recommended to use HTTP headers over HTML http-equiv meta tags. For example, the next tag would instruct the browser to refresh the page every 30 minutes: <meta http-equiv="refresh" content="30"> 
+
+
+Basic meta tags (meta tags For SEO) 
+<meta name="description"/> provides a brief description of the web page 
+
+<meta name=”title”/> specifies the title of the web page 
+
+<meta name="author" content="name"> specifies the author of the web page  
+
+<meta name="language" content="english"> specifies the language of the web page 
+
+
+
+<meta name="robots" content="index,follow" /> tells search engines how to crawl or index a certain page 
+
+<meta name="google"/> tells Google not to show the sitelinks search box for your page when showing search results 
+
+<meta name="googlebot" content=”notranslate” /> tells Google you don’t want to provide an automatic translation for your page if the user uses a different language  
+
+<meta name="revised" content="Sunday, July 18th, 2010, 5:15 pm" /> specifies the last modified date and time on which you have made certain changes 
+
+<meta name="rating" content="safe for kids"> specifies the expected audience for your page 
+
+<meta name="copyright" content="Copyright 2022"> specifies a Copyright 
+
+
+<meta http-equiv="..."/> tags
+ <meta http-equiv="content-type" content="text/html"> specifies the format of the document returned by the server 
+
+<meta http-equiv="default-style"/>  specifies the format of the styling document 
+
+<meta http-equiv="refresh"/> specifies the duration of the page before it’s considered stale 
+
+<meta http-equiv=”Content-language”/> specifies the language of the page 
+
+<meta http-equiv="Cache-Control" content="no-cache"> instructs the browser how to cache your page 
+
+Responsive design/mobile meta tags 
+<meta name="format-detection" content="telephone=yes"/> indicates that telephone numbers should appear as hypertext links that can be clicked to make a phone call 
+
+<meta name="HandheldFriendly" content="true"/> specifies that the page can be properly visualized on mobile devices 
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/> specifies the area of the window in which web content can be seen
+
+LAYOUT DESIGN
+	Top navbar layout
+	Carousel layout
+	Blog layout
+	Dashboard layout
+	More layouts
+
+Previews in link sharing
+
+Open Graph Protocol
+	Metadata rules for describing websites
+
+	it uses "property" element and "content" attribute
+
+	<meta property="og:title" content="">
+	<meta property="og:type" content="">
+	<meta property="og:url" content="">
+	<meta property="og:image
+
+FORM VALIDATION
+	Client-side
+	Server-side
+
+	INPUT TYPES
+		Button
+		Checkbox
+		Radio
+		Submit
+		Text
+		Date
+		Password
+		Datetime-local
+		Email
+		File
+		Hidden
+		Image
+		Number
+		Range
+		Reset
+		Search 
+		Time
+		Tel
+		Url 
+		Week
+		Month
+
+use "post" --> to send data securely
+
+required minlength="3"
+required maxlength="12"
+
+<style>
+	input:focus:invalid{
+		border: 2px solid red;
+	}
+</style>
+
+INPUT TYPES
+	
+Required
+Denotes a mandatory input that the user can’t leave empty. It can be used with any input type, like password, radio, text and so on. 
+
+<input type="text" id="firstName" name="firstName" required> 
+
+Maxlength 
+Specifies the maximum length of a text input, in other words, the maximum number of characters that can be entered for a specific field. If provided, it will prevent the user from entering more characters than the limit. 
+
+<input type="text" id="description" name="description" maxlength="50"> 
+
+Minlength 
+Specifies the minimum length of a text input. If set, the input will not accept fewer characters than those specified. 
+
+<input type="password" id="password" name="password" minlength="8"> 
+
+Min and max attributes 
+Determine the minimum and maximum values allowed for an input field. They are usually applied to numerical text inputs, range inputs or dates. 
+
+<input type="number" id="quantity" name="quantity" min="1" max="10"> 
+
+<input type="range" id="volume" name="volume" min="1" max="100"> 
+
+Multiple 
+Indicates that the user can enter more than one value in a single input field. This attribute can only be used for email and file input types. 
+
+<input type="file" id="gallery" name="gallery" multiple> 
+
+Pattern 
+Defines a particular pattern that an input field value has to fulfill to be considered valid. This attribute expects a regular expression to specify the pattern. It works with text, date, search, URL, tel, email and password input types. For example, you can restrict phone numbers to be only from the UK. 
+<input type="tel" id="phone" name="phone" pattern=”^(?:0|\+?44)(?:\d\s?){9,10}$” > 
+
+
+
+datalist "input type"
+
+
+by default it is set to "get" method
+
+<form method="get">
+</form>
+
+<form method="post">
+</form>
+
+<form action="/login"> 
+</form> 
+
+<label>
+Defines a label for an element. It has an attribute "for", the value of which should be equal to the id attribute of the element it is associated with. Note how in the example above, the <label> is associated with the <input> using its id value. 
+
+<select>
+Defines a drop-down list of options presented to the user. It has a couple of attributes: 
+Form, the id of the form in which the drop-down appears 
+Name specifies the name of the control 
+Multiple Boolean attribute, when specified, indicates if a user can select multiple options out of the list 
+Required indicates if the user is required to select an option before submitting a form 
+Size mentions the number of visible options in a drop-down list 
+The options in a drop-down list are defined using the <option> element inside <select>. 
+
+<textarea>
+Defines a multi-line input field, typically to allow the user to input longer textual data. The common attributes for this element include: 
+cols defines the width of the text area, the default value is 20 
+form the form element the text area is associated with 
+maxlength when specified, limits the maximum number of characters that can be entered in the text area 
+minlength the minimum number of characters that the user should enter 
+readonly once set, the user cannot modify the contents 
+rows defines the number of visible text lines for the text area 
+
+<button>
+Defines a clickable button. The onclick attribute defines the behavior when the button is clicked by the user.
+
+<fieldset> 
+Used to group related input elements in a form. For instance, elements related to the user’s personal information and educational qualification can be grouped separately in two field sets. 
+
+<legend> 
+Defines a caption for the <fieldset> element.
+
+<datalist>
+Specifies a list of pre-defined options for an input element. It differs from <select> since the user can still provide textual or numeric input other than the listed options. 
+
+<datalist>
+Specifies a list of pre-defined options for an input element. It differs from <select> since the user can still provide textual or numeric input other than the listed options. 
+
+<output> 
+Represents the result of a calculation (typically the output of a script) or the outcome of the user action. 
+
+<option> 
+Defines an option for the drop-down list. The following code example demonstrates how a simple list can be defined, with the rendered view below the code block. 
+To define a pre-selected option, add the selected attribute to the option. 
+
+<optgroup> 
+Defines a group of related options in a drop-down list. Its attribute label names the group. 
+
+VIDEO FORMATS
+	.mp4
+	.webm
+	.ogg
+
+IMAGE FORMATS SUPPORTED BY MOST BROWSERS
+	.mp3
+	.wav
+	.ogg
+
+<video>
+	<source src="dance.mp4" type="video/mp4">
+	<source src="dance.ogg" type="video/mp4">
+</video>
+
+<video controls width="320" height="240">
+<source src="video.mp4" type="video/mp4">
+</video>
+
+<img src="photo.png" width="640" height="480"> 
+
+Display some text when the image fails to load.
+	<img src="photo.png" width="320" alt="My Profile Photo"> 
+
+<figure> 
+   <img src="photo.png" width="320" alt="My Profile Photo"> 
+   <figcaption>A photo of myself on a beach in 2015</figcaption> 
+</figure>
+
+=================================================================================================================================
+				DATABASE
+=================================================================================================================================
+
+Database tasks
+	Store data
+	Form relationships
+	Filter data
+	Search data
+	Perform CRUD operations
+
+Database software --> "XAMPP"
+
+"The perfect is the enemy of good"
+
+GHI Database Products
+
+Create, Read Update and Delete operations
+
+Object oriented databases
+Graph databases
+Document databases - JSON
+
+Database hosting
+	Dedicated machine
+	Cloud hosting
+
+Relational data example charts
+	Bar chart
+	Bubble chart
+	Line chart
+	Pie Chart
+
+	Other types of charts that could be used for different purposes
+		The area chart that combines the line chart and the bar chart to compare two or more quantities of data.
+
+		Others commonly used charts include:-
+			Dual axis charts
+			Gantt charts
+			Heat maps
+			Scatter plot charts
+
+	What chart do I choose to present my data?  
+		The answer to the question depends on several factors including:
+			-The target audience who will use the information,  
+			-The idea you intend to present,
+			-And the goal you want to achieve.  
+
+		Your choice of chart will be determined by the message you want to deliver to your audience, the type and amount of data you want to load to the graph and so on. 
+
+Alternative types of databases
+	Relational database --> structured
+	NoSQL databases --> flexible --> for un-structured data
+
+NoSQL databases
+	Document databases
+	Key-value databases
+	Graph databases
+
+

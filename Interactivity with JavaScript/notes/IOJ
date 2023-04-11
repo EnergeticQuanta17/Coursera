@@ -1,0 +1,32 @@
+document
+element
+nodeList
+
+Data is displayed via
+	window.alert()
+	window.prompt()
+	document.write()
+	innerHTML()
+	console.log()
+
+<head> of HTML
+	<script src="*.js">
+
+EVENTS
+
+onclick
+onmouseover
+onresize
+onload
+
+<button 
+	type="button"
+	onclick="displayDate()"
+</button>
+
+
+CATEGORIES OF EVENTS
+	Mouse events
+	Keyboard events
+	Frame events
+	Comprehensive list

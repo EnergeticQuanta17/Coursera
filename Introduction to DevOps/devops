@@ -1,0 +1,346 @@
+		Digitalization + business model
+	Uber
+	Netflix
+
+Technology is an enabler of inovation
+
+DevOps --> MTTR
+
+DevOps --> extension of agile development environments that aims to enhance the process of software delivery as a whole
+
+Agile did nothing for ops
+
+Lean and agile
+Rapid and continuous manner
+
+DevOps requires
+	Application design
+	Automation
+	Programmable platform
+
+Agility is the goal:
+	Smart experimentation
+	Moving in market
+	Maximum velocity
+	Minimum risk
+	Gaining quick, valuable insights
+
+Pillars of Agility
+	DevOps
+	Microservices
+	Containers
+
+DevOps has three dimensions
+	Culture
+	Methods
+
+Extreme Programming
+	An agile methods
+
+The Agile Manifesto
+	Individuals and interactions over processes and tools 
+	Working software over comprehensive documentation
+	Customer collaboration over contract negotiation
+	Responding to change over following a plan
+
+"Continuous	 delivery" - book by Humble and Farley 
+"The Pheonix Project" -- book
+"The DevOps	Handbook" --> GOLD book
+
+DevOps Research and Assessment (DORA) --> State of DevOps Report
+
+Social coding
+	Open source practice
+
+	All repositories are public
+
+	Everyone is encouraged to contribute
+
+	Anarchy is controlled via Pull requests 
+
+Pair Programming
+	Driver and Navigator
+
+	Every 20 minutes they switch
+
+	Skills transfer
+
+Create a new branch for every Issue
+
+Use Pull Requests to merge to master
+
+Working in small batches
+	From Lean Manufacturing
+
+	Faster feedback
+
+	Supports experimentation
+
+	Deliver faster
+
+Minimal Viable Product
+	MVP is an experiment to test your value hypothesis and learn
+
+	MVP is focused on learning
+		not delivery
+
+	At the end of MVP, you decide whether to pivot or persevere.
+
+Test Driven Development
+	Test cases drives the design
+
+	Keeps you focused on the purpose of the code
+
+Basic TDD workflow
+	Red --> write a test case that fails
+	Green --> write code to make it pass
+	Refactor --> improve code quality
+
+It is a must to automate testing.
+
+Behaviour Driven Development
+	Describes the behaviour of the system from the outside
+
+	Great for integration testing
+
+	BDD ensures that we are building the "right thing"
+
+	TDD ensures that we are building the "thing right"
+
+BDD workflow
+	Explore the problem domain
+
+	Describe the behaviour
+
+	Document the behaviour using "Gherkin syntax"
+
+	Use BDD tools
+
+Gherkin is used for acceptance criteria
+
+Cloud Native Microservices
+	Many microservices
+
+	Each connected using "REST API"
+
+	The Twelve-Factor App
+
+	Monolith vs Microservices
+
+Designing for Failure
+	We care about "mean time to recover" more than "mean time to failure"
+
+	Retry pattern
+		Backoff exponentially
+
+		Wait to database to recover from the error
+
+	Circuit breaker pattern
+		Multiple dependencies on one thing and that thing fails
+
+		Make everyone 
+
+	Bulkhead pattern
+		Direct to other
+
+	Chaos engineering
+		Also known as money testing
+
+		You deliberately kill services
+
+		Netflix created the Simian Army tools
+
+Cloud native architecture --> microservices
+
+Push smaller releases
+
+Taylorism
+	Adoption of command and control management
+
+	Organisations divided into functions silos
+
+	Decision making is separated from work
+
+Abandon command and control
+
+The product model is flawed
+
+Development	wants innovation
+Operations wants stability
+
+Required DevOps behaviours
+	Shared ownership
+	High collaboration
+	Risk managemetnt by embracing change
+	Ephermeral infrastructure as code
+	Automated self-service
+	Feedback loops and data-driven responses
+
+Infracstucture as Code
+	Tools --> configuration management systems
+
+	Server drift is a major source of failure
+
+	Infracstucture is transient
+
+	Build through parallel infrastructure
+
+Immutable delivery via containers
+	Like Docker
+
+	Application are packaged in contrainers
+
+	We can do immediate roll-back
+
+	Dependencies are contained
+
+	We never make changes to a running container
+		We make changes to the image and then redeploy a new container
+
+Continuous Integration
+	CI/CD is not one thing
+
+	CI --> building	continously
+			testing
+			merging to master
+
+	CD --> continously deploying to a production like environment
+
+	CI --> working in small batches
+		Committing regularly
+		Using pull requests
+
+	CI automation
+		Build and test every pull request
+		Use CI tools that monitor vversion control
+		Tests 
+
+	CD needs CI
+
+	CI --> CD
+
+CI/CD pipeline
+	Automated gates that create a pipeline of checks:
+		Unit testing
+		Code quality checks
+		Integration testing
+		Security testing
+		Vulnerability scanning
+		Package signing
+
+CI/CD pipeline needs
+	A code repository
+	A build server
+	An integration server
+	An artifact repository
+	Automatic configuration and deployment
+
+CI/CD
+	CI is Plan --> Code --> Build --> Test
+
+	CD is Release --> Deploy --> Operate
+
+	CI --> CD
+
+Five key principles
+	Build quality
+	Work in small batches
+	Computers perform repetitive tasks
+	Relentlessly pursue continous development
+	Everyone is responsible
+
+Continuous release === Continuous deployment
+
+Deployment is decoupled from activation
+	Feature flags
+	Blue/Greem deploys
+	0 downtime deployment
+	Canary testing
+
+The five principles of Continuous Delivery have to do with quality, working in small batches, automation, continuous improvement, and shared responsibility
+
+First do "Agile"
+	Small teams
+	Dedicated teams
+	Cross-functional teams
+	Self-organizing teams
+
+Conway's Law
+	Any organisation that designs a system will produce a design whose structure is a copy of the organisation's communication structure.
+
+Align teams with the business
+	Long-term mission
+	End-to-end responsibility
+
+Bad behaviour arises when you abstract people away from the consequence of their actions.
+	Functional silos breed bad behaviour
+
+Organizations need to have small, dedicated, cross-functional, self-organizing teams to successfully implement DevOps. 
+
+Conway’s Law implies that a company’s design results are a direct reflection of the company’s communication structure. 
+
+Instead of the traditional structure organized around technology, successful DevOps teams should be organized around business domains. Each team should have its own mission that aligns with a business domain. 
+
+DevOps is a mindset that the whole organization adopts. 
+
+DevOps solves problems caused by siloed teams. 
+
+DevOps is the practice of development and operations engineers working together during the entire software lifecycle, following lean and Agile principles that allow them to deliver high-quality results. 
+
+Actions without consequences can lead to apathy. 
+
+Allowing teams to feel the effect of their actions fosters empathy, resulting in higher-quality work. 
+
+The organizational objective of DevOps is to attain a shared mindset and empower everyone to deliver customer value. 
+
+You get what you measure
+
+DevOps Metrics
+	Prevention to Recovery
+
+Vanity Metrics
+	Don't use this
+
+Actionable Metrics
+	Cause and effect
+
+	Reduce time to market
+	Increase overall availability
+	Reduce the time to deploy
+	Defects detected before production
+	More efficient use of infrastructure
+	Quicker performance feedback
+
+Top four Actionable Metrics
+	Mean lead time
+	Release frequency
+	Change failure rate
+	MTTR
+
+Information is actively sought
+Failures are learning opportunities
+Responsibilities are shared
+Cross-functional collaboration is encouraged and rewarded
+Failure causes inquiry
+New ideas are welcomed
+
+Stability is controlled through error budgets
+
+Measure and reward what you want to improve.  
+
+People seek information on what is rewarded and then seek to do that. 
+
+Measuring social metrics leads to improved teamwork and measuring DevOps metrics allows you to see the progression toward your goals. 
+
+If you want people to be social, then measure them being social. 
+
+DevOps changes the objective of problem resolution from failure prevention to failure recovery. 
+
+Vanity metrics may be appealing at first but offer limited actionable insights. 
+
+Actionable metrics provide meaningful ways to measure your processes and take action toward goals. 
+
+DevOps actionable metrics include mean lead time, release frequency, change failure rate, and mean time to recovery. 
+
+You can rate statements developed by Dr. Nicole Forsgren to measure your team’s culture, including statements about information, failures, collaboration, and new ideas. 
+

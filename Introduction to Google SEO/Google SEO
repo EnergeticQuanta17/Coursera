@@ -1,0 +1,232 @@
+Google Search Engine Optimization
+
+SEO strategies
+
+Marketing practice
+
+Local SEO
+Technical SEO
+Copy writing
+
+White hat
+Grey hat
+Black hat --> manipulative --> churn and burn approach to SEO
+
+Practice and continual testing
+
+Major search engine:-
+	Google
+	Yahoo
+	Bing
+	Baidu --> China
+	Yandex --> Russia
+	Naver --> South Korea
+
+Google has the most market share in SEO
+
+Refine search query rather than go to the second page of results
+
+Keyword psychology
+
+Career choice:-
+	Core skillset for marketers
+	CROS
+
+	In-house SEO --> Working for multiple companies to help
+
+	Highlight past work
+	Showcase practical experience
+
+	Read views on company on --> Glassdoor
+
+
+HOW SEARCH ENGINES WORK?
+	ROBOTS
+		Crawl the web --> through links
+		Add to --> www.google.com/webmaster/ --> for robots to find
+		This is added to a massive database --> known as --> index
+
+		Data centers --> to do it quickly
+
+	Determine relevance
+	Rank the pages
+
+	100s of factors to do the above 2 things
+
+	https://en.wikipedia.org/wiki/Timeline_of_Google_Search
+
+EVOLUTION OF SEO
+	Google --> 2000s
+
+	>--< Domain penalties >--<
+
+	PageRank -->
+		OLD WAY:- We could see our website's rank and it was based on backlinks
+		NEW WAY:- more-in depth and secretive metric	
+
+
+	Improvements:-
+		Personalized search
+		Google analytics
+		Search Console
+
+
+	Social networks are also search engines
+
+	Reputation Experience Management
+		Reputation is also used to rank pages.
+
+MOZ --> tool for SEO --> top ranking factors
+
+Google uses 200+ ranking factors
+
+Google updates its SEO --> 500 updates in a single year
+
+MOZCAST --> turbulence in ranking / fluctuations in ranking
+mozcast.com
+
+proactive >> reactive
+
+BERT algorithm
+
+Panda (2011)
+	Duplicate content
+	Thin content
+	Low quality
+	Machine generated content 
+	Lots of adds
+	Substaintial content
+	Content relevancy
+
+Penguin (2012)
+	Directory related links
+	Links from spammy or unrelated sites
+	Purchased links
+	bad link building strategies
+
+Hummingbird(2013)
+
+RankBrain(2015)
+
+Understanding the context --> Semantic Indexing --> looks at synonyms and relevant words
+
+Mobilegeddon(2015) --> for mobile friendly
+
+Mobile-first(2018) --> Mobile > Desktop {priority}
+
+Personalized Search
+
+Caffeine --> Focussed on speed and building faster web
+
+Voice Search --> impacts how users are discovering your content
+
+Reflection:=	
+	User-friendly web
+	Better understand the user
+
+Why algorithms change so frequently because WEBMASTERS manipulate algorithm to produce high page rank that isnt relevant
+
+Homepage very important
+
+Outside links to our website increase authority
+
+https://support.google.com/webmasters/answer/9128678?hl=en&visit_id=638060098646786928-3352820586&rd=1
+
+<-------------------PANDA------------------->
+
+	It is a search filter.
+
+	Targets:- Thin/Low Quality Sites
+
+		Duplicated content {Say website A puts a content and B copies it, then A will be relevant}
+
+		Excessive ADs
+			Low content, high amounts of ads
+
+		Automatically Generated Content --> Spun content as it "spun out" from a machine
+
+		Squeeze Pages
+
+		Doorway pages
+
+		Bad Guest Posts
+
+	Pandalized.com
+
+Penguin (2012)
+	Filter --> it will be run again on sites to check
+
+	Manipulative link practices {unethical or spammy ways to generate links}
+
+	Sites solely built for the purpose of linking to each other
+
+	Link trading
+
+	Comment spam
+
+	Paid links
+
+	Irrelevant links {manipulation}
+
+	Free templates {links within the thing}
+
+	Poor link building
+
+	--> Competitors could create spammy backlinks to get them penalized
+		For this Google created "Link Disavow tools"
+
+	https://developers.google.com/search/docs/essentials/spam-policies?hl=en&visit_id=638060098649106723-54343997&rd=1#link-spam
+
+Core web vitals	
+	
+Real world experience metrics
+	Page load time
+	Site stability
+	Site security (https) 
+	Intrusive interstitials (pop-ups) 
+
+AMP
+
+How to measure the core vitals:-
+	PageSpeed Insights
+	Chrome UX Report
+	Search Console
+	Chrome DevTools
+	Lighthouse
+	Web Vitals Extension
+
+EAT
+	Expertise
+	Authority
+	Trust
+
+	EAT score
+
+YMYL
+	Your money, your life
+
+	Websites that offer advice about someone's health, wealth or happiness.
+
+Featured snippets --> Position "0", these snippets are used for voice search queries
+
+Rich snippets/results
+	changes the way a normal organic result appears in search
+
+Zero-click search results
+
+Click-Through-Rate {CTR}
+
+We can optimize the things to make it appear in Featured snippets , but it has some drawbacks
+
+Google Structured Data Testing Tool
+
+BERT(2019)
+	determine context of search query
+
+	B --> Bidirection
+	E --> Encoder
+	R --> Representation from
+	T --> Transformers
+
+TOPIC ASSOCIATION
+	

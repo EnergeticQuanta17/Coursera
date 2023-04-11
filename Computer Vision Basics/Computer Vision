@@ -1,0 +1,281 @@
+Computer Vision --> automatic extraction, analysis and understanding of useful information from a single image or sequence of images.
+
+Computational models for human visual system
+
+Computer Vision --> aims to build Autonomous systems to perform tasks which the human visual system can perform and even surpass it in many cases
+
+Temporal information
+
+Related fields of CV
+	Neuroscience
+	Digital Signal Processing
+	Artificial Intelligence
+		Pattern Recognition
+		Machine Learning
+	Mathematics
+		Statistics
+		Optimization
+		Geometry
+
+Computer vision can be studied form a purely mathematical point of view
+
+CV spectrum
+	Image acquisition
+	Pre-processing
+	Feature extraction
+	Detection and Segmentation
+	High-level Processing
+	Application
+
+Physics
+	Optics
+	Electromagnetic theory
+	Solid State Physics
+
+Digital Iamge Processing
+	Image compression
+			restoration
+			enchancement
+
+Computer Graphics
+	Augmented Reality
+	Mixed Reality
+	Virtual Reality
+
+3D + Photometry --> in the presense of Computer Graphics --> Image 2D
+	****Computer vision goes the other way
+
+Photogamometry --> measure from photos
+
+Stereo imaging
+Graph cutting
+
+Image morphing
+View interpolation
+Panaromic image stitching
+Early light-field rendering
+
+Correspondence Problem --> Scale Invariant Feature Transform (SIFT)
+
+ImageNet
+	AlexNet --> CNN
+
+Generative Adversial Networks
+
+Image Retargeting
+
+Stereo vision
+
+SeeingAI --> by MicroSoft
+
+Factors that affect "COLOR"
+	Light sources
+	Object surface properties
+	Emittance
+	Reflectance spectrum
+	Position and Orientation
+
+Most of the computer vision systems assume --> a local illumination model with no inter reflections, no scattering 
+
+A correct illumination model needs to consider the inter reflections as well.
+
+Spectral Power Distribution
+
+Power Spectrum
+
+Radiometric measurements are made at the light source --> represented as "radiance" or "luminance"
+
+Radiometric measurements are made at the object surface --> irradiance or illuminance.
+
+Reflection
+	Specular reflection --> which obeys the law of reflection
+
+	Diffuse reflection --> scattering
+
+Bidirectional Reflection Distribution Function
+	is a function of theta_i, phi_i, theta_e, phi_e
+
+Conventional unit vectors
+	L --> Towards Light source direction
+
+	N --> Normal of surface
+
+	R --> Angle of incidence
+
+	V --> View direction
+
+Lambertian Surface --> irregular surface --> lots of diffusion
+
+	Angle of incidence matters
+
+	Diffusion is maximum when incidence and normal are parallel
+
+Albedo --> is the proportion of the incident light or radiation that is reflected by a surface
+
+Earth's Albedo --> 0.3
+
+Albedo varies with variation in the wavelength
+
+Specular surfaces --> where intensity is maximum "near" the reflected ray
+
+Pinhole Camera Model
+	Follow the laws of Projective Geometry
+
+	Perspective Projection --> geometric mapping from 3D to 2D
+
+	Perspective Projection --> makes appear parallel lines are converging
+		Point of convergence --> "Vanishing point"
+
+		Planar structure of the scene and  relative depth
+
+
+Weak Perspective --> orthographic camera models
+
+Projective geometry
+We must use "homogeneous coordinate system"
+
+
+Pinhole Camera Model
+	Focal length --> Distance between pinhole and Image Plane
+
+	On the other side, at the distance of focal length from the pinhole --> Virtual Image Plane
+
+	Camera Coordinate System
+	World Coordinate System
+	Image Coordinate System
+
+	Digital Image Coordinate System
+
+	World --> Camera --> Image Plane --> Pixel
+
+	(X,Y,Z) --> (Xc,Yc,Zc) --> (x,y) --> (u,v)
+
+	Backward Projection --, i.e. reverse direction of the previous equation is challenging
+
+	Computer vision deals with this problem
+
+Some sensors and image processors -->in some ways exceed the capabilities of the human eyes
+
+Imaging sensor
+
+Simple Model --> That accounts for the important effects like
+	Exposure
+	Nonlinear Mappings
+	Sampling
+	Aliasing
+	Noise
+
+Sophisticated Model is required to capture these important effects like
+	Focus 
+	Exposure
+	Vignetting
+	Aberration
+
+Shutter speed --> duration of exposure
+
+Charged Coupled Devices (CCD)
+
+Complementary Metal Oxide on silicon (CMOS)
+
+Factors affecting performance
+	Shutter speed
+	Sampling pitch
+	Chip size
+	Analog gain
+	Sensor noise
+	Analog-to-digital converter
+
+Chromatic abbression caused by lens
+
+Vignetting
+
+Photoelectric effect is the porinciple behind  digital imaging.
+
+Quantum efficiency of photo-sensor
+
+Shot Noise, Dark Noise
+
+Digital Camera Pipeline
+	Optics
+	Aperture
+	Shutter
+	Sensor
+
+Gain
+Demosaic
+Denoise
+White Balance
+Gamma correction
+Compress
+
+
+Rods --> light intensity
+Cones --> Color senstitive
+
+COLOR THEORY
+	Trichromatic Theory
+		Any visible can be replicated using just three primary colors
+
+Color Filter Arrays
+	Three are used for each channel i.e. red, green, blue
+
+	And then Demosaic-ed to form 3 channel image
+
+	Demosaic-ed using interpolation techniques
+
+We need negative intensity of RED to represent all the visible
+
+Hence we need better primary color selection
+
+To overcome the hurdle of the negative weight --> CIE color space introduced
+
+HSV --> Hue, Saturation, Value
+
+
+Three Levels - Paradigm
+	Computational theory
+	Representation and Algorithm
+	Implementation
+
+Primal sketch
+The primal sketch is a symbolic, two-dimensional description of the significant grey-level changes in an image. Psychophysical evidence suggests a primal sketch in human vision, rather like that proposed by Marr, although different in many details
+
+
+2.5D is an effect in visual perception. It is the construction of an apparently three-dimensional environment from 2D retinal projections. While the result is technically 2D, it allows for the illusion of depth
+
+Input image --> Primal sketch --> 2.5D 
+
+Three R's - Paradigm
+	Recognition
+	Reconstruction
+	Reorganization
+
+Input image --> Reorganization --> Recognition --> detailed 3d understanding
+
+Low level vision techniques
+	Image processing techniques
+	Feature detection
+	Matching
+	Early Segmentation
+
+	local properties of the iamges
+
+	Deals with pixels directly.
+	Make image look good.
+
+Mid level vision
+	Things come together attributing meaning
+
+	Grouping things togehter
+
+	Understanding motion.
+	Geometry
+
+High level vision tasks
+	Algorithms that make sense of the visual content and make computer vision live up to the capabilities of human vision
+
+	Identify what is there
+
+	Understanding 
+	Recognizing
+

@@ -1,0 +1,67 @@
+*** HOW TO TEST A FUNCTION USING "UNIT-TESTING"
+import unittest
+class TestMyModule(unittest.TestCase):
+	def test_square(self):
+		self.asssetEqual(square(2),4)
+if __name__=='__main__':
+	unittest.main()
+
+Always use 'test_' prefix for naming files and method names
+
+
+--------------------------------------------------------------------------------------
+Python Package = __init__.py + modules.py
+	it is a dictionary
+
+Inside __init__.py write this
+	from . import module1.py
+	from . import module2.py
+
+--------------------------------------------------------------------------------------
+CREATING WEB APPLICATIONS USING "FLASK"
+
+Framework --> is a collection of packages or modules for a specific purpose
+
+Most used Python Frameworks	
+	Flask
+	Django
+	Dash
+	Tornado
+	Web2Py
+	etc
+
+ Flask --> microframework
+ 	Based on 
+ 		Werkzeug --> WebServer Gateway interface toolkot which implements request, response and other web utility and enables building a web framework on top of it.
+ 		Jinja2 --> templating engine for Python for rendering dynamic webpages
+
+ 	Flash can serve static files/
+ 	It is extensible
+
+ 	Functionalities by Flask:- CRUD
+ 		Create -- POST/PUT
+ 		Read   -- GET
+ 		Update -- UPDATE
+ 		Delete -- DELETE
+
+--------------------------------------------------------------------------------------
+from flask import Flask
+app=Flask("My first application")
+
+@app.route('/')       # here we have not specified which function to use --> by default it is PUT
+def hello():
+	return 'Hello World!'
+
+if __name__=="__main__":
+	app.run(debug=True)
+
+--------------------------------------------------------------------------------------
+RENDERING TEMPLATES WITH FLASK
+	Serve static HTML Pages
+	Serve dynamic HTML Pages
+	Passing arguments --> through URL or request parameters
+by default - it searches for a directory called 'templates' under the root directory
+AND
+'static' folder holds images, style-sheets, javascript files
+--------------------------------------------------------------------------------------
+RENDERING TEMPLATES EXAMPLE

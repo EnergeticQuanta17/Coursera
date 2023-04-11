@@ -1,0 +1,42 @@
+NVIDIA Drive
+
+1000s of technical experts --> NVIDIA DGX SATURNV supercomputer
+
+Ingestion
+Curation
+Labeling
+Training
+Replay
+Simulation
+
+Monte Carlo risk simulation
+
+AlexNet
+
+Training Model Optimizations
+	Fusing layers
+	Pruning nodes
+
+Machine Learning vs Deep Learning
+	ML --> no NN
+	DL --> does not rely on human-defined classifiers
+	ML--> does not need very large data sets
+
+
+<-----------WRITE NOTES FOR LESSON-3  GPUs Overview>
+
+
+
+NGC Catalog
+	AI stack
+	HPC stack
+	Genomics stack
+	Visualization app
+
+Helm Charts
+
+NVAIE vGPU
+
+NVIDIA NVLink
+NVIDIA NVSwitch
+NVIDIA DOCA

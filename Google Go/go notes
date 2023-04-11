@@ -1,0 +1,393 @@
+Close to C, easy to use
+
+Runs fast --> Why it runs fast?
+Garbage collection --> automatic memory management
+Simple objects
+Concurrency is efficient
+
+A complied language that has garbarge collection;
+
+Weakly Object-Oriented
+
+"struct"s in Go
+	No inheritance
+	No constructors
+	No generics
+
+"Linear Object-Oriented implementation"
+
+Performance Limits
+	Temperature constraints
+	Moore's law dying out
+
+GPU has 1000 processor cores or so? really?
+
+Parallelism --> doesn't increase latency but will increase throughput
+
+Concurrency --> Processes are alive at the same time
+
+Go has inbuilt "Concurrency primitives"
+
+"Goroutines" --> concurrent tasks
+"Channels"   --> communicate between tasks
+"Select"     --> enables task synchronization
+
+WORKSPACES {recommended}
+	src
+	pkg
+	bin --> executables
+
+GOPATH ==>> C --> Users --> mpree --> go
+
+Package --> importable
+	First line names the package
+
+	There must be one package called "main"
+	This will be run
+	main() --> is where code execution starts
+
+	Packages are searched inside --> GOROOT and GOPATH
+
+The "Go Tool"
+	>>> go build --> compile only
+	>>> go doc --> documentation
+	>>> go fmt --> indentation
+	>>> go get --> online, download packages
+	>>> go list --> list all packages
+	>>> go run --> compiles and executes
+	>>> go test --> runs test on files which end with _test.go {underscore test dot go}
+
+Variables
+	name and type
+
+	var x int
+	var x,y int
+
+Compiler needs to know data-type because the executable does different things for --> "int division" and "float division"
+
+U can do "alias" for type
+	type Celcius float64
+	type ID int
+
+var x = 100
+var x int = 100
+
+x:=100 --> declaration and initialization together
+	--> can do this inside a function "only"
+
+POINTERS
+	Virtual address
+
+	& --> address of
+	* --> data at an address
+
+new() --> returns pointer to the variable
+	ptr := new(int)
+	*ptr = 3
+
+Variable scoping is done with --> Blocks
+
+BLOCKS
+	Universe block --> all Go source code
+	Package block --> all source in a package
+	File block --> all source in a file
+
+Lexical Scoping
+
+Deallocating Space
+	If u call function multiple times --> we use up all the space
+
+	C --> has a lot of memory leaks
+
+	STACK vs HEAP
+		Stack --> function calls and local variables
+		Heap --> Variables
+			{Heap is persistent}
+
+	Pointer makes it hard to do garbage collection
+
+	Returning address of a local variable is legal in Go.
+
+%s --> string formatting
+
+int8
+int16
+int32
+int64
+
+uint8
+uint16
+uint32
+uint64
+
+Operators:-	>> , <<
+
+Type Conversions
+	var x int32 = 1
+	var y int16 = 2
+	x = y
+
+	x = int32(y)
+
+float32 -->  6 digits of precision
+float64 --> 15 digits of precision
+
+var z complex128 = complex(2,3)
+
+UTF-8 --> ranges from 8bit to 32bit
+
+Code point - Unicode characters
+Rune =--= A code point in Go is called "rune"
+
+Unicode package
+	IsDigit(r rune)
+	IsSpace(r rune)
+	IsLetter(r rune)
+	IsLower(r rune)
+	IsPunct(r rune)
+
+	ToUpper(r rune)
+	ToLower(r rune)
+
+String package
+	search functions
+	Compare(a,b) --> returns -1 or 0 or 1
+	Replace(s, old, new, n)
+	ToUpper(s)
+	ToLower(s)
+	TrimSpace(s)
+
+Strconv package
+	Atoi(s)
+	Itoa(i)
+	FormatFloat(f,fmt,prec,bitSize) --> float to string
+	ParseFloat(s, bitSize) --> string to float
+
+Constant --> value known at compile time
+
+const(
+	m = 26
+	u = 44	
+)
+
+iota --> generated a set of related but distinct constants
+	one-hot-encoding
+
+	REpresents day of the week
+
+	Constants assigned must be different but the actual value is not important
+	Like an enumerated type in other languages
+
+type Grades int
+const(
+	A Grades = iota
+	B
+	C
+	D
+	F	
+)
+	 --> it will assign unique integers
+
+CONTROL STRUCTURES
+	if <condition>{
+		<consequent>
+	}
+
+for <init>;<cond>;
+<update>{
+	<smts>
+}
+
+for i:=10;i<10;i++{
+	fmt.Printf("hi")
+}
+
+for i<10{
+	fmt.Printf("hi")
+	i++;
+}
+
+for{
+	fmt.Printf("hi")
+}
+
+switch x{
+	case 1:
+		fmt.Printf("hi")
+	case 2:
+		fmt.Printf("hello")
+	default:
+		fmt.Printf("default")
+}
+
+There is no fallthrough in Go switch
+
+Tagless switch
+switch {
+	case x>1:
+		fmt.Printf("x is greater than 1")
+	case x<-1:
+		fmt.Printf("x is lesser than -1")
+	default:
+		fmt.Printf("x is i between -1 and 1")
+}
+
+Scan
+	Takes a pointer as an argument
+	Returns the number of scanned items
+
+	var appleNum int
+	fmt.Printf("Number of apples?")
+	num, err := fmt.Scan(&appleNum)
+	fmt.Printf(appleNum)
+
+ARRAYS
+	Arrays are initialized to "zero value" by default
+
+	var x [5]int
+	x[0] = 26
+
+ARRAY LITERAL		
+	An array with pre-defined values
+
+	var x [5]int = [5]{1,2,3,4,5}
+
+	Length of literal must be same as length of array
+
+	x := [...]int{1,2,3,4,5}
+
+Iterating through array
+	for i,v range x {
+		fmt.Printf("ind %d, val &d", i, v)
+	}
+
+SLICES
+	--> Pointer ==> start of the slice
+	--> Length  ==> number of elements in the slice
+	--> Capacity ==> Maximum number of elements
+
+	len()
+
+	cap() --> length of the array from which it was sliced
+
+	Writing to a slice changes underlying array
+
+	Overlapping slices refer to the same arry elements
+
+	This is a slice literal
+	sli := []int{1,2,3}
+	It creates the underlying array and then it makes a slice point to the whole array
+
+	make() --> create a slice (and array) using make()
+
+		sli = make([]int, 10)
+		sli = make([]int, 10, 15) --> array size 15
+
+	append() --> size of a slice an be increased by using append()
+
+		Adds elements to end of slice
+		Inserts into underlying arry
+		Increases size of array if necessary
+
+	sli = make([]int, 0, 3)
+	sli = append(sli, 100)
+
+HASH TABLE
+	Unique key
+
+Maps
+	Implementations of a hash table
+	Use make() to create a map
+
+	var idMap map[string]int
+	idMap = make(map[string]int)
+
+
+	Defining a map literal
+	idMap := map[string]int
+
+		idMap["jane"]=456
+		delete(idMap, "joe")
+
+	id, p := idMap["joe"]
+		p --> boolean, tells if key is present
+
+	len(idMap)
+
+
+	Iterating
+	for key, val := range idMap	{
+		fmt.Println(key, val)
+	}
+
+
+STRUCT
+	type Person struct{
+		name string
+		address string
+	}
+
+	var p1 Person
+
+	p1.name
+
+	p2 := new(Person)
+
+	p3 := Person(name:"Preetham",
+			address:"something",
+			phone:"9483978855")
+
+PROTOCOLS AND
+
+URL is a type of URI
+
+PROTOCOL PACKAGES
+	Golang provides packages for important RFCs
+	Functions which encode and decode protocol format
+
+	net/http
+		Web communication protocol
+		http.Get(www.uci.edu)
+
+	"net" package
+		TCP/IP and socket programming
+		net.Dial("tcp","uci.edu:80")ugug
+
+JSON
+	All unicode
+	Human-readable
+	Fairly compact representation
+	Types can be combined recursively
+
+JSON Marshalling
+	Marshal() --> returns JSON representation as []byte
+
+	p1 := Person(name:"Preetham",
+			address:"something",
+			phone:"9483978855")
+	barr, err := json.Marshal(p1)
+
+	var p2 Person
+	err := Unmarshal(barr, &p2) -->  converts a JSON []byte into a Go object.
+
+FILE ACCESS
+	Linear access  	--> Mechanical delay
+
+	io/ioutil package --> for file read
+		dat, e := ioutil.ReadFile("test.txt")
+		Large files causes a problem
+
+	ioutil File Write --> creates a new file
+		dat = "Hello, world"
+		err := ioutil.WriteFile("output.txt", dat, 0777)
+
+os package --> more control over file
+	os.Open() --> returns a file descriptor
+	os.Close()
+	os.Read() --> reads from file to []byte
+		We can control how much to read
+		returns --> {the number of bytes read}, {error if any}
+		takes argument --> pointer to a file i guess
+
+	f.Write(barr) --> takes byte array
+	f.WriteString("Hi")

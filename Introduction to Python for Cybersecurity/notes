@@ -1,0 +1,62 @@
+MITRE ATT&CK and Shielf frameworks
+Python code for MITRE ATT&CK and Shielf techniques
+
+MITRE ATT&CK --> is a tool --> improve cybersecurity understanding
+
+MITRE ATT&CK Tactics
+	PRE-ATT&CK: Reconnaissance and Resource Development
+	Initial Access
+	Execution
+	Persistence
+	Privilege Escalation
+	Defence Evasion
+	Credential Access
+	Discovery
+	Lateral Movement
+	Collection
+	Command and Control
+	Exfiltration
+	Impact
+
+MITRE Shield Tactics
+	Channel
+	Collect
+	Contain
+	Detect
+	Disrupt Facilitate
+	Legitimize
+	Test
+
+PRE-ATT&CK: Reconnaissance
+	First stage of PRE-ATT&CK focuses on gatherin target information from variety of different sources:-	
+		Active Scanning
+		Gather Victim Host Info
+		Gather Victim Id Info
+		Gather Victim Network Info
+		Gather Victim Org Info
+		Phishing for Info
+		Search Closed Sources
+		Search Open Technical Databases
+		Search Open Webites/Domains
+		Search Victim-Owned Websites
+
+	2nd stage of PRE-ATT&CK
+		Attacker developing or aquiring the tools needed to perform their attack:-
+
+		Acquire Infrastructure
+		Compromise Accounts
+		Compromise Infrastructure
+		Develop Capabilities
+		Establish Accounts
+		Obtain Capabilities	
+
+Introduction to Network Scanning
+	Port Scanning --> tool called "Nmap"
+	Banner collection
+	Vulnerability scanning
+
+	Active Scanning
+	--> Scanning IP blocks
+	--> Vulnerability Scanning
+
+	
