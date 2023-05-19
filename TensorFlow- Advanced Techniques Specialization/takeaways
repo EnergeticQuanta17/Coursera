@@ -1,0 +1,70 @@
+Autoencoders
+Variational Autoencoders
+GANs
+
+Advanced Features in TensorFlow
+	Custom Models, Layers, Loss Functions
+
+Distributed training
+	Distributed strategies
+
+	Scaling of the model
+
+Model interpretation
+
+Huber Loss
+	Smooth version of the absolute value loss or the L1 loss
+
+	More robust to outliers in the data
+
+	We need more complex loss functions to build GANs
+
+	Greatly useful in Siamese networks.
+		Custom training loop
+
+Dense Layer
+	Gives single neuron that learns a weight and a bias
+
+	Instead, what about a "Quadratic neuron"
+		w1*x**2 + w2*x + b
+
+		And see if learns quicker than dense layer
+
+LSTMs <- explore
+
+New layer types --> important research breakthroughs
+	Attention model building transformers
+
+Crack open to see how TensorFlow works
+
+----------------------------------------------------------------
+
+Functional API
+	seq_model = Sequential([
+		Flatten(input_shape=(28,28)),
+		Dense(128, activation='relu'),
+		Dense(10, activation='softmax')
+	])
+
+	Now using the funcitonal API, we do this
+		Input layer
+		Layers -> layer is a function with the previous layer as its parameter
+		Model -> Give the Model the input and output layers
+
+	----INPUT----
+	from tensorflow.keras.layers import Import
+	input = Input(shape=(28,28))
+
+	----LAYERS----
+	from tensorflow.keras.layers import Dense, Flatten
+
+	x = Flatten()(input)
+	x = Dense(128, activation='relu')(x)
+	predictions = Dense(10, activation='softmax')(x)
+
+	----MODEL----
+	from tensorflow.keras.models import Model
+	func_model = Model(inputs=input, outputs=predictions)
+
+Declaring and stacking layers
+	

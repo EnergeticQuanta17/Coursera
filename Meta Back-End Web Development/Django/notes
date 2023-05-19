@@ -1,0 +1,180 @@
+django-admin startproject demoproject
+python manage.py makemigrations
+python manage.py migrate
+python manage.py runserver
+python manage.py shell
+python manage.py startapp demoapp 
+
+
+MVT overview
+https://www.coursera.org/learn/django-web-framework/supplement/hpwXW/mvt-overview
+
+View Logic
+https://www.coursera.org/learn/django-web-framework/supplement/o2Enm/view-logic
+
+Request and Response Objects
+https://www.coursera.org/learn/django-web-framework/supplement/DMTe5/request-and-response-objects
+
+Path parameter
+path('getuser/<name>/<id>', views.pathview, name='pathview'), 
+
+Path converters
+	The URL pattern treats the identifiers in angular brackets (<..>) as the path parameters. By default, it parses the received value to the string type. Other path converters available are:
+	str - Matches any non-empty string and excludes the path separator, '/'. This is the default if a converter isn’t included in the expression.
+	int - Matches zero or any positive integer and returns an int. For example:/customer/<int:id>
+	slug - Matches any slug string consisting of ASCII letters or numbers, including the hyphen and underscore characters.
+	uuid - Matches a formatted UUID.  For example: 075194d3-6885-417e-a8a8-6c931e272f00 and returns a UUID instance.
+	path - Matches any non-empty string and includes the path separator, '/'. 
+
+Query parameter
+	The client URL may contain a query string linked to the endpoint, for example, http://localhost:8000/getuser/?name=John&id=1 
+
+	A query string is a sequence of one or more key=value pairs concatenated by the & symbol. Each key is the query parameter. The query string ends with the ? symbol after the URL endpoint. 
+
+	def qryview(request): 
+	    name = request.GET['name'] 
+	    id = request.GET['id'] 
+	    return HttpResponse("Name:{} UserID:{}".format(name, id)) 
+
+Body parameters
+	An HTML form sends the data to the URL mentioned in its action attribute using the POST method. The POST method is a more secure way of sending data than the GET method because the data is not revealed in the URL. 
+
+	Let’s construct a simple form containing two text input elements. Then, save it as form.html in the templates folder.
+
+	<form action="/myapp/getform/" method="POST"> 
+	    {% csrf_token %} 
+	    <p>Name: <input type="text" name="id"></p> 
+	    <p>UserID :<input type="name" name="name"></p> 
+	    <input type="submit"> 
+	</form> 
+
+	def getform(request): 
+	    if request.method == "POST": 
+	        id=request.POST['id'] 
+	        name=request.POST['name'] 
+	    return HttpResponse("Name:{} UserID:{}".format(name, id)) 
+
+
+
+URL Namespacing and Views
+
+	In each app, there is a urls.py file that defines the list of URL patterns for that app. Each pattern is constructed by django.urls.path() function. Its arguments are a URL path string, the name of the view function to be mapped to it and an optional argument name.
+
+	For example, a form template’s action attribute points towards /demoapp/login URL so that when the form is submitted, the login view mapped to this URL is invoked. 
+	<form action='/demoapp/login', method='POST> 
+	    # ...
+	</form> 
+
+reverse() function
+	However, the hard-coded URLs make the application less scalable and difficult to maintain as the project grows. In such a case, you can obtain the URL from the name parameter used in the path() function.
+
+	>>> from django.urls import reverse 
+	>>> reverse('index') 
+	'/demo/' 
+
+Application namespace
+	The application namespace is created by defining app_name variable in the application’s urls.py and assigning it the name of the app. In the demoapp/urls.py script, make the change using the following code:
+
+	#demoapp/urls.py
+	from django.urls import path  
+	from . import views    
+	app_name='demoapp' 
+	urlpatterns = [  
+	    path('', views.index, name='index'),      
+	] 
+
+	>>> reverse('demoapp:index') 
+	'/demo/' 
+
+Instance namespace
+	You can also use the namespace parameter in the include() function while adding an app’s urlpattern to that of a project.
+
+	#in demoproject/urls.py 
+	urlpatterns=[ 
+	    # ... 
+	    path('demo/', include('demoapp.urls', namespace='demoapp')), 
+	    # ... 
+	] 
+
+Using namespace in view
+	Suppose you want the user to be conditionally redirected to the login view from inside another view. youu need to obtain the URL of the login view and send the control to it with HttpResponsePermanentRedirect.
+
+	from django.http import HttpResponsePermanentRedirect 
+	from django.urls import reverse 
+	  
+	def myview(request): 
+	    .... 
+	    return HttpResponsePermanentRedirect(reverse('demoapp:login'))
+
+
+namespace in the url tag
+	<form action="{% url 'login' %}" method="post"> 
+	#form attributes 
+	<input type='submit'> 
+	</form> 	 
+
+	<form action="{% url 'demoapp:login' %}" method="post"> 
+	#form attributes 
+	<input type='submit'> 
+	</form> 
+
+
+Error Handling
+	100s - Informational
+	200s - Successful
+	300s - Redirection
+	400s - Client Error
+	500s - Server Error
+
+	400 - Bad Request
+	401 - Login required
+	403 - Request valid, but not processed
+	404 - Resoource not found
+
+	500 - Internal Server Error
+
+	project/views.py
+		handler400
+		handler403
+		handler404
+		handler500
+
+	project/urls.py
+		handler400 = 'project.views.handler400'
+		Same for 403, 404, 500
+
+	HttpResponseNotFound - 404
+	HttpResponseBadRequest - 400
+	HttpResponseForbidden - 403
+	HttpResponseServerError - 500
+
+	The main difference in using HttpResponseNotFound as opposed to HttpResponse that must be understood is that Django internally sends an error code 404. The appropriate page for 404 can then be configured and rendered, else the browser displays its default 404 view. 
+
+	Exception classes
+		Django’s exception classes are defined in the django.core.exceptions module. 
+
+		Some important exception types are:
+
+			ObjectDoesNotExist: All the exceptions of the DoesNotExist are inherited from this base exception.
+
+			EmptyResultSet: This exception is raised if a query does not return any result.
+
+			FieldDoesNotExist: This exception is raised when the requested field does not exist.
+
+			MultipleObjectsReturned: When you expect a certain query to return only a single object, however multiple objects are returned. This is when you need to raise this exception.
+
+			PermissionDenied: This exception is raised when a user does not have permission to perform the action requested.
+
+			ViewDoesNotExist: This exception is raised by django.urls when a requested view does not exist, possibly because of incorrect mapping defined in the URLconf. 
+
+		try: 
+		    field = model._meta.get_field(field_name) 
+		except FieldDoesNotExist: 
+		    return HttpResponse("Field Does not exist") 
+
+Mixins
+	Class-based Generic Views
+
+	Just inherited from the "View" class and override
+
+	Mixins is like multiple-inheritence

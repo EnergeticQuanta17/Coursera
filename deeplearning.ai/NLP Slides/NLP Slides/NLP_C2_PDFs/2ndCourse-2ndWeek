@@ -1,0 +1,100 @@
+Part of Speech Tagging using --> "The Viterbi Algorithm"
+	Dynamic Programming
+
+	Viterbi also used for speech recognition
+
+This week --> Assigning part of Speech Tag to different words in a sentence
+
+Knowing the part of speech tag of a word --> changes the meaning of a sentence
+	First one its verb
+	And in second its noun
+
+Accuracy of "part-of-speech tagger"
+
+Markov chains
+Hidden Markov Models --> to create parts of speech tags for your text corpus
+Viterbi Algorithm
+
+Lexical Terms
+	Noun
+	Verb
+	Adjective
+	Adverb
+	Pronoun
+	Preposition
+	...
+
+Applications of POS Tagging
+	Named entities identification
+	
+	POST also tells what object is being referred to by "it" 
+
+	Coreference Resolution
+
+	Speech recognition
+
+For the following
+	Lexical Term --> Tag
+
+	Noun -> NN
+	Verb -> VB
+	Determiner -> DT
+	w-adverb -> WRB
+
+Each line within the dataset has a word followed by its corresponding tag.
+
+Markov Chains
+	Used in speech recognition
+
+	Directed graph
+
+	POS tags are "states"
+
+	Markov Property
+
+Hidden Markov Models --> used to decode the hidden states of a word
+	In our case, POS of that word
+
+	Emission matrix
+
+	In hidden markov models you make use of emission probabilities that give you the probability to go from one state (POS tag) to a specific word.
+
+	One is TPM
+	Another is Emission matrix
+
+Calcualating probabilities for TPM and Emission matrix
+	TPM:-
+		Initutive correct
+
+		Do epsilon smoothing for avoiding division by zero
+
+
+		Denominator will have N times epsilon added
+
+	Emission matrix
+		Done using count
+		Smoothing
+
+Viterbi Algorithm
+	Graph Algorithm
+
+	Probability for this sequence of hidden states
+		"I love to learn"
+
+	It uses matrix representation of the "Hidden Markov Model"
+
+	Three Steps:-
+		1. Initialization step
+		2. Forward pass
+		3. Backward pass
+
+	Initialization
+		First row is 0
+		First column -> pi(x) * b(i, cindex)
+
+	Forward pass
+		C matrix has the probabilities
+		D matrix has the k for which max probability happened
+
+	Backward pass
+		Using Dynamic Programming

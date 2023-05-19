@@ -1,0 +1,88 @@
+	Augmentations
+	Rotating
+	Skewing
+	Flipping
+	Moving it around the frame
+
+	Augmentations happen in memory
+
+	TensorFlow Image Generation library
+
+Transfer learning
+	Avoid overfitting
+
+	Inception Network
+
+	Bootstrap the learning process
+
+	That bigger model might have been able to spot features that you may not have been have able to splot in your dataset
+		Take advantage of that
+
+Multiclass Learning
+	1000 classes
+
+	Techniques are there to handle it
+
+<--------------------------------Week-1-------------------------------->
+
+Filtering the bad images out
+	Tools for data cleaning
+
+Convolution helps us find features which are independent of translational shifts
+
+import ImageDataGenerator
+	Initialize
+	Has rescale parameter if not already rescaled
+
+
+	train_generator = train_data.flow_from_directory(
+		...
+	)
+
+		The above function does the following things
+			Takes the directory
+			Target size of image
+			Batch size
+			Class mode
+
+
+model = tf.keras.models.Sequential([
+	tf.keras.layers.Conv2D(16, (3,3), activation='relu', input_shape=(150,150,3)),
+
+	tf.keras.layers.MaxPooling2D(2,2),
+
+	...
+])
+
+model.fit_generator(
+	train_generator,
+	steps_per_epoch=100,
+	epochs=15,
+	validation_data=validation_generator,
+	validation_steps=50,
+	verbose=2
+)
+
+Impact of cropping on training
+
+To get the layers for visualization
+	layer_names = [layer.name for layer in model.layers]
+
+	You can see what is being emphasized
+
+Learning History of the Model
+	history.history['accuracy']
+	history.history['loss']
+	history.history['...']
+
+	To get history object
+		You get from
+			model.fit(
+				...
+			)
+
+	"Didn't really earn anything after 2 epochs "
+		Conclusion from the plot of Validation Accuracy
+
+<--------------------------------Week-2-------------------------------->
+

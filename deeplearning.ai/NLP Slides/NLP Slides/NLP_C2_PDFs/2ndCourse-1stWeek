@@ -1,0 +1,77 @@
+1st --> Auto-correct system usng probabilities of sequences of characters
+
+2nd --> Hidden Markov Models
+	Parts of speech tagging system
+
+3rd --> Autocomplete systems using probabilities of sequences of words
+
+4th --> Word vectors
+	Generating word vectors from Neural networks
+
+--------------------------------------------------
+Autocorrect
+Building the model
+Minimum edit distance
+Minimum edit distance algorithm
+
+Dynamic Programming
+
+Steps in AutoCorrect
+	1. Identify a misspelled word
+	2. Find strings n edit distance away
+	3. Filter candidates
+	4. Calculate word probabilities
+
+Edit: An operation performed on a string to change it
+	Insert
+	Delete
+	Switch
+	Replace
+
+	For AutoCorrect, it is "n" is usually 1,2 or 3
+
+Step 4 :- Calculate word probabilities
+	Number of times it appears in the corpus {divided by} the total number of words in the corpus
+
+	Gives the probability
+
+Minimum Edit Distance
+	Lowest number of operations to convert one string to another using
+
+	Operations and its corresponding cost
+		Insert - 1
+		Delete - 1
+		Replace - 2
+
+	Faster way to do this tabulation
+		Using Dynamic Programming
+
+	Minimum edit distance allows you to:
+		Evaluate similarity between two strings
+
+		Find the minimum number of edits between two strings
+
+		Implement spelling correction, document similarity, machine translation, DNA sequencing, and more
+
+Minimum Edit Distance Algorithm
+	MINIMUM of
+	{
+		D[i,j] = D[i-1,j] + del_cost
+		
+		D[i,j] = D[i,j-1] + ins_cost
+
+		D[i-1,j-1] + {
+			rep_cost; if src[i] != tar[j]
+			0 ; if equal
+		}
+	}
+
+	Color coding looks really cool
+		and reveals some nice properties
+
+	This distance is called "Levenshtein distance"
+
+	Backtrace  -to see which edits led to what
+
+	Shortest path from word to word
+

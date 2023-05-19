@@ -126,7 +126,7 @@ Naïve Bayes approach
 
 	To predict -->product over all i P(w[i]|pos) / P(w[i]|neg)
 
-	Higher than 1 means positive sentiment
+	Score --> Higher than 1 means positive sentiment
 
 	Table of probabilities + Naïve Bayes approach
 
@@ -319,8 +319,10 @@ Cosine Similarity Metric
 
 	90 degree --> Maximally dissimilar
 
+Manipulating Words in Vector Spaces
+
 PCA
-	PCA finds uncorelated features
+	PCA finds uncorr elated features
 
 	Orginal space --> uncorrelated features --> dimensionality reduction
 
@@ -361,3 +363,86 @@ PCA is based on the Singular Value Decomposition (SVD) of the Covariance Matrix 
 
 PCA is a potent technique with applications ranging from simple space transformation, dimensionality reduction, and mixture separation from spectral information.
 
+--------------------------------------------------------------
+	
+Nearest Neighbour Search using Locally Sensitive Hashing
+
+Transform vector
+K nearest neighbors
+Hash tables
+Divide vector space into regions
+Locally Sensitive Hashing
+Approximated nearest neighbors
+
+Machine Translation
+Document Search
+
+Transforming word vectors
+	After getting the vector representation of the word, we can use matrix multiplication to transform a vector to a vector of another language.
+
+	XR = Y
+
+	After transforming it is possible that the resultant is not present in the French space.
+		So we need to find similar words
+
+K-nearest neighbors
+	Hash tables to split the regions
+
+Locality Sensitive Hashing
+	Cares about the position in vector space
+
+ 	So locality sensitive hashing is a hashing method that cares very deeply about assigning items based on where they’re located in vector space. 
+
+ 	So, after making planes, we want to see if two points are on the same side or different side
+
+ 	Instead of the typical buckets we have been using, you can think of clustering the points by deciding whether they are above or below the line.
+
+ 	We can see the projection of both the points on the plane,
+ 		If they both have the same sign then they are on the same side.
+
+ 	Multiple Planes -> Dot Products -> Hash values
+ 		Encode sign positive as 1 and sign negative as 0.
+
+ 		Then use binary representation to get a mapping to the bucket number.
+
+ 		
+ 	Hashing helps in speeding up of K Nearest Neighbour computation
+
+ 	The first thing to note is that the vector that defines the plane does not mark the boundary between the two sides of the plane. It marks the direction in which you find the 'positive' side of the plane. Not intuitive at all!
+
+		If we want to plot the separation plane, we need to plot a line that is perpendicular to our vector P. We can get such a line using a  90𝑜
+		  rotation matrix.
+
+Document vectors¶
+	Before we finish this lab, remember that you can represent a document as a vector by adding up the word vectors for the words inside the document. In this example, our embedding contains only three words, each represented by a 3D array.
+
+		word_embedding = {"I": np.array([1,0,1]),
+	                   "love": np.array([-1,0,1]),
+	                   "learning": np.array([1,0,1])
+	                  }
+	words_in_document = ['I', 'love', 'learning', 'not_a_word']
+	document_embedding = np.array([0,0,0])
+	for word in words_in_document:
+	    document_embedding += word_embedding.get(word,0)
+	    
+	print(document_embedding)
+
+Approximate Nearest Neighbours
+	Find the subset using random planes
+
+	Each time you run using 3 random planes, we might get different set of neighbours.
+	And eventually we can get all
+
+Searching Documents
+	The previous video shows you a toy example of how you can actually represent a document as a vector. 
+
+	Steps:-
+
+	Transform vector
+	K nearest neighbors
+	Hash tables
+	Divide vector space into regions
+	Locality sensitive hashing
+	Approximated nearest neighbors
+
+==============================================================
