@@ -1,0 +1,172 @@
+Low Res -> High Res
+
+GAN to synthesize more data
+
+Two Neural Networks
+	Art Forger
+	Art Inspector
+
+Week 1: Intro to GANs
+
+Week 2: Deep Convolutional GANs
+
+Week 3: Wasserstein GANs with Gradient Penalty
+
+Week 4: Conditional GAN & Controllable Generation
+
+<---------- Week 1 ---------->
+
+Unsupervised
+
+Generator
+Discriminator
+
+Binary cross-entropy loss
+
+Generative Models
+	Generative Models vs. Discriminative Models
+		Discriminative Models 
+			Features -> Class
+			P(Y|X)
+
+		Generative Models
+			Noise, Class --> Features
+
+			Noise ensures that the same thing is not generated again
+
+			P(X|Y)
+
+	Generative Models
+		Variational Autoencoders (VAE)
+			Encoder -> Latent Space -> Decoder
+			Variational => Twist is that it generates a distribution over the latent space and then samples from it and sends to the Decoder
+
+		Generative Adverserial Networks
+			Generator -> Discriminator
+
+			Generator
+				Random Noise Input and Class
+				Like Decoder
+
+			Discriminator
+				Sees fake and real Images
+
+			Later the Discriminator is switched off
+
+2014
+
+GANs can be used for Image Translation
+	CycleGAN	
+		From one domain to another
+			Example:- Horse running to Zebra running
+
+	GuaGAN	
+		Doodles --> Pictures
+
+		Input is just background with different colors without details
+
+		And the GAN produces the details for according to the color pallette
+
+	GANs are Magic
+		Potrait of Mona Lisa --> Animating face motion
+
+	GANs for 3D objects
+		They can generate 3D also
+		Generative Design
+
+	Companies using GANs
+		Adobe -> next-gen photoshop
+		Google -> Text Generation
+		IBM -> Data Augmentation
+		Snapchat/TikTok -> Image Filters
+		Disney -> Super resolution
+
+Intuition Behind GANs
+	The Generator's goal is to fool the Discriminator
+
+	The Discriminator's goal is to distinguish between real and fake
+
+	They learn from the competition with each other
+
+	At the end, fakes look like they are real
+
+Discriminator
+	Classifier
+		Not only image classificaiton,
+			but also text to "cat", 
+			video to "cat",
+			so on
+
+		Modelled using Neural Network
+			Output is the n neurons (for each class)
+				represnting the probability of the input being that class
+
+
+	Output
+		0 to 1
+		How much percent it believes that the image is fake
+
+
+		P(fake | X)
+			fake sampled from "class"
+			X sampled from "features"
+
+Generator
+	Generates examples of the class
+
+	Takes input -> Noise vector
+
+	Output is image
+		3 million pixels
+
+	Different output at every run
+
+	P(X|Y)	
+		X is sampled from the set of "Features"
+		Y ~ set of "Classes"
+
+Binary Cross-Entropy Cost Function
+	J(theta) = (-1/m) * [y * log(h(x, theta)) + (1-y) * log(1-h(x, theta))]
+
+Putting it all together
+	Discriminator --> learns from getting feedback on if its classification was correct
+
+	Generator --> learns over time using feedback from the Discriminator
+
+	While one is happening, other is kept constant
+
+	Both models should improve together,
+		Equal skill level
+
+		If the skill level difference is very high then the other will find it very hard to improve.
+
+	Discriminator's task is much easier
+		Super Discriminator --> No way to improve the Generator
+
+PyTorch
+	from torch import nn
+
+	class LogisticRegression(nn.Module):
+		def __init__(self, in):
+			self.log_reg = nn.Sequential(
+							   nn.Linear(in, 1),
+							   nn.Sigmoid()
+						   )
+
+		def forward(self, x):
+			return self.log_reg(x)
+
+
+	model = LogisticRegression(16)
+	criterion = nn.BCELoss()
+
+	optimizer = torch.optim.SGD(model.parameters(), lr=0.01)
+
+	for t in range(n_epochs):
+		y_pred = model(x)
+		loss = criterion(y_pred, y)
+
+		optimizer.zero_grad()
+		loss.backward()
+		optimizer.step()
+
