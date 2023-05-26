@@ -1,0 +1,171 @@
+Times series and their mathematical models
+	"stochastic processes"
+
+Physics
+	Random Walks
+	Diffusion Processes
+
+Tools used
+	Calculus
+	Introductory statistics
+
+Week 1
+	R
+
+Week 2
+	Time Series Data
+	Time plot.
+
+	Autocorrelation Functions (ACF).
+
+	Produce random walk and moving averages 
+
+Week 3
+	Stationarity
+
+	Backshift Operator applied to MA(q) and AR(p) processes
+	Duality, Invertibility
+
+	AR(p) processes
+
+	Yule-Walker equations
+
+Week 4
+	MA(q), AR(p)
+	Yule Walker
+	PACF
+
+Week 5
+	Model Quality(AIC, etc.)
+	AR, MA, ARMA, ARIMA
+
+Week 6
+	Seasonality
+
+	Forecasting: Single, Double, Triple Exponential
+
+<----------------- Week 1 ------------------->
+
+Descriptive Statistics
+	Numerical descriptions: 5 number summary, standard deviation
+
+	Graphical Descriptions: histograms, time plots
+
+Inferential Statistics
+	Straight Line regression
+
+	Regression models and diagnostics
+
+	T-tests
+
+	Correlation 
+
+Stationarity
+	Strong
+
+	Weak 
+
+Autocovariance and autocorrelation 
+
+Random Walks 
+	Moving Average Processes  Introduction to Simulation  
+
+Looking at the boxplot, it seems natural to ask whether the average coagulation times are independent of diet. This is a problem typically approached with ANOVA (Analysis of Variance).
+
+R-Functions
+	c()
+
+	summary()
+
+	mean()
+
+	std()
+
+	sum()
+
+	median()
+
+	hist()
+		hist(data, xlab="", main="Histogram Title", freq=F, col='green')
+
+		lines(density(data), col='red', lwd=5)
+
+		hist(data, xlab="", main="Histogram Title", freq=F, col='green', breaks=10)
+			"breaks" is Bin width
+
+	rnorm(50, 78, 10)
+
+	round()
+		round(rnorm(50, 78, 10))
+
+	ScatterPlot
+		plot(round(rnorm(50, 78, 10)), round(rnorm(50, 78, 14)))
+
+	co2
+		Dataset - Time Series
+
+	class(co2)
+		Gave me --> "ts"
+		For time series
+
+	plot(co2, main='Atmospheric CO2 Concentration')
+
+	co2.values = as.numeric(co2)
+	co2.times = as.numeric( time(co2) )
+	SSxx = sum( (co2.times - mean(co2.times) ) * (co2.times - mean(co2.times) ) )
+	SSxy = sum( (co2.values - mean(co2.values) ) * (co2.times - mean(co2.times) ) )
+	( slope = SSxy / SSxx )
+	( intercept = mean(co2.values) - slope*mean(co2.times) )
+
+	plot(co2, main='Atmospheric CO2 Concentration with Fitted Line')
+	abline(co2.linear.model )
+
+	co2.fitted.values = slope*co2.times + intercept
+	co2.residuals = co2.values - co2.fitted.values
+
+	( co2.residuals = resid( co2.linear.model ) )
+
+	<SLEEP dataset>
+
+	Learn what "qqnorm" and "qqline" does
+		It is something to do with quantile plots
+
+	---------COMPLETE THIS----------
+
+
+Assumptions of Simple Regression Model
+	(a)the errors are normally distributed and, on average, zero;
+
+	(b) the errors all have the same variance (they are homoscedastic), and
+
+	(c) the errors are unrelated to each other (they are independent across observations). 
+
+	Compactly
+		𝜖𝑖(𝑖𝑖𝑑)∼𝑁(𝜇 = 0, 𝜎^2 = 𝑐𝑜𝑛𝑠𝑡𝑎𝑛𝑡)
+
+Inferential Statistics
+	------WRITE FROM PDF------
+	
+Correlation
+	Pearson's Product-Moment Correlation
+
+	------WRITE FROM PDF------
+
+	help(trees)
+
+	cov(trees)
+		Values not proper as units are involved
+
+	cor(trees)
+		No units
+
+	Nice Motivation explaination
+		Explaining how the coorelation is capturing the Correlation
+
+		4 quadrants explaination
+
+	See why the formulas are true
+
+	sum(lm(taste~H2S, data=cheddar)$fitted)
+
+

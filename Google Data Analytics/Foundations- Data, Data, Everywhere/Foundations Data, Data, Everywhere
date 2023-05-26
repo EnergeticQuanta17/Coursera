@@ -1,0 +1,206 @@
+<--------------------Week 1-------------------->
+
+Data Analysts
+	Collects
+	Transforms
+	Organizes
+
+Data Analysis Processes
+	Ask
+	Prepare
+	Process
+	Analyze
+	Share
+	Act
+
+Data-driven decisions
+
+DATA ANALYTICS
+	Machine Learning & AI
+	Statistics
+	Analytics
+
+Data ecosystems
+	Hardware and Software tools
+
+Data Scientists vs Data Analysts
+	Data Science --> Creating new ways of modeling and understanding the unknown by using raw data
+
+Data Analysis --> collection, transformation, organization --:> conclusions, predictions, decision-making
+
+Data Analytics --> Science of data
+
+Analysts use data-driven decision-making and follow a step-by-step process. You have learned that there are six steps to this process:
+	Ask questions and define the problem.
+	Prepare data by collecting and storing the information.
+	Process data by cleaning and checking the information.
+	Analyze data to find patterns, relationships, and trends.
+	Share data with your audience.
+	Act on the data and use the analysis results.
+
+The data analysis life cycle—the process of going from "data" to "decision"
+
+The process presented as part of the Google Data Analytics Certificate is one that will be valuable to you as you keep moving forward in your career:
+	Ask: Business Challenge/Objective/Question
+	Prepare: Data generation, collection, storage, and data management
+	Process: Data cleaning/data integrity
+	Analyze: Data exploration, visualization, and analysis
+	Share: Communicating and interpreting results 
+	Act:  Putting your insights to work to solve the problem
+
+EMC's data analysis life cycle
+	EMC Corporation's data analytics life cycle is cyclical with six steps:
+		Discovery
+		Pre-processing data
+		Model planning
+		Model building
+		Communicate results
+		Operationalize
+
+https://onlinelibrary.wiley.com/doi/book/10.1002/9781119183686
+
+SAS's iterative life cycle
+	An iterative life cycle was created by a company called SAS, a leading data analytics solutions provider. It can be used to produce repeatable, reliable, and predictive results: 
+		Ask
+		Prepare
+		Explore
+		Model
+		Implement
+		Act
+		Evaluate
+
+Project-based data analytics life cycle 
+A project-based data analytics life cycle has five simple steps:
+	Identifying the problem
+	Designing data requirements
+	Pre-processing data
+	Performing data analysis
+	Visualizing data
+
+Big data analytics life cycle
+Authors Thomas Erl, Wajid Khattak, and Paul Buhler proposed a big data analytics life cycle in their book, Big Data Fundamentals: Concepts, Drivers & Techniques. Their life cycle suggests phases divided into nine steps:
+	Business case evaluation
+	Data identification
+	Data acquisition and filtering
+	Data extraction
+	Data validation and cleaning 
+	Data aggregation and representation
+	Data analysis
+	Data visualization
+	Utilization of analysis results
+
+
+<--------------------Week 2-------------------->
+
+Data analysts balance many different roles in their work. In this part of the course, you’ll learn about some of these roles and the key skills used by analysts. You’ll also explore analytical thinking and how it relates to data-driven decision-making.
+
+Learning Objectives
+	Explain the concept of data-driven decision-making including specific examples
+	Describe the key characteristics of analytical thinking
+	Conduct an analytical thinking self assessment, giving specific examples of the application of analytical thinking
+	Demonstrate an understanding of the five key analytical skills used by data analysts
+	Explain how analytical thinking enables decision-making
+	Begin asking more effective questions
+
+Key data analyst skills
+	Curiosity
+	Understanding context
+	Technical Mindset
+	Data Design
+	Data Strategy
+
+Analytic Thinking
+	Visualization
+	Strategy
+	Problem-Orientation
+	Correlation
+	Big-picture and detail-oriented thinking
+
+Correlation does not equal causation
+
+Right questions to ask
+
+What is the root cause of a problem?
+
+"Five Whys" Process
+	Ask "why?" five times to reveal the root cause
+
+Data-driven decision --> successful outcomes
+
+
+<-----------Week 3------------>
+
+Data Analysis Tools
+	Spreadsheets
+	Databases
+	Query Languages
+	Visualization software
+
+Life Cycle of Data
+	Plan
+	Capture
+	Manage
+	Analyze
+	Archive
+	Destroy
+
+	Plan: Decide what kind of data is needed, how it will be managed, and who will be responsible for it.
+
+	Capture: Collect or bring in data from a variety of different sources.
+
+	Manage: Care for and maintain the data. This includes determining how and where it is stored and the tools used to do so.
+
+	Analyze: Use the data to solve problems, make decisions, and support business goals.
+
+	Archive: Keep relevant data stored for long-term and future reference.
+
+	Destroy: Remove data from storage and delete any shared copies of the data.
+
+The U.S. Fish and Wildlife Service uses the following data life cycle:
+	Plan
+	Acquire
+	Maintain
+	Access 
+	Evaluate
+	Archive
+
+The USGS uses the data life cycle below:
+	Plan
+	Acquire
+	Process
+	Analyze
+	Preserve
+	Publish/Share
+
+Several cross-cutting or overarching activities are also performed during each stage of their life cycle:
+	Describe (metadata and documentation)
+	Manage Quality
+	Backup and Secure
+
+Financial institutions may take a slightly different approach to the data life cycle as described in The Data Life Cycle, an article in Strategic Finance magazine:
+	Capture
+	Qualify
+	Transform
+	Utilize
+	Report
+	Archive
+	Purge
+
+One final data life cycle informed by Harvard University research has eight stages:
+	Generation
+	Collection
+	Processing
+	Storage 
+	Management
+	Analysis
+	Visualization
+	Interpretation
+
+Six phases of data analysis
+	Ask
+	Prepare
+	Process
+	Analyze
+	Share
+	Act
+

@@ -265,8 +265,6 @@ https://arxiv.org/abs/1905.08233
 
 https://arxiv.org/abs/1809.11096
 
-
-
 <---------- Week 2 ---------->
 Deep Convolutional GANs
 	Compose a Deep Convolutional GAN using these components.
@@ -399,5 +397,374 @@ Convolutions
 	Upsampling infers pixels using a predefined method, while transposed convolution learns a filter.
 
 	https://distill.pub/2016/deconv-checkerboard/
+
+ASSIGNMENT
+	# Deep Convolutional GAN (DCGAN)
+
+	Here are the main features of DCGAN (don't worry about memorizing these, you will be guided through the implementation!):
+
+		Use convolutions without any pooling layers
+		Use batchnorm in both the generator and the discriminator
+		Don't use fully connected hidden layers
+		Use ReLU activation in the generator for all layers except for the output, which uses a Tanh activation.
+		Use LeakyReLU activation in the discriminator for all layers except for the output, which does not use an activation
+
+	<doubt where="1st cell">
+		Why (image_tensor+1)/2
+	</doubt>
+
+
+	Transposed convolution, also known as fractionally strided convolution or deconvolution (although it's not a true deconvolution operation), is a technique used in neural networks for upsampling or generating higher-resolution outputs from lower-resolution inputs. The term "transpose" refers to the operation being the inverse of a regular convolution.
+
+		Here are a few reasons why transposed convolutions are used:
+
+		1. Upsampling: Transposed convolutions can effectively increase the spatial dimensions of a feature map. By applying transposed convolutions to a low-resolution feature map, you can upsample it to a higher resolution. This is useful in tasks such as image super-resolution, where you want to generate a higher-resolution image given a low-resolution input.
+
+		2. Generating feature maps: Transposed convolutions can also be used to generate feature maps. In some cases, they can learn to produce patterns or structures that resemble the original inputs. For example, in image generation tasks, transposed convolutions are often used in the decoder part of a generative model to generate realistic images from a low-dimensional latent space.
+
+		3. Learning spatial relationships: Transposed convolutions help to learn spatial relationships between features. They allow the network to learn to propagate information across the spatial dimensions, which can be useful in tasks such as semantic segmentation, where you want to predict the class label for each pixel in an image.
+
+		4. Model symmetry: In certain network architectures, such as autoencoders or fully convolutional networks, transposed convolutions can be used to maintain symmetry between the encoder and decoder parts of the network. This symmetry can help in achieving better performance and stability during training.
+
+		It's important to note that the term "deconvolution" in the context of neural networks is a misnomer. Transposed convolutions are not true deconvolutions in the mathematical sense but rather an operation that achieves the opposite effect of a regular convolution. The term "transposed" is used to denote the inverse operation rather than its mathematical meaning.
+
+	Inter-epoch observation
+		When discriminator's loss increases, generator's loss decreases and vice-versa.
+			Obviously.
+
+
+<---------- Week 3 ---------->
+
+Advanced techniques to reduce instances of GAN failure due to imbalances between the generator and discriminator! 
+
+Implement a WGAN to mitigate unstable training and mode collapse using W-Loss and Lipschitz Continuity enforcement.
+
+Mode Collapse
+	Any peak on the density function is a mode.
+	"Modes are peaks in the distribition of features"
+
+	If you get 2 features for each digit,
+		The after plotting
+		We see that there are 10 modes corresponding to each digit
+
+	Very Interesting Problem:-
+		If the discriminator is weak in identifying 1 and 7,
+			then the Generator will continiuously keep generating 1 and 7 to fool the Discriminator
+
+		And this will cause no learning
+			Leading to bad art
+
+		Our aim is not to fool the discriminator
+
+	Mode Collapse happens when the generator gets stuck in one mode.
+
+	Mode collapse occurs when the generator gets stuck generating one mode. 
+	The discriminator will eventually learn to differentiate the generator's fakes when this happens and outskill it, ending the model's learning.
+
+	Also this can happen when one mode can easily fool the discriminator compared to other modes
+
+Problem with BCE Loss
+	GANs with this are prone to Mode Collapse, and other problems.
+
+	Why BCE Loss causes vanishing gradients problem?
+
+	MiniMax game played by Generator and discriminator
+		Generator
+			Wants to "maximize the cost"
+			By making fake look like real
+
+		Discriminator
+			Wants to "minimize the cost"
+			By classifying fake properly
+				For fakes--> (1-y) part
+
+	Objective in GANs
+		After that, this then becomes 
+			To make real and generated data distributions of features very similar.
+
+		Generator
+			Trying to make the distributions look alike
+			Difficult to train
+
+		Discriminator
+			Trying to pull it apart
+			Easier to train than generator
+
+	"Vanishing Gradients Problem"
+		When the discriminator improves too much, the function approximated by BCE Loss will contain flat regions
+
+		Flat regions on the cost function = Vanishing Gradients
+			Which means the 'generator' does not know how to improve
+
+
+		The discriminator does not output useful gradients (feedback) for the generator when the real/fake distributions are far apart.
+
+Earth Mover's Distance
+	Solves the vanishing gradient problem of BCE Loss
+
+	"Effort" to make the generated distribution equal to the real distribution
+		Depends on the distance and amount moved
+
+	This measure is not bounded by 0 and 1
+
+	It is from 0 to infinity
+		Like normal distance measures
+
+	Earth Mover's Distance is a function of amount and distance
+
+	Doesn't have flat regions when the distributions are very different
+
+	Approximating EMD solves the problems associated with BCE
+
+Wasserstein Loss(W-Loss)
+	Approximates the EMD
+
+	x_hat = g(z)
+		where z is noise vector input given to the generator
+
+	min{over g}(
+		min{over c}(
+			Expectation(c(x)) - Expectation(c(x_hat))
+		)
+	)
+
+		This concept is so good
+
+	W-value --> any real value
+
+	Discriminator --> bounded between 0 and 1
+
+	In context of this, 
+		we call it Critic --> any real value
+
+W-Loss vs BCE Loss
+	{Discriminator outputs between 0 and 1} whereas {Critic outputs any number}
+
+	{Cost Function} vs {Cost Function}
+
+	W-Loss helps with mode collapse and vanishing gradients problem
+
+		Because the generator always get a useful feedback
+
+Condition on Wasserstein Critic
+	Continuity Condition on the critic's neural network
+
+	The critic function
+		c(x)
+	must be 1-Lipshitz Continuous
+
+		The norm of the gradient should be atmost 1 for every point
+
+	Put a "X" mark and it forms 4 regions
+		Now the curve has to be in left and right region
+
+		It must not be in left region
+
+	This makes
+		W-Loss is valid
+
+	Needed for training stable neural networks with W-Loss
+
+	This condition ensures that W-Loss is validly approximating Earth Mover's Distance
+
+	Notation:-
+		<expression>
+			<norm p=2>
+				<gradient type=nebla>
+					<function name=f>
+						x
+					<function>
+				</gradient>
+			</norm>
+
+			<less_than></less_than>
+			1
+		</expression>
+
+1-Lipschitz Continuity Enforcement
+	Weight clipping and gradient penalty
+
+	Advantages of gradient penalty
+
+
+	Weight Clipping
+		Weight clipping forces the weights of the critic to a fixed interval
+
+		Methodology:-
+			Gradient descent to update weights --> Clip the critic's weights
+
+		The weights above or below are set to the highest limit and the lowest limit respectively.
+
+		Limits the learning ability of the critic
+
+		Lot of hyperparameter tuning involved
+
+	Gradient Penalty
+		MinMax equation + lambda * reg
+
+		lambda * reg --> Regularization of the critic's gradient
+
+		The lambda * reg penalizes the critic when its gradient norm is higher than 1
+
+		Random interpolation
+			Give epsilon weight to real 
+				and 
+			1 - epsilon weight to the generated image
+
+			to obtain the "random interpolation"
+
+		And this random interpolation, we want the critic's gradient to be less than 1
+
+		<expression>
+			<square>
+				<norm p=2>
+					<gradient type=nebla>
+						<function name=f>
+							x
+						<function>
+					</gradient>
+				</norm>
+				<minus></minus>
+				1
+			</square>
+		</expression>
+
+		Works much better than "weight clipping"
+
+		Loss function is still continuous and differentiable
+
+	Weight clipping is bit enforcing
+
+	Gradient penalty tends to work better
+
+	https://lilianweng.github.io/posts/2017-08-20-gan/
+
+<---------- Week 4 ---------->
+
+	Till now, no control over what the GANs generate
+		"Unconditional Generation"
+		Conditional Generation
+
+		Controllable Generation
+
+Conditional GAN
+	A random sample from the class we specify
+
+	Needs the data to be labelled
+
+Conditional Generation: Inputs
+	How to pass the class information to Generator and Discriminator?
+		Discriminator --> needs one-hot vector
+
+		Generator Input
+			Noise vector and Class vector(one-hot) appended
+
+		Discriminator Input
+			The one-hot vector is converted to that many channels and append to the image's original 3 channels
+
+
+	For the discriminator, the class information is appended as a channel or some other method, whereas for the generator, the class is encoded by appending a one-hot vector to the noise to form a long vector input.
+
+Controllable Generation
+	After trained
+
+	Controlling specific features
+		For example:- Controlling the age
+
+	In the noise vector,
+		if the first input represents the hair color
+			then tweaking it would result in different hair color in output
+
+	Controllable vs Conditional
+		Controllable is sometimes a superset of Conditional
+
+		Controllable --> features that we want
+		Conditional  --> classes that we want
+
+		Controllable --> dataset doesn't need to be labelled
+		Conditional  --> Needs to be labelled
+
+		Controllable --> Manipulate the z vector input
+		Conditional  --> Append a class vector to the input
+
+	Vector Algebra in Z-Space
+		After finding a "5" in the Z-space and "6" in Z-space
+			if we interpolate
+				then we can find a morph of transition from 5 to 6 and it was displayed as a video
+
+			5 morphed into a 6
+
+		Just like in NLP	
+			If u find that using a particular vector you were able to change the hair color from blue to red
+
+			Then applying it to a different image also gives the same effect
+
+		To control output features, you need to find directions in the Z-space
+
+		To modify your output, you move around in the Z-space.
+
+	Challenges with Controllable Generation
+		Output feature correlation
+		Z-space entanglement
+
+		If features are super correlated, then its difficult to modify that one feature which is entangled with othe features
+
+		Z-Space entanglement
+			When Z-Space is entangled, movement in the different directions has an effect on multiple features simultaneously in the output
+				even if those features aren't necessarily correlated (WHAAAAAAAATTTT)
+
+
+		These kind of things happen when there is not enough features in Z-space
+			relative to number of features that we want to control in output
+
+		Correct! When the Z-space is entangled, movement in the different directions has an effect on multiple features simultaneously in the output. This makes it difficult to control a single feature without modifying others.
+
+	Classifier Gradients
+		Use classifiers to find directions in the Z-space
+
+		Noise vector --> Generator --> Image --> Classifier --> *
+			repeat
+
+		Classifier tells the percentage of belief that the image produced has sunglasses
+			and gives Direction to make the images look like they have sunglasses
+
+			Modify just the noise vector until the feature emerges
+
+			Generator model's parameters are not changed
+				All of this happens after training
+
+			Lazy finding of the "direction of feature"
+				Lazy as in we are using a pre-classifier which knows that which image has sunglass or not
+
+		You can calculate the gradient of the z vectors along certain features through the classifier to find the direction to move the z vectors.
+
+	Disentanglement
+		Disentangled Z-Space
+			If you want to control 2 features (hair color and length), you should not make the Z-space dim 2
+				Because u r then not giving space to learn
+
+			It may also be possible that
+				The Noise vectors are Disentangled with respect to just thse two different features and the rest of the values dont mean anything
+
+				This is because we want the size of the Z-vector to be larger than the number of features that we want to control.
+
+				This makes the model easier to learm, becuase it lets the other values to take on different things over time during training. 
+
+				The extra ones are used to adpat the model during training.
+
+		Latent Factors of Variation
+			The information from the noise vectors is not seen directly on the output, but they do determine how that output looks. 
+
+
+
+		Noise vector --> sometimes referred as "latents"
+
+		Encourage Disentanglement: Loss Function method
+			Add Regularization term
+
+			Unsupervised way
+				Doesnt need labels
+
+			The above one is supervised
 
 	
