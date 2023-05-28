@@ -1,0 +1,77 @@
+"Auto-Complete"
+
+N-gram models
+	Speech Recognition
+	Spelling Correction
+	Augmentative Communication
+
+	Create language model (LM) from text corpus to
+		Estimate the probability of word sequences.
+
+		Estimate the probability of a word following a sequence of words.
+
+	Apply this concept to autocomplete a sentence with most likely suggestions
+
+	MODEL
+		Text Corpus --> Language Model + input ===> suggestions
+
+	<opinion on="language models">
+	Language model which we are using now is not using its brain, its just doing statistics
+		See for models that use brain to do, not just rely on data
+
+		If we just rely on data it will need too much I am guessing>>
+	</opinion>
+
+	This week you are going to learn to:
+		Process a text corpus to N-gram language model
+
+		Handle out of vocabulary words
+
+		Implement smoothing for previously unseen N-grams
+
+		Language model evaluation
+
+N-grams and Probabilities
+	Unigrams: set of all single words
+	Bigrams: set of consecutive words of length 2
+
+	Notation:
+		w[^3][_1] = w_1 w_2 w_3
+
+	Probability of a bigram:-
+		P(y|x)
+			where x is the first word
+
+Sequence Probabilities
+	P( the teacher drinks tea ) = P(the) * P( teacher the) * P( drinks the teacher) * P(tea∣the teacher drinks )
+
+	Markov Property is then applied
+		because as the length of sentence gets longer, the probabilities vanish
+
+		For Bigram:-
+			We see only one behind
+
+		For N-gram:-
+			We see only N-1 words behind
+
+		Much more practical model
+
+		<thoughts about="markov model">
+			But at what costs?
+
+			There is definitely link between the first word of the paragraph and the last word of the paragraph.
+		</thoughts>
+
+Starting and Ending Sentences
+	Bigram --> sliding window of 2
+
+	Starting Sentences:-
+		In Bigram:-
+			The first one doesnt have pair
+			It is fixed by using <s> as the starting word
+
+		To generalize:-
+			Add N-1 <s> at the start of the sentence
+
+	Ending Sentences:-
+		
