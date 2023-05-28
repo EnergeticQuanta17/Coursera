@@ -170,3 +170,234 @@ PyTorch
 		loss.backward()
 		optimizer.step()
 
+PyTorch
+	t = torch.Tensor()
+
+	t.device
+
+	t.shape or t.size
+
+	Number of elements
+		t.numel()
+
+	t[1, 1, 0]
+
+	t[1, 1, 0].item()
+
+	t[:, 0, 0]
+
+	torch.ones_like(t)
+
+	torch.zeros_like(t)
+
+	torch.randn_like(t)
+
+	torch.randn(2, 2, device='cpu')
+
+	t.mean()
+
+	t.std()
+
+	t.mean(0)
+	t.mean(dim=0)
+	t.mean(axis=0)
+
+	Similarly 
+		torch.mean(t, 0)
+		torch.mean(t, dim=0)
+		torch.mean(t, axis=0)
+
+
+	import torch.nn as nn
+
+	linear = nn.Linear(10, 2)
+	example_input = torch.randn(3, 10)
+	example_output = linear(example_input)
+
+	relu = nn.ReLU()
+	relu_output = relu(example_output)
+
+	batchnorm = nn.BatchNorm1d(2)
+	batchnorm_output = batchnorm(relu_output)
+
+	adam_opt = optim.Adam(mlp_layer.parameters(), lr=1e-1)
+
+	requires_grad_()
+
+	with torch.no_grad():
+
+	detach()
+
+	list(example_model.parameters())
+
+	list(example_model.named_parameters())
+
+	nn.Conv2d
+	nn.COnvTranspose2d
+	nn.BatchNorm2d
+	nn.Upsample
+	nn.functional.interpolate
+
+	In PyTorch, we can easily transfer data from GPU to CPU
+		Just apply the function
+			.cpu()
+		on the tensor LOL
+
+	criterion = nn.BCEWithLogitsLoss()
+
+It’s also often the case that the discriminator will outperform the generator, especially at the start, because its job is easier. It's important that neither one gets too good (that is, near-perfect accuracy), which would cause the entire model to stop learning. Balancing the two models is actually remarkably hard to do in a standard GAN and something you will see more of in later lectures and assignments.
+
+	
+	This is how it looks to update the gradients of "Generator"	
+		gen_opt.zero_grad()
+        gen_loss = get_gen_loss(gen, disc, criterion, num_images, z_dim, device)
+        gen_loss.backward()
+        gen_opt.step()
+
+
+https://www.researchgate.net/figure/Latent-space-visualization-of-the-10-MNIST-digits-in-2-dimensions-of-both-N-VAE-left_fig2_324182043
+
+https://arxiv.org/abs/1912.04958
+
+https://arxiv.org/abs/1903.07291
+
+https://arxiv.org/abs/1905.08233
+
+https://arxiv.org/abs/1809.11096
+
+
+
+<---------- Week 2 ---------->
+Deep Convolutional GANs
+	Compose a Deep Convolutional GAN using these components.
+	Upsampling and Transposed convolutions.
+
+	Image Generation
+
+Activations (Basic Properties)
+	g (the Activation Function) must be
+		Differentiable - for backpropagation
+		Non-Linear Function - Else wont be complex
+
+	Commonly used Activation Functions
+		ReLU
+			POPULAR
+			max(0, z)
+			Removes all the negatives
+			By covention:- diff at 0 is 0
+
+			"Dying ReLU" problem
+
+		Leaky ReLU
+			Solves the "Dying ReLU" problem
+			a=0.1
+			a is the leak
+			a is a hyperparameter
+
+		Sigmoid
+			0 and 1
+
+			"Vanishing gradients" problem
+
+			"Saturating gradients" problem
+
+			Often not used in hidden layers as the derivatives of functions approaches 0 "at the tails of the function"
+
+		Tanh
+			-1 and 1
+
+			Negative inputs have Negative outputs
+
+			"Vanishing gradients" problem
+
+			"Saturating gradients" problem
+
+	Too much time to train
+
+Batch Normalization
+	To speed up
+
+	If mean and variance of the input variables are different
+		Plotting the distributions,
+			it might be broad or narrow as in high variance or low variance
+
+			and mean at different positions
+
+		This leads to the cost function being an ellipse
+
+		"Covariance Shift"
+
+	If the mean=0 and std=1, 
+		Cost function --> Circular instead of ellipse
+
+		Effect of Covariance shift is reduced significantly.
+
+	Internal Covariance Shift
+		There is Covariance Shift in the hidden layers of the NN.
+
+		Batch Norm saves the day
+			Smooths the cost function
+			Reduces Internal Covariance Shift
+			Speeds up learning
+
+		Caveat:-
+			Theory behind Internal Covariance Shift is not actually conlusive.
+
+			We are still finding other reasons for which Batch Normalization is useful.
+
+	Procedure
+		Subtract mean of all the neuron values in that leyer FOR "z"
+			Not for "a"
+
+		And then divide by sqrt(sigma**2 + epsilon)
+			epsilon is used for non-zero denominator
+
+		We rescale the obtained z_cap
+			Using the linear transformation --> y = gamma * z + beta
+
+		So the thing is, after normalization u can scale however it needs
+			But inputs are forced to be normalized with no scaling
+
+		This y is then sent to Activation Function g(y)
+
+		For Test:=
+			We take mean of whole thing
+
+		Batch Norm includes learnable shift and scale factors
+
+		During test, the running statistics from training are used
+
+Convolutions
+	Padding and Stride
+
+		Padding provides similar importance to the edges and the center
+
+	Pooling and Upsampling
+		Max Pooling --> getting the most salient information.
+
+		No learnable parameters
+
+		Upsampling
+			Increases the size of the input
+
+			Nearest Neighbours Upsampling
+				Same pixels for all in the kernel
+
+			Linear Interpolation
+
+			Bi-Linear Interpolation
+
+	Transposed Convolutions
+		Input * Filter -> Output
+		 2x2      2x2       3x3
+
+		Checkerboard problem
+
+		They have learnable parameters
+			Checkerboard pattern problem
+
+	Upsampling infers pixels using a predefined method, while transposed convolution learns a filter.
+
+	https://distill.pub/2016/deconv-checkerboard/
+
+	
