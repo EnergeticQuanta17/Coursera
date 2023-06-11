@@ -1,0 +1,13 @@
+Exact Algorithms
+Advanved Solvers
+Heuristic Algorithms
+
+Exact Algorithms
+	Simplex method --> Linear Programming
+	Branch-and-Bound Algorithm --> Integer Programming
+	Gradient descent and Newton's method --> Non-Linear Programming
+
+	Gurobi Optimizer
+		Large Scale Optimization
+
+	

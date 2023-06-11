@@ -1,0 +1,237 @@
+Gradient descent
+One-hot vectors
+Neural networks
+Word embeddings
+Continuous bag-of-words model (CBOW model)
+Text pre-processing
+Tokenization
+Data generators
+
+CBOW --> try to predict the particular word given a few context text words
+	The weights used to predict each word --> eventually becomes the word vectors
+
+	Two sets of weights
+		One for prediction
+		One for context words
+
+	We can choose which one to use
+		or combine them
+
+Word embeddings or Word vector
+	Representing words with numbers
+
+	Semantic analogies and similarity
+	Sentiment Analysis
+	Classification of customer feedback
+
+	Machine Translation system
+	Information Extraction
+	Question Answering
+
+Other techniques like CBOW
+	GloVe
+	Word2Vec
+
+Basic Word Representations
+	Integers
+		Simple
+		Ordering: little semantic sense
+
+	One-hot vectors
+		Simple
+		No implied Ordering
+		Huge vectors
+		No embedded meaning
+
+Word Embeddings
+	Meaning as vectors
+		Assign a number for each word
+			Negative words have negative value
+			Positive words have positive value
+
+		Can also extend on the 2nd dimension
+			Like concrete for high y-value
+				and Abstract for low y-value
+
+	Low dimension
+	Embed meaning
+		Allows to embedd meaning
+
+How to Create Word Embeddings
+	Corpus will affect the word embeddings
+
+	Corpus + Embedding Method --> Word Embeddings
+
+	Corpus
+		General Purpose
+		Specialized
+
+	Embeddings Method
+		Machine Learning model
+		Learning task
+			Self-supervised = unsupervised + supervised
+
+			The task is self-supervised: it is both unsupervised in the sense that the input data — the corpus — is unlabelled, and supervised in the sense that the data itself provides the necessary context which would ordinarily make up the labels. 
+
+Word2Vec
+	Uses Shallow Neural Network to learn word embeddings
+
+	Two model architectures
+		CBOW
+		Continuous skip-gram/Skip-gram with negative sampling (SGNS)
+
+Global Vectors(GloVe)
+	Factorizing the logarithm of the corpuses word co-occurrence matrix 
+
+fastText (by Facebook 2016)
+	Based on Skip-gram model and takes into account the structure of words by representing words as n-grams of characters.
+
+	Supports OOV words
+
+	kitty and kitten --> are interpreted the same
+
+Advanced word embedding methods
+	Deep learning, contextual embeddings
+
+	BERT (Google, 2018)
+
+	ELMo(Allen Institute for AI, 2018)
+
+	GPT=2 (OpenAI, 2018)
+
+Tunable pre-trained models avaiable for above methods
+	Can train to get domain specific applications
+
+Transformers are one of the most advanced AI methods.
+
+
+Continuous Bag-of-Words Model
+	Continuous Bag-of-Words word embedding process
+
+	The window size in the image above is 5. The context size, C, is 2. C usually tells you how many words before or after the center word the model will use to make the prediction. Here is another visualization that shows an overview of the model. 
+
+Cleaning and Tokenization
+	Letter case
+	Punctuation
+	Numbers
+	Special Characters
+	Soecial Words
+		Emojis
+		Hashtag
+
+Sliding Window of Words in Python
+	
+Transforming Words into Vectors
+	The length of the vector is the size of vocabulary
+
+	Context words vector (that is, the words surrounding the center word)
+		is represented by a vector with numbers representing "# of times that word appeared" / total number of words
+
+		np.mean(context_words_vectors, axis=0)
+
+	Center word vector
+		One-hot vector for that word
+
+It is a very important step because models are only as good as the data they are trained on and the models used require the data to have a particular structure to process it properly.
+
+Architecture of the CBOW model
+	Input layer + Single hidden layer + Output layer
+
+	Input: Context words vector
+	Output: Center word vector
+
+	Hyperparameter:
+		Word embedding size = N
+
+	N = number of neurons in hidden layer
+
+	8000 <-> 400 <-> 8000
+
+	X --> {ReLU} --> h --> softmax--> y_hat
+
+	z2 is called "logits"
+
+Batch Processing of the CBOW Model
+	
+Architecture of the CBOW Model: Activation Functions
+	ReLU and Softmax
+
+Next
+	Forward propagation.
+
+	Cross-entropy loss.
+
+	Backpropagation.
+
+	Gradient descent.
+
+Training a CBOW Model: Cost Function
+	Cross-entropy loss function (Log loss)
+
+	J = - Summation of {y_k * log(y_k_cap)}
+
+Training a CBOW Model: Forward Propagation
+	Loss -> for single example
+	Cost --> for batch of examples
+
+Training a CBOW Model: Backpropagation and Gradient Descent
+	Formulas for derivatives given
+
+	Hyperparameter: Learning rate - ALPHA
+
+Extracting Word Embedding Vectors
+	Option 1: extract embedding vectors from  𝐖1
+		The first column, which is a 3-element vector, is the embedding vector of the first word of your vocabulary. The second column is the word embedding vector for the second word, and so on.
+
+	Option 2: extract embedding vectors from  𝐖2
+ 		The second option is to take $\mathbf{W_2}$ transposed
+
+ 	Option 3: extract embedding vectors from  𝐖1 and  𝐖2
+
+After extracting the word embedding vectors, you will use principal component analysis (PCA) to visualize the vectors, which will enable you to perform an intrinsic evaluation of the quality of the vectors, as explained in the lecture.
+
+Ambiguous cases could be much harder to track: 
+
+Evaluating Word Embeddings: Extrinsic Evaluation
+	Extrinsic Evaluation evaluates actual usefullness of a word embedding
+
+	Test word embeddings on external task like
+		Named-Entity Recognition
+		Parts-of-Speech Tagging
+
+	And then select an evaluation metric
+		Accuracy
+		F1 score
+
+	This helps us know if the word embeddings are actually useful
+
+	Main drawbacks
+		More time to do Extrinsic evaluation
+		More difficult to troubleshoot
+			We will not know where the error occurred
+
+	Extrinsic evaluation tests word embeddings on external tasks like named entity recognition, parts-of-speech tagging, etc. 
+
+		+ Evaluates actual usefulness of embeddings
+
+		- Time Consuming
+
+		- More difficult to trouble shoot
+
+		So now you know both intrinsic and extrinsic evaluation. 
+
+Assignment tasks
+	Data pre-processing
+	Word Representations
+	CBOW
+	Evaluation
+
+Things to know
+	Advanced Langyage Modellign and Word Embeddings
+	NLP and Machine learning libraries
+
+	Keras and PyTorch --> can add Embedding layer using single line of code
+
+Next Course
+	Probabilistic Models --> Sequential Models
+

@@ -1,0 +1,34 @@
+Simple Random Sampling
+	1. with replacement
+	2. without replacement
+
+
+
+TYPE-II error:-
+	Power is the probability of not making a Type II error
+	
+	In statistics, the power of a binary hypothesis test is the probability that the test correctly rejects the null hypothesis when a specific alternative hypothesis is true.
+
+TYPE-I error:-
+	A Type I error means rejecting the null hypothesis when it's actually true.
+
+	In statistics, the size of a test is the probability of falsely rejecting the null hypothesis. That is, it is the probability of making a type I error. It is denoted by the Greek letter α. 
+
+Skewness and Kurtosis
+
+Coefficient of Variance (CV) = sigma/x_bar * 100
+
+Kurtosis provides insights into the presence of outliers and the nature of extreme values in a dataset. It tells us about the thickness of the tails of the distribution compared to a normal distribution. There are three main types of kurtosis:
+
+	Mesokurtic: A mesokurtic distribution has kurtosis "equal to zero". It indicates that the distribution has tails that are similar in thickness to a normal distribution. The distribution does not exhibit any significant outliers or extreme values.
+
+	Leptokurtic: A leptokurtic distribution has "positive" kurtosis. It means the distribution has heavier tails and a higher peak compared to a normal distribution. 'It indicates the presence of more outliers or extreme values in the dataset, leading to a sharper or more peaked distribution.'
+
+	Platykurtic: A platykurtic distribution has "negative" kurtosis. It means the distribution has 'lighter tails' and a 'flatter peak' compared to a normal distribution. It indicates the presence of fewer outliers or extreme values, resulting in a broader or more spread-out distribution.
+
+Z-transform
+Probability Generating Function
+
+Markov Chain --> time discrete
+Longitudinal data --> time series
+

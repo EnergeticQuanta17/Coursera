@@ -44,7 +44,7 @@ Week 6
 
 	Forecasting: Single, Double, Triple Exponential
 
-<----------------- Week 1 ------------------->
+<----------------- Week 1------------------->
 
 Descriptive Statistics
 	Numerical descriptions: 5 number summary, standard deviation
@@ -169,3 +169,49 @@ Correlation
 	sum(lm(taste~H2S, data=cheddar)$fitted)
 
 
+<----------------- Week 2------------------->
+
+"astsa" package in R
+
+AutoCovariance Function
+Doubts
+	Estimation of c_k
+		In this we are not dividing by N
+
+	what are lags in acf function
+
+	Correlogram
+
+Random Walks
+	ACF of purely random --> has very very low correlation between the datapoints
+		Obvious, isn't it?
+
+	For MA(q) process
+		thE ACF will cut from lag2
+		Meaning it will have high correlation for only 2 lags after 0th lag which is 1 by default
+
+	Trend makes the time series non-stationary. 
+
+<----------------- Week 3------------------->
+
+Topics
+	Stationarity
+	Backward Shift Operator
+	Invertibility
+	Duality
+	Autoregressive processes
+	Yule-Walker equations
+
+Doubt
+	How to show strict stationarity?
+
+No t dependence --> (weakly) stationary
+
+homoscedasticity
+
+Invertibility condition for MA(q) processes
+Stationarity condition for AR(p) processses
+Duality between AR and MA processses
+
+Mean Square Convergence
+	Necessary and sufficient condition for invertibility of MA(1) 

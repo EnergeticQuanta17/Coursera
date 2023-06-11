@@ -1,0 +1,322 @@
+<---------------------Week 1-------------------------------->
+NEURAL NETWORKS FOR SENTIMENT ANALYSIS
+
+
+Feature extraction
+Supervised machine learning
+Binary classification
+Text preprocessing
+ReLU
+Python classes
+Trax
+Neural networks
+
+Neural Networks for Sentiment Analysis
+Language Generator usign RNNs
+LSTM --> Named Entity Recognition
+Siamese Networks
+
+Trax: Neural Networks
+	Built on TensorFlow
+
+	Advantages of using frameworks
+		Run fast on CPUs, GPUs and TPUs
+		Parallel Computing
+		Record of algebraic computation for gradient evaluation
+
+		TensorFlow
+		PyTorch
+		JAX
+
+	from trax import layers as tl
+	Model = tl.Serial(
+			tl.Dense(4),
+			tl.Sigmoid(),
+			tl.Dense(4),
+			tl.Sigmoid(),
+			tl.Dense(3),
+			tl.Softmax(),
+				
+		)
+
+
+Trax best for
+	Machine Learning Research best
+	Especially Sequence Models and Transformeres and Models used in NLP
+
+	Tensor2Tensor library
+
+	JAX: fastest Transformer in MLPerf 2020
+
+Have downloaded a nice tutorial notebook on trax
+
+trax
+	Layers
+		Relu Layer
+		Concatenate Layer
+		Layers are Configurable
+		Layers can have Weights
+		Layers can have Weights
+		LayerNorm
+		Custom Layers
+
+	Combinators
+		Serial Combinator
+		Parallel Combinator
+
+	JAX
+		Trax's JAX compatible numpy
+
+Other layers could include embedding layers and mean layers.
+	The mean layer allows you to take the average of the embeddings. 
+
+	This layer does not have any trainable parameters. 
+
+Finding gradient in trax
+	def f(x):
+		return x**2
+	trax.math.grad(f)
+
+	y = model(x)
+	grads = grad(y.forward)(y.weights, x)
+
+		weights -= alpha*grads
+
+
+
+<---------------------Week 2-------------------------------->
+
+Recurrent Neural Networks
+
+BiDirectional RNNs
+	Can keep track of information from both directions
+
+	and Allows better character generation
+
+	More layers --> more abstract dependencies
+
+Gated RNNs
+	More powerful than vanilla RNNs
+
+Traditional Language models
+	Large N-grams to capture dependencies between distant words
+
+	Need a lot of space and RAM
+
+	Solution: RNNS
+
+Advantages of Recurrent Neural Networks
+	W_h --> for propogation
+	W_x --> for recurrent part
+
+	Only learnable parameters are W_x and W_h
+
+	They propogate information between sequences
+
+	Lots of computations share parameters
+
+Applications of RNNs
+	Machine Translation and Caption Generation
+
+	One to One
+	One to Many - Image to text
+	Many to One - Sentiment Analysis
+	Many to Many - Machine Translation
+
+Many to Many
+	Encoder-Decoder
+
+One to One: given some scores of a championship, you can predict the winner. 
+
+One to Many: given an image, you can predict what the caption is going to be.
+
+Many to One: given a tweet, you can predict the sentiment of that tweet. 
+
+Many to Many: given an english sentence, you can translate it to its German equivalent. 
+
+Math in Simple RNNs
+	Basic recurrent units have two inputs at each time
+		h<t-1> and x<t>
+
+	Hidden states propogate information through time
+
+Cost Function for RNNs
+	Cross-Entropy to give for all times
+
+	Individual loss: Average with respect to time
+
+Implementation Note
+	scan() functions
+
+	Takes a function and apply it to all elements from the beginning to the end
+
+	Need this type of abstractions to parallelize the code
+
+	tf.scan() mimics RNNs
+
+	Note, that is basically what an RNN is doing. It takes the initializer, and returns a list of outputs (ys), and uses the current value, to get the next y and the next current value. These type of abstractions allow for much faster computation. 
+
+Gated Recurrent Units
+	Allows relevant information to be kept in the hidden state even for long sequences
+
+	"Relevance and update" gates to remember important prior information
+
+	Both Relevant gates and Update gates are sigmoid outputs
+
+	Hidden state candidate
+
+	GRUs decide how to update the hidden state
+
+	GRUs help preserve important information
+
+
+
+Vanilla RNNs vs. Gated Recurrent Units
+
+Deep and Bi-directional RNNs
+	Deep captures dependencies which cannot be captured by shallow RNnS
+
+	Stackign RNNs --> deep RNNs
+
+	Bi-directional RNNs
+		In bidirectional RNNs, it is not necessary to first perform forward propagation from left to right  in order to do it in the opposite direction.
+
+	1. Get hidden states for current layer
+	2. Pass the activations to the next layer
+
+	Bi-directional RNNs are important, because knowing what is next in the sentence could give you more context about the sentence itself. 
+
+
+
+<---------------------Week 3-------------------------------->
+
+LSTMs and Named Entity Recognition
+
+Vanishing and Exploding gradients problems faced by conventional RNNs
+
+Contribution of the hidden state to the gradients approaches zero as we move further away from the place where the loss is computed
+	Conversely the when the gradients are much bigger than 1 --> it can go to infinity
+
+	less 1 --> Vanishing gradients
+
+
+Solutions for Vanishing and Exploding gradients problems
+	Identity RNN with ReLU activation
+		Initialize weights to identity matrix
+
+		Only works for Vanishing gradients
+
+	Gradient Clipping
+		Any value greater than 25 is put to 25
+
+	Skip connections
+
+Advantages of RNNs
+RNNs allow us to capture dependancies within a short range and they take up less RAM than other n-gram models. 
+
+Disadvantages of RNNs
+RNNs struggle with longer term dependencies and are very prone to vanishing or exploding gradients.
+
+https://blog.paperspace.com/intro-to-optimization-in-deep-learning-gradient-descent/
+
+LSTM
+	Best known solutions to vanishing gradients problem
+
+	Learns what to remember and when to forget
+
+	Basic anatomy
+		A cell state
+		A hidden state
+		Multiple gates
+
+	Typical LSTMs have a cell and three gates:-
+		Forget gate
+		Input gate
+		Output gate
+
+	Input gate: tells you how much information to input at any time point. 
+
+	Forget gate: tells you how much information to forget at any time point. 
+
+	Output gate: tells you how much information to pass over at any time point. 
+
+Applications of LSTMs
+	Next-character prediction
+	Chatbots
+	Music composition
+	Image captioning
+	Speech Recognition
+
+LSTM Architecture
+	See pic
+
+	https://www.coursera.org/learn/sequence-models-in-nlp/supplement/RHssB/lstm-architecture
+
+Named Entity Recognition
+	Named Entity Recognition (NER) locates and extracts predefined entities from text. It allows you to find places, organizations, names, time and dates.
+
+	Geographical
+	Organization
+	Geopolitical
+	Time Indicator
+	Artifacts
+	Person
+
+Applications of NER systems
+	Search Engine Efficiency
+	Recommendation engines
+	Customer service
+	Automatic trading
+
+LSTM Equations
+	https://www.coursera.org/learn/sequence-models-in-nlp/supplement/ANbcf/lstm-equations-optional
+
+Training NERs: Data Processing
+	Assign each entity class a unique number
+
+	Assign each word the number
+
+	Token padding
+		As LSTMs all the sequences need to be the same size
+
+		<PAD> token to fill empty spaces
+
+	Training the NER
+		1. Create a tensor for each input and its corresponding number
+		2. Put them in a batch of power of 2
+		3. Feed it into an LSTM unit
+		4. Run the output through a dense layer
+		5. Predict using a log softmax over K classes
+
+		Log softmax has better numerical performance
+
+	Layers in TRAX
+		model = tl.Serial(
+				tl.Embedding(),
+				tl.LSTM(),
+				tl.Dense(),
+				tl.LogSoftmax()
+			)
+
+	Note that this is just one example of an NER system. You can have different architectures. 
+
+Computing Accuracy
+	Evaluating the model
+		1. Pass test set through the model
+		2. Get arg max across the prediction array
+		3. Mask padded tokens
+		4. Compare outputs against test labels
+
+	If padding tokens, remember to mask them when computing accuracy
+
+
+
+<-------------------Week 4 ------------------------------->
+
+SIAMESE NETWORKWS
+
+Triplet Loss
+
+A Siamese Network is a neural network which uses the same weights while working in tandem on two different input vectors to compute comparable output vectors.
+	We can then compare the output and see if they are similar
+
