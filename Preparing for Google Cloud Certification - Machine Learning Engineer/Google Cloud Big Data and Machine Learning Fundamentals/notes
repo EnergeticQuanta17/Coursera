@@ -1,0 +1,92 @@
+Recognize the data-to-AI lifecycle on Google Cloud
+Identify the connection between data engineering and machine learning
+
+Without data, ML is not useful
+Without ML, data is not useful
+
+Google has developed the infrastructure to
+	Ingest
+	Manage
+	Serve
+
+	high quantities of data from its applicaitons
+
+"Smart Compose" in GMail
+
+Google Cloud offerings
+	Compute
+	Storage
+	Big Data
+	Machine Learning
+
+BIG DATA AND MACHINE LEARNING ON GOOGLE CLOUD
+	Compute
+	Storage
+	The history of big data and ML products
+	Big data anad ML products categories
+	Customer example
+	Hands-on lab
+
+	Compute
+		Compute Engine
+			IaaS offering
+			Compute
+			Storage
+			Network
+			Maximum Flexibility
+
+		Google Kubernetes Engine - GKE
+			Containerized applications
+			Cloud environment
+
+		App Engine
+			Fully managed by PaaS offering
+			Bind code to libraries
+			Focussed on application logic
+
+		Cloud Functions
+			Execute code in response to events
+			Functions as a service offering
+
+		Cloud run
+			Fully managed platform
+			Lets you focus on writing code
+			Automatically scales up and down
+			Charges only for the resources you use
+
+		Automatic Video Stabilization
+
+		TPU --> Google's custom-developed application-specific integrated circuits (ASICs)
+			Domain Specific hardware
+
+			Increases by over 200 times
+
+		Cloud TPUs
+
+	Storage
+		Compute and storage are decoupled for proper scaling capabilities
+
+		Main differences between Desktop computing and Cloud Computing
+
+		Google's Cloud database and storage services
+			Cloud Storage
+			Cloud Bigtable
+			Cloud SQL
+			Cloud Spanner
+			Firestore
+			BigQuery
+
+			Goal: reduce time and effort needed to store data
+
+		Relational databases
+		Non-Relational databases
+		Wordlwide object storage
+
+		 Cloud Storage
+		 	Four primary storage classes
+		 		Standard Storage (Hot data)
+		 		Nearline Storage (Once per month)
+		 		Coldline Storage (Once every 90 days)
+		 		Archive Storage (Once a year)
+
+		 		

@@ -313,10 +313,117 @@ Computing Accuracy
 
 <-------------------Week 4 ------------------------------->
 
-SIAMESE NETWORKWS
+SIAMESE NETWORKS
 
 Triplet Loss
 
 A Siamese Network is a neural network which uses the same weights while working in tandem on two different input vectors to compute comparable output vectors.
 	We can then compare the output and see if they are similar
+
+Siamese networks, a special type of neural network made of two identical networks that are eventually merged together, then build your own Siamese network that identifies question duplicates in a dataset from Quora.
+
+Neural network made of two "identifiesical" neural networks which are merged at the end.
+
+Identify similarity between things
+
+Applications of Siamese Networks
+	Handwritten checks
+	Question duplicates
+	Queries
+
+Architecture
+	Merged through a disc layer to produce a final output or a similarity score
+
+	embedding --> LSTM --> v1
+							  \
+							   \
+							    -----> cosine similarity --> y_hat
+							   /
+							  /
+	embedding --> LSTM --> v2 
+
+	y_hat greater than threshold --> the two questions are same
+		else different
+
+	These two sub-networks are sister-networks which come together to produce a similarity score. Not all Siamese networks will be designed to contain LSTMs. One thing to remember is that sub-networks share identical parameters. This means that you only need to train one set of weights and not two. 
+
+	The output of each sub-network is a vector. You can then run the output through a cosine similarity function to get the similarity score. In the next video, we will talk about the cost function for such a network.
+
+Cost Function
+	Triplet Loss
+
+	Anchor, (positve or negative questions)
+
+	s(A,P) = 1
+	s(A,N) = -1
+
+Triplets
+	diff = s(A,N) - s(A,P)
+
+	With non-linearity
+		L = 0 for diff <=0
+			diff for diff>0
+
+	With alpha margin
+		L = 0 if (diff + alpha) <= 0
+			(diff + alpha) if (diff + alpha) > 0
+
+	L(A,P,N) = max(diff + alpha, 0)
+
+	Triplets Selection
+		Random triplets --> easy to satisfy
+			Little is there to learn
+
+		Hard triplets
+			Harder to train
+			More to learn
+
+			Model gets most information
+
+	𝜶: controls how far cos(A,P) is from cos(A,N)
+
+	Easy negative triplet: cos(A,N) < cos(A,P)
+
+	Semi-hard negative triplet:  cos(A,N) < cos(A,P) < cos(A,N) + 𝜶 
+
+	Hard negative triplet: cos(A,P) < cos(A,N)
+
+Computing The Cost I
+	Prepare the batches
+
+	Matrix reprsenting the similarity between the two groups
+
+	Hard Negative Mining
+
+	Each horizontal vector corresponds to the encoding of the corresponding question. Now when you multiply the two matrices and compute the cosine, you get the following: 
+
+
+	The diagonal line corresponds to scores of similar sentences, (normally they should be positive). The off-diagonals correspond to cosine scores between the anchor and the negative examples. 
+
+Computing The Cost II
+	Mean negative
+		Mean of off-diagonal in each row
+
+	Closest negative
+		OFf-diagonal values closest to the value on diagonal in each row
+
+	Hard Negative Mining
+		L_original = max(s(A,N) - s(A,P) + alpha, 0)
+
+		L_1 = max(mean_negative - s(A,P) + alpha, 0)
+			Reduces the noise, by taking mean
+			Because average of the noise is assumed to be 0
+
+		L_2 = max(closest_negative - s(A,P) + alpha, 0)
+
+		L_full(A,P,N) = L_1 + L_2
+
+		J = summation of all L_full
+
+One-Shot Learning
+	Measure similarity between 2 classes
+
+	Makes use of Siamese Networks
+
+Training / Testing
 
