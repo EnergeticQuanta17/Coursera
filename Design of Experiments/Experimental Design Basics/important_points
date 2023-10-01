@@ -1,0 +1,62 @@
+basic course in designing experiments and analyzing the resulting data
+
+The course objective is to learn how to plan, design and conduct experiments efficiently and effectively, and analyze the resulting data to obtain objective conclusions
+
+Randomization
+Replication
+Blocking - a technique to control nuisance variation during the experiment
+
+2 sample t test
+	compare two level of a factor
+
+Fisher's Blocking Concept
+	Background noise
+
+"If you have 10 weeks to solve a problem, you should spend eight weeks planning the experiment, one week running it and one week analyzing the data." - Douglas Montgomery
+
+Randomization
+	Doing this induces the notion of balancing out effects of the "lurking" variables
+
+Replication
+	Sample size (improving precision of effect estimation, estimation of error or background noise)
+	Replication vs repeat experiments
+
+Strategies of Experimentation
+	1. Best-guess experiments
+		backed by experience and knowledge in that area
+
+	2. One-Factor-At-a-Time (OFTA) experiments
+		Very inefficient
+
+	3. Statistically Designed Experiments
+		Based on Fisher's factorial concept
+
+Planning, Conducting and Analyzing an Experiment
+	Pre-Experimental Planning
+		1. Recognition of & statement of problem
+		2. Choice of factors, levels and ranges
+		3. Selection of the response variable(s)
+
+	4. Choice of design
+	5. Conducting the experiment
+	6. Statistical Analysis
+	7. Drawing conclusions, recommendations
+
+Montgomery's first theorem of running experiments
+	If you want it done right, do it yourself.
+
+If you've blown the experiment before step 6, statistics is not going to help you. 
+
+<--------------Week-2-------------------->
+
+Topics covered this week include:
+	basic statistical concepts
+	descriptive statistics
+	normal distribution
+	simple comparative experiments
+	statistical hypothesis testing
+	pooled t-test
+	two-sample t-test
+	confidence intervals
+	sample size determination
+

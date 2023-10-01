@@ -6,3 +6,155 @@ Describe how Security Analysts protect networks and information
 30% growth rate
 	higher than average growth rate for other occupations
 
+Hands-on Activities
+	Dectecting and responding to attacks
+	Monitoring and protecting networks
+	Investigating incidents
+	Writing code to automate tasks
+
+Program overview
+	Core security concepts
+	Security domains
+	Network security
+	Computing basics
+
+	Incident detection and response
+	Find and apply for jobs
+
+COURSES
+	Foundations of Cybersecurity
+	Play It Safe: Manage Security Risks
+	Connect and Protect: Networks and Network Security
+	Tools of the Trade: Linux and SQL
+	Assets, Threats, and Vulnerabilities
+	Sound the Alarm: Detection and Response
+	Automate Cybersecurity Tasks with Python
+	Put It to Work: Prepare for Cybersecurity Jobs
+	 
+In this course, you will learn the primary job responsibilities and core skills of those who work in the field of cybersecurity. You will explore the eight Certified Information Systems Security Professional (CISSP) security domains, various security frameworks and controls, as well as a foundational security model called the confidentiality, integrity, and availability (CIA) triad. You will also be introduced to some common tools used by security analysts that help protect organizations and people alike.
+
+Certificate program progress
+	Foundations of Cybersecurity
+	 — (current course) Explore the cybersecurity profession, including significant events that led to the development of the cybersecurity field and its continued importance to organizational operations. Learn about entry-level cybersecurity roles and responsibilities. 
+
+	Play It Safe: Manage Security Risks
+	 — Identify how cybersecurity professionals use frameworks and controls to protect business operations, and explore common cybersecurity tools.
+
+	Connect and Protect: Networks and Network Security
+	 — Gain an understanding of network-level vulnerabilities and how to secure networks.
+
+	Tools of the Trade: Linux and SQL
+	 — Explore foundational computing skills, including communicating with the Linux operating system through the command line and querying databases with SQL.
+
+	Assets, Threats, and Vulnerabilities
+	 — Learn about the importance of security controls and developing a threat actor mindset to protect and defend an organization’s assets from various threats, risks, and vulnerabilities.
+
+	Sound the Alarm: Detection and Response
+	 — Understand the incident response lifecycle and practice using tools to detect and respond to cybersecurity incidents.
+
+	Automate Cybersecurity Tasks with Python
+	 — Explore the Python programming language and write code to automate cybersecurity tasks.
+
+	Put It to Work: Prepare for Cybersecurity Jobs
+	 — Learn about incident classification, escalation, and ways to communicate with stakeholders. This course closes out the program with tips on how to engage with the cybersecurity community and prepare for your job search.
+
+Common job titles
+	Security Analyst or Specialist
+	Cybersecurity Analyst or Specialist
+	Security operations center(SOC) analyst
+	Information security analyst
+
+Responsibilities of an entry-level cybersecurity analyst
+	Protecting computer and network systems
+		Penetration Testing
+	Installing prevention software
+
+"playbook" terminology
+
+Common cybersecurity terminology
+	Compliance is the process of adhering to internal standards and external regulations and enables organizations to avoid fines and security breaches.
+
+	Security frameworks are guidelines used for building plans to help mitigate risks and threats to data and privacy.
+
+	Security controls are safeguards designed to reduce specific security risks. They are used with security frameworks to establish a strong security posture.
+
+	Security posture is an organization’s ability to manage its defense of critical assets and data and react to change. A strong security posture leads to lower risk for the organization.
+
+	A threat actor, or malicious attacker, is any person or group who presents a security risk. This risk can relate to computers, applications, networks, and data.
+
+	An internal threat can be a current or former employee, an external vendor, or a trusted partner who poses a security risk. At times, an internal threat is accidental. For example, an employee who accidentally clicks on a malicious email link would be considered an accidental threat. Other times, the internal threat actor intentionally engages in risky activities, such as unauthorized data access.
+
+	Network security is the practice of keeping an organization's network infrastructure secure from unauthorized access. This includes data, services, systems, and devices that are stored in an organization’s network.
+
+	Cloud security is the process of ensuring that assets stored in the cloud are properly configured, or set up correctly, and access to those assets is limited to authorized users. The cloud is a network made up of a collection of servers or computers that store resources and data in remote physical locations known as data centers that can be accessed via the internet. Cloud security is a growing subfield of cybersecurity that specifically focuses on the protection of data, applications, and infrastructure in the cloud.
+
+	Programming is a process that can be used to create a specific set of instructions for a computer to execute tasks. These tasks can include:
+
+		Automation of repetitive tasks (e.g., searching a list of malicious domains)
+
+		Reviewing web traffic 
+
+		Alerting suspicious activity
+
+Security Information and Event Management (SIEM) tools
+	Alert --> use forensics
+
+Transferable and technical cybersecurity skills
+	Transferable skills
+		Communication
+		Problem-solving
+		Time management
+		Growth mindset
+		Diverse perspectives
+
+	Technical skills
+		Programming languages
+		Security information and event management (SIEM) tools
+		Intrusion detection systems (IDSs)
+		Threat landscape knowledge
+		Incident response
+
+CompTIA Security+ exam
+	the industry leading certification for cybersecurity roles
+
+Personally Identifiable Information (PII)
+Sensitive Personally Identifiable Information (SPII)
+
+	SPII > PII (more damage if stolen)
+
+
+
+Glossary terms from week 1
+	Terms and definitions from Course 1, Week 1
+		Cybersecurity (or security): The practice of ensuring confidentiality, integrity, and availability of information by protecting networks, devices, people, and data from unauthorized access or criminal exploitation
+
+		Cloud security: The process of ensuring that assets stored in the cloud are properly configured and access to those assets is limited to authorized users
+
+		Internal threat: A current or former employee, external vendor, or trusted partner who poses a security risk
+
+		Network security: The practice of keeping an organization's network infrastructure secure from unauthorized access
+
+		Personally identifiable information (PII): Any information used to infer an individual’s identity
+
+		Security posture: An organization’s ability to manage its defense of critical assets and data and react to change 
+
+		Sensitive personally identifiable information (SPII): A specific type of PII that falls under stricter handling guidelines
+
+		Technical skills: Skills that require knowledge of specific tools, procedures, and policies 
+
+		Threat: Any circumstance or event that can negatively impact assets
+
+		Threat actor: Any person or group who presents a security risk
+
+		Transferable skills: Skills from other areas that can apply to different careers 
+
+<------------------ Week-2 ------------------>
+
+
+You will explore how cybersecurity threats have appeared and evolved alongside the adoption of computers. You will also understand how past and present cyber attacks have influenced the development of the security field. In addition, you'll get an overview of the eight security domains.
+Learning Objectives
+Identify the most common types of attacks, past and present
+Identify how security attacks impact business operations
+Recognize how past and present attacks on business operations have led to the development of the security field
+Identify the CISSP eight security domains
+
