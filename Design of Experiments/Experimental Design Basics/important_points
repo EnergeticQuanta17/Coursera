@@ -60,3 +60,77 @@ Topics covered this week include:
 	confidence intervals
 	sample size determination
 
+Descibing sample data
+	Random samples
+	Sample mean, variance, standard deviation
+	Populations versus samples
+	Population mean, variance, standard deviation
+	Estimating parameters
+
+Simple Comparitive Experiments
+	The hypothesis testing framework
+	The two-sample t-test
+	Checking assumptions, validity
+
+Portland Cement - bond strength data
+	Graphical view of the data
+		Dot diagram
+			Good for 20-25 points
+
+		Histogram
+			Bins
+
+		Box Plot
+			25%ile
+			50%ile
+			75%ile
+
+			Whiskers - min and max
+
+The Hypothesis Testing Framework
+	Two-sample t-test
+		To solve the hypothesis that u1=u2
+
+		Z_n = (y1_mean - y2_mean)  / (*)
+
+	In initial stages of the experiment keep the cutoff (alpha) high, as wrongly concluding that a factor is not important has chain-effect-impact on the course of the experiment
+		It is called type-I error.
+
+	Directly using sample variance is okay for large samples.
+
+	-> pooled individual sample variances
+		Weighted average (n-1) and (n-2) are the weights
+
+	We get t-statistic value when we take sample variances <<-->> as to <<-->> normal-statistic when we take population variance
+
+	Two-sample (pooled) t-test
+
+	The normal probability plot
+		Slope is proportional to standard deviation
+
+	Confidence interval formula
+
+"Hypothesis testing on variances"
+What if the two variances are different? - Hypothesis Testing on Variances
+	If the normal plot of the two data , the slopes are very different, then we cannot use pooled-t-test.
+
+	Use S1 and S2 formula
+		to get t-value
+
+		But we need to make an adjustment to the degrees of freedom
+
+Inference on Single Mean
+	We can use Z-statistic
+	It is now one-sided test
+
+Paired t=test
+	Special case of two-sample t-test
+
+	Greatly improve precision
+
+	Statistical model has these
+		1. Mean
+		2. Specimen effect
+		3. Error
+
+	

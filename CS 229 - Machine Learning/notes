@@ -1,3 +1,20 @@
 Support Vector Machines
 	Infinite dimension vector to represent X
 
+Cocktail Part Problem
+	ICA	- Independent Component Analysis
+
+Using Squared Error corresponds to Gaussian
+	When seen from perspective of Generalized Linear Models
+
+In Linear Regression,
+	there will not be local optimum
+
+	direct global minimum
+
+del_wrt_A f(A) = 
+
+We can derive the sigmoid from more basic principles
+
+Generalized Linear Models
+

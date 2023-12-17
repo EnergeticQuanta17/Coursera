@@ -1,0 +1,38 @@
+<----------------- Week-1 ----------------- >
+
+Objectives:-
+	Pre-training
+	Value of continued Pre-training vs Fine-tuning
+	Describe transformer arch. 
+	GenAI model lifecycle
+	Computational Challenges
+		during model Pre-training
+		how to reduce memory footprint
+	Define the term scaling law
+		Laws for LLMs wrt
+			train data size
+			compute budget
+			inference requirements
+			other factors
+
+
+Transfomers
+Generative AI Project Lifecycle
+
+
+
+
+
+
+
+
+<----------------- Week-2 ----------------- >
+
+
+
+
+
+
+
+
+<----------------- Week-3 ----------------- >

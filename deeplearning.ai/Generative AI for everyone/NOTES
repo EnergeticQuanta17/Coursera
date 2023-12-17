@@ -1,0 +1,142 @@
+Define generative AI, including large language models (LLMs), and describe how supervised learning is used to train generative AI models to create high quality text and images.
+List common use cases for generative AI including writing, reading, and chatting tasks for both web-UI and software-based implementations of LLMs.
+Identify the limitations of LLMs and use practical techniques and strategies for writing better prompts to enhance the quality and relevance of an LLM’s responses.
+
+Specialized Chatbots for specific applications
+
+ChatBots supporting humans
+	Human-in-the-loop is a blend of supervised machine learning and active learning where humans are involved in both the training and testing stages of building an algorithm.
+
+	Humans verify and edit the answer provided by chatbot before sending to customer
+
+Bot triages for humans
+	Branching to automate easier tasks and harder tasks to humans
+
+Advice for deploying chatbots
+	1. Start with internal-facing chatbots
+	2. Deploy with human-in-the-loop to check for mistakes
+	3. Only after deemed safe, allow bot to communicate directly with customers.
+
+What LLMs can and cannot do
+	"Can a fresh college graduate follow the instructions in the prompt to complete the task?" - use this question to know if the LLM can answer your question
+
+Generative AI works best with unstructured data
+
+Detailed, Specific, guide the model, experiment and iterate
+
+Text or images generative models are called multi-modal models
+
+Image Generation - Diffusion model
+	Noising and DeNoising
+
+<----------------------------- Week-2 --------------------------------->
+GENERATIVE AI PROJECTS
+
+Describe the key phases in the lifecycle of a generative AI project.
+Explore when to use more advanced techniques, like retrieval augmented generation (RAG), fine-tuning, and reinforcement learning from human feedback (RLHF), to customize or improve an LLMs performance.
+Think through the cost considerations of using a cloud-based LLM to power software applications.
+
+LifeCycle of a Generative AI project
+	LifeCycle
+		1. Scope project (restaurant reputation monitoring system)
+
+		2. Build/Improve system
+			Prototype, that will improve over time
+
+		3. Internal evaluation
+
+		4. Deploy and monitor
+
+	Iterative process
+
+	Highly empirical process(meaning experimental)
+
+Tools to improve performance
+	Prompting
+
+	Retrieval Augmented Generation(RAG)
+		Give LLM  acces to external data sources
+
+	Fine-tune models
+		Adapt LLM to your task
+
+	Pretrain models
+		Train LLM from scratch
+
+400 tokens = 300 words
+
+Retrieval Augmented Generation(RAG)
+	expanding what LLM can do by giving additional knowledge
+		from data outside
+
+	Steps
+		1. Look through documents if they have the answer
+
+		2. Incorporate retrieved text into an updated prompt
+
+		3.  Generate answer from the new prompt with additional context
+
+"LLM as a reasoning engine"
+	And not as a way to store and retrieve infomration
+
+Fine-tuning
+	To gain specific knowledge
+	
+	To get a smaller model to perform a task
+		Lower cost and latency to deploy
+
+Pretraining an LLM
+
+Reinforcement Learning from Human Feedback (RLHF)
+	Triple H = Helpful, Honest, Harmless
+
+	Step 1
+		Train an answer quality (reward) model
+
+	Step 2
+		Have LLM generate a lot of answers. Further train it to generate more responses that get high scores.
+
+Tools for reasoning
+
+Agents
+	Use LLM to choose and carry out complex sequences of actions
+
+	Cutting edge area of AI research
+
+<----------------------------- Week-3 --------------------------------->
+Generative AI and business
+
+Job as made of multiple tasks
+	Col 1: Tasks
+	Col2: Generative AI potential
+
+Augmentation vs Automation
+	Augmentation
+		Help humans with a task
+
+	Automaton
+		Automatically perform a task
+
+New workflows and new opportunities
+
+Common roles
+	Software Engineer
+	Machine learning Engineer
+	Product Engineer
+
+	Optional
+		Data Engineer
+		Data Scientist
+		Project Manager
+
+Automation Potential across sectors
+
+
+Concerns about AI
+	Concern 1: Introduction of Biases
+		Can be solved using the reward function of RLHF
+
+	Concern 2: Jobs
+
+Artificial General Intelligence
+	
